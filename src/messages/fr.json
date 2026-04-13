@@ -1,0 +1,36 @@
+{
+  "HomePage": {
+    "title": "The Village Art Studio",
+    "hero": {
+      "title": "Où l'Art Rencontre la Communauté",
+      "subtitle": "Découvrez les voix des artistes locaux à travers des interviews, des vitrines et des expériences de connexion.",
+      "cta": "Voir les Prochains Ateliers"
+    },
+    "sections": {
+      "podcast": {
+        "title": "La Voix du Village",
+        "description": "Plongez dans le processus créatif avec les talents locaux de Toronto.",
+        "cta": "Écouter Maintenant"
+      },
+      "showcase": {
+        "title": "Vitrine Mensuelle",
+        "cta": "Explorer la Galerie"
+      },
+      "workshops": {
+        "title": "Expériences de Connexion d'Artistes",
+        "subtitle": "Hébergé par La Gloria Mexican Coffee",
+        "description": "Plus qu'un cours. Une chance de créer aux côtés de l'artiste et d'entendre son histoire."
+      }
+    }
+  },
+  "Navigation": {
+    "home": "Accueil",
+    "podcast": "Podcast",
+    "showcase": "Vitrine",
+    "workshops": "Ateliers",
+    "about": "À Propos",
+    "forArtists": "Pour les Artistes",
+    "partnerships": "Partenariats",
+    "contact": "Contact"
+  }
+}
