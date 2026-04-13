@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Courses</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="Courses.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    
+    
+    
+    
+    
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800">
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "The Village Art Studio",
+		"logo": "images/TheVillageArtStudio.png",
+		"sameAs": [
+				"https://www.facebook.com/profile.php?id=61554590920288",
+				"https://instagram.com/tvas.ca",
+				"https://www.tiktok.com/@tvas.ca"
+		]
+}</script>
+    <meta name="theme-color" content="#0cbcf5">
+    <meta property="og:title" content="Courses">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta name="referrer" content="origin"><script>
+    window.recaptchaRenderedV2 = false;
+    window.recaptchaFallback = false;
+    window.recaptchaSiteKeyV2 = '6LdfeIwrAAAAAMnDkaIExdHsV0Nsj8y-CU9AyTjZ';
+
+    function gdprConfirmed() {
+        return true;
+    }
+
+    function dynamicLoadScript() {
+        var script = document.createElement('script');
+        script.src = 'https://www.google.com/recaptcha/enterprise.js?render=6LfFQD8rAAAAAAKyNonQu1yzrfz7HQv0h9G6e2tw';
+        script.async = true;
+        script.onload = function () {
+            var event = new CustomEvent("recaptchaLoaded");
+            document.dispatchEvent(event);
+        };
+        document.body.appendChild(script);
+    }
+
+    function showRecaptchaError(error) {
+        error = error || '';
+        var formError = document.querySelector('.u-form-send-error');
+
+        if (formError) {
+            formError.innerText = 'Site Owner Error: ' + error.replace(/:[\s\S]*/, '');
+            formError.style.display = 'block';
+        }
+
+        console.error('Error in grecaptcha: ', error);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var confirmButtons = document.querySelectorAll('.u-cookies-consent .u-button-confirm');
+        confirmButtons.forEach(function (button) {
+            button.onclick = dynamicLoadScript;
+        });
+    });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            if (!gdprConfirmed()) {
+                return;
+            }
+            dynamicLoadScript();
+        });
+    </script>
+
+    <script>
+        document.addEventListener("recaptchaLoaded", function() {
+            if (!gdprConfirmed()) {
+                return;
+            }
+
+            (function (grecaptcha, sitekey, actions) {
+                var recaptcha = {
+                    execute: function (action, submitFormCb) {
+                        if (typeof grecaptcha === 'undefined' || typeof grecaptcha.execute !== 'function') {
+                            showRecaptchaError('reCAPTCHA script failed to load.');
+                            return;
+                        }
+
+                        try {
+                            grecaptcha.execute(sitekey, {action: action}).then((token) => {
+                                if (!token) {
+                                    throw new Error('Empty token received from reCAPTCHA');
+                                }
+
+                                var forms = document.getElementsByTagName('form');
+
+                                for (var i = 0; i < forms.length; i++) {
+                                    var response = forms[i].querySelector('[name="recaptchaResponse"]');
+
+                                    if (!response) {
+                                        response = document.createElement('input');
+                                        response.setAttribute('type', 'hidden');
+                                        response.setAttribute('name', 'recaptchaResponse');
+                                        forms[i].appendChild(response);
+                                    }
+
+                                    response.value = token;
+                                }
+
+                                submitFormCb();
+                            }).catch((e) => {
+                                showRecaptchaError(e.message);
+                            });
+                        } catch (e) {
+                            showRecaptchaError(e.message);
+                        }
+                    },
+
+                    executeContact: function (submitFormCb) {
+                        recaptcha.execute(actions['contact'], submitFormCb);
+                    }
+                };
+
+                window.recaptchaObject = recaptcha;
+                window.grecaptchaObject = grecaptcha;
+            })(
+                
+                grecaptcha.enterprise,
+                '6LfFQD8rAAAAAAKyNonQu1yzrfz7HQv0h9G6e2tw',
+                {'contact': 'contact'}
+            );
+        });
+    </script>
+
+    <script>
+    window.showRecaptchaV2 = function (form) {
+        if (!form || !form.length) {
+            return;
+        }
+        if (typeof window.grecaptchaObject === 'undefined' || !window.grecaptchaObject) {
+            return;
+        }
+
+        const formEl = form[0];
+
+        let container = document.getElementById('recaptcha-v2-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'recaptcha-v2-container';
+            formEl.parentElement.appendChild(container);
+        }
+
+        let tokenReceived = false;
+        let timeoutHandle;
+
+        if (window.recaptchaRenderedV2 === false || typeof window.recaptchaRenderedV2 === 'undefined') {
+            window.recaptchaRenderedV2 = window.grecaptchaObject.render('recaptcha-v2-container', {
+                'sitekey': window.recaptchaSiteKeyV2,
+                'size': 'invisible',
+                'callback': function (token) {
+                    clearTimeout(timeoutHandle);
+
+                    if (!token) {
+                        showRecaptchaError('reCAPTCHA v2 token was empty. Please try again.');
+                        return;
+                    }
+
+                    tokenReceived = true;
+
+                    let recaptchaResponseV2 = formEl.querySelector('input[name="recaptchaResponseV2"]');
+
+                    if (!recaptchaResponseV2) {
+                        recaptchaResponseV2 = document.createElement('input');
+                        recaptchaResponseV2.type = 'hidden';
+                        recaptchaResponseV2.name = 'recaptchaResponseV2';
+                        formEl.appendChild(recaptchaResponseV2);
+                    }
+
+                    recaptchaResponseV2.value = token;
+
+                    if (window.recaptchaSiteKeyV2) {
+                        let siteKeyInput = formEl.querySelector('input[name="siteKey"]');
+
+                        if (siteKeyInput) {
+                            siteKeyInput.value = window.recaptchaSiteKeyV2;
+                        }
+                    }
+
+                    document.querySelectorAll('.u-form-send-error').forEach(el => {
+                        el.style.display = 'none';
+                    });
+
+                    const event = new CustomEvent('submit', {
+                        detail: { recaptchaPassed: true },
+                        bubbles: true,
+                        cancelable: true,
+                    });
+
+                    formEl.dispatchEvent(event);
+                },
+                'error-callback': function () {
+                    clearTimeout(timeoutHandle);
+                    showRecaptchaError('reCAPTCHA v2 error. Please try again.');
+                },
+                'expired-callback': function () {
+                    clearTimeout(timeoutHandle);
+                }
+            });
+
+            window.grecaptchaObject.reset(window.recaptchaRenderedV2);
+
+            setTimeout(() => {
+                window.grecaptchaObject.execute(window.recaptchaRenderedV2);
+            }, 300);
+
+            timeoutHandle = setTimeout(function () {
+                if (!tokenReceived) {
+                    showRecaptchaError('The Contact Form could not be submitted because Google reCAPTCHA v3 detected unusual activity from your connection. Please try again later, or complete the reCAPTCHA v2 challenge if it appears.');
+                }
+            }, 120000);
+        } else {
+            window.grecaptchaObject.reset(window.recaptchaRenderedV2);
+
+            setTimeout(() => {
+                window.grecaptchaObject.execute(window.recaptchaRenderedV2);
+            }, 300);
+        }
+    };
+    </script>
+<meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body data-path-to-root="./" data-include-products="false" class="u-body u-clearfix u-xl-mode" data-lang="en"><header class="u-clearfix u-header u-image u-header" id="sec-fe8b"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="./" data-page-id="674608046" class="u-image u-logo u-image-1" data-image-width="766" data-image-height="766" title="Home">
+          <img src="images/TheVillageArtStudio.png" class="u-logo-image u-logo-image-1" title="Home">
+        </a>
+        <nav class="u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1" role="navigation" aria-label="Menu navigation">
+          <div class="menu-collapse" style="font-weight: 700;">
+            <a class="u-button-style u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-text-shadow u-hamburger-link u-nav-link u-text-white" href="#" tabindex="-1" aria-label="Open menu" aria-controls="a60a">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul role="menubar" class="u-nav u-unstyled u-nav-1"><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-1" href="About.html" style="padding: 10px 20px;">About</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-1" href="blog/blog.html" style="padding: 10px 20px;">Blog</a>
+</li><li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-1" href="./#carousel_117d" data-page-id="674608046" style="padding: 10px 20px;">Service</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-1" href="​Courses-for-Kids.html" style="padding: 10px 20px;">Classes</a><div class="u-nav-popup"><ul role="menu" class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2" aria-label="Classes menu"><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-white" href="Courses.html">Courses</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-white" href="Workshops.html">Workshops</a>
+</li></ul>
+</div>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-1" href="Programs.html" style="padding: 10px 20px;">Programs</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-1" href="The-Village-Art-Gallery.html" style="padding: 10px 20px;">The Village Art Gallery</a>
+</li><li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link u-text-active-palette-1-light-3 u-text-body-alt-color u-text-hover-palette-1-light-1" href="./#sec-a9cd" data-page-id="674608046" style="padding: 10px 20px;">Contact Us</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse" id="a60a" role="region" aria-label="Menu panel">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close" tabindex="-1" aria-label="Close menu"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3" role="menubar"><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="About.html">About</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="blog/blog.html">Blog</a>
+</li><li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link" href="./#carousel_117d" data-page-id="674608046">Service</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="​Courses-for-Kids.html">Classes</a><div class="u-nav-popup"><ul role="menu" class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-4" aria-label="Classes menu"><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="Courses.html">Courses</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="Workshops.html">Workshops</a>
+</li></ul>
+</div>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="Programs.html">Programs</a>
+</li><li role="none" class="u-nav-item"><a role="menuitem" class="u-button-style u-nav-link" href="The-Village-Art-Gallery.html">The Village Art Gallery</a>
+</li><li role="none" class="u-nav-item"><a tabindex="-1" role="menuitem" class="u-button-style u-nav-link" href="./#sec-a9cd" data-page-id="674608046">Contact Us</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+      </div></header>
+    <section class="u-align-center u-clearfix u-container-align-center u-white u-section-1" id="sec-0963">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+        <h1 class="u-text u-text-default u-text-palette-1-base u-text-1"> Courses</h1>
+        <p class="u-text u-text-default u-text-2"> Our instructors design our courses for different age groups based on the difficulty and safety terms.</p>
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-align-center u-container-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                <img src="images/be234be37ac4fc2001afac6b43c786aec2aef7c40c77877e29df31f9f3e0e1e224957d81a73b7f931ad824de1e03c0277d50255e0f78f05473ab33_1280.jpg" alt="" class="u-expanded-width u-image u-image-default u-image-1" data-image-width="1280" data-image-height="853">
+                <h4 class="u-text u-text-default u-text-palette-1-base u-text-3">Kids</h4>
+                <p class="u-text u-text-palette-1-dark-2 u-text-4">Age 5~12 </p>
+                <a href="​Courses-for-Kids.html" data-page-id="63929084" class="u-active-palette-1-base u-border-2 u-border-active-white u-border-hover-white u-border-white u-btn u-btn-round u-button-style u-hover-palette-1-base u-palette-1-base u-radius-50 u-text-active-white u-text-hover-white u-btn-1" title="Kids">Explore</a>
+              </div>
+            </div>
+            <div class="u-align-center u-container-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-2">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+                <img src="images/photo-1752649937256-38d4a6a71e04.jpeg" alt="" class="u-expanded-width u-image u-image-default u-image-2" data-image-width="1280" data-image-height="720">
+                <h4 class="u-text u-text-default u-text-palette-1-base u-text-5">Teen</h4>
+                <p class="u-text u-text-palette-1-dark-2 u-text-6">Age 13~17</p>
+                <a href="" class="u-active-palette-1-base u-border-2 u-border-active-white u-border-hover-white u-border-white u-btn u-btn-round u-button-style u-hover-palette-1-base u-palette-1-base u-radius-50 u-text-active-white u-text-hover-white u-btn-2" target="_blank">Coming soon</a>
+              </div>
+            </div>
+            <div class="u-align-center u-container-align-center u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
+                <img src="images/interracial-woman-man-make-fist-bump-happy-finish-painting-walls-home-have-happy-expressions-renovate-house-together-mixed-race-repairers-work-as-team-renewal-repairing-concept_smaller.jpg" alt="" class="u-expanded-width u-image u-image-default u-image-3" data-image-width="1200" data-image-height="800">
+                <h4 class="u-text u-text-default u-text-palette-1-base u-text-7">Adults</h4>
+                <p class="u-text u-text-palette-1-dark-2 u-text-8">Age 18+</p>
+                <a href="" class="u-active-palette-1-base u-border-2 u-border-active-white u-border-hover-white u-border-white u-btn u-btn-round u-button-style u-hover-palette-1-base u-palette-1-base u-radius-50 u-text-active-white u-text-hover-white u-btn-3">Coming soon</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-container-align-center u-grey-75 u-section-2" id="sec-b1e2">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="data-layout-selected u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-row">
+              <div class="u-size-30">
+                <div class="u-layout-col">
+                  <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                    <div class="u-container-layout u-container-layout-1">
+                      <h2 class="u-text u-text-1">Host your own program </h2>
+                      <p class="u-text u-text-2">Are you looking to start your program and inspire more positional artists? <br>
+                        <br>Give us your vision, we provide the solution~
+                      </p>
+                    </div>
+                  </div>
+                  <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-2">
+                    <div class="u-container-layout u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-2">
+                      <div class="u-clearfix u-custom-html u-expanded-width u-custom-html-1">
+                        <div data-tf-live="01K4P372N5NZCFX1BHBQQH2QJW"></div>
+                        <script src="//embed.typeform.com/next/embed.js"></script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-size-30">
+                <div class="u-layout-col">
+                  <div class="u-align-left u-container-align-center u-container-align-left u-container-style u-image u-layout-cell u-right-cell u-size-60 u-image-1" data-image-width="1280" data-image-height="853">
+                    <div class="u-container-layout u-container-layout-3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    <footer class="u-clearfix u-footer u-grey-80" id="sec-8ae1"><div class="u-clearfix u-sheet u-sheet-1">
+        <div class="data-layout-selected u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-gutter-30 u-layout-wrap u-layout-wrap-1">
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-size-30-md u-layout-cell-1">
+                <div class="u-container-layout u-valign-top u-container-layout-1">
+                  <h6 class="u-text u-text-1">WHERE TO FIND US</h6>
+                  <p class="u-small-text u-text u-text-variant u-text-2">info@tvas.ca<br>
+                    <br>434 Parliament St, Toronto, ON M5A 3A2<br>(Inside RAPID PHOTO)
+                  </p>
+                </div>
+              </div>
+              <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-size-20 u-size-30-md u-layout-cell-2">
+                <div class="u-container-layout u-valign-top u-container-layout-2">
+                  <h6 class="u-text u-text-3">PROGRAMS</h6>
+                  <ul class="u-small-text u-text u-text-variant u-text-4" spellcheck="false" aria-label="To enrich screen reader interactions, please activate Accessibility in Grammarly extension settings">
+                    <li>Programs for Artists</li>
+                    <li> Programs for Kids</li>
+                    <li> Programs for Teen</li>
+                    <li> Programs for Adults</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="u-align-left u-container-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-size-30-md u-layout-cell-3">
+                <div class="u-container-layout u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-3">
+                  <h6 class="u-text u-text-5">STAY CONNECTED WITH US</h6>
+                  <div class="u-social-icons u-social-icons-1">
+                    <a class="u-social-url" title="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=61554590920288"><span class="u-icon u-social-facebook u-social-icon u-text-black u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-45f7"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-45f7"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M73.5,31.6h-9.1c-1.4,0-3.6,0.8-3.6,3.9v8.5h12.6L72,58.3H60.8v40.8H43.9V58.3h-8V43.9h8v-9.2
+c0-6.7,3.1-17,17-17h12.5v13.9H73.5z"></path></svg></span>
+                    </a>
+                    <a class="u-social-url" title="instagram" target="_blank" href="https://instagram.com/tvas.ca"><span class="u-icon u-social-icon u-social-instagram u-text-black u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-a660"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-a660"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M55.9,38.2c-9.9,0-17.9,8-17.9,17.9C38,66,46,74,55.9,74c9.9,0,17.9-8,17.9-17.9C73.8,46.2,65.8,38.2,55.9,38.2
+z M55.9,66.4c-5.7,0-10.3-4.6-10.3-10.3c-0.1-5.7,4.6-10.3,10.3-10.3c5.7,0,10.3,4.6,10.3,10.3C66.2,61.8,61.6,66.4,55.9,66.4z"></path><path fill="#FFFFFF" d="M74.3,33.5c-2.3,0-4.2,1.9-4.2,4.2s1.9,4.2,4.2,4.2s4.2-1.9,4.2-4.2S76.6,33.5,74.3,33.5z"></path><path fill="#FFFFFF" d="M73.1,21.3H38.6c-9.7,0-17.5,7.9-17.5,17.5v34.5c0,9.7,7.9,17.6,17.5,17.6h34.5c9.7,0,17.5-7.9,17.5-17.5V38.8
+C90.6,29.1,82.7,21.3,73.1,21.3z M83,73.3c0,5.5-4.5,9.9-9.9,9.9H38.6c-5.5,0-9.9-4.5-9.9-9.9V38.8c0-5.5,4.5-9.9,9.9-9.9h34.5
+c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
+                    </a>
+                    <a class="u-social-url" target="_blank" data-type="Custom" title="Tik Tok" href="https://www.tiktok.com/@tvas.ca"><span class="u-file-icon u-icon u-social-custom u-social-icon u-text-black u-icon-3"><img src="images/3116493-ded0cd1d.png" alt=""></span>
+                    </a>
+                  </div>
+                  <div class="u-expanded-width u-form u-form-1">
+                    <form action="https://service.nicepagesrv.com/form/v4/form-process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="email" name="form-1" style="padding: 10px;">
+                      <div class="u-form-email u-form-group u-label-none">
+                        <label for="email-b03b" class="u-label">Email</label>
+                        <input type="email" placeholder="Enter a valid email address" id="email-b03b" name="email" class="u-input u-input-rectangle" required="required">
+                      </div>
+                      <div class="u-align-left u-form-group u-form-submit u-label-none">
+                        <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                      </div>
+                      <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                      <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                      <input type="hidden" value="" name="recaptchaResponse">
+                      <input type="hidden" name="formServices" value="a78c44fb-44a1-f356-2eb5-0a985737eaa4">
+                      <input type="hidden" name="siteKey" value="6LfFQD8rAAAAAAKyNonQu1yzrfz7HQv0h9G6e2tw">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-align-left u-border-1 u-border-white u-expanded-width u-line u-line-horizontal u-opacity u-opacity-25 u-line-1"></div>
+        <p class="u-align-center u-small-text u-text u-text-variant u-text-6"> Copyright © 2024~2025 The Village Art Studio All Rights Reserved. </p>
+      </div></footer>
+  
+</body></html>
