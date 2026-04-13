@@ -1,44 +1,34 @@
 import Hero from '@/components/Hero';
-import PodcastTeaser from '@/components/PodcastTeaser';
-import ShowcaseTeaser from '@/components/ShowcaseTeaser';
-import WorkshopCTA from '@/components/WorkshopCTA';
+import Pillars from '@/components/Pillars';
+import FeaturedThisMonth from '@/components/FeaturedThisMonth';
+import AboutSection from '@/components/AboutSection';
+import ForArtistsSection from '@/components/ForArtistsSection';
+import PartnershipSection from '@/components/PartnershipSection';
+import DoubleCTA from '@/components/DoubleCTA';
 
 export default function HomePage() {
   return (
     <main>
+      {/* 1. Hero — The Statement */}
       <Hero />
-      <PodcastTeaser />
-      <ShowcaseTeaser />
-      <WorkshopCTA />
-      
-      {/* Editorial Pull Quote */}
-      <section className="section" style={{ background: 'var(--muted)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <span className="caption" style={{ display: 'block', marginBottom: '2rem' }}>
-            Our Mission
-          </span>
-          <blockquote style={{ 
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-            fontWeight: 700,
-            fontStyle: 'italic',
-            maxWidth: '900px',
-            margin: '0 auto',
-            lineHeight: 1.4,
-            letterSpacing: '-0.01em',
-            color: 'var(--foreground)'
-          }}>
-            "A creative platform that helps local artists get seen, heard, and connected — through interviews, showcases, and genuine community."
-          </blockquote>
-          <div style={{ 
-            width: '48px', 
-            height: '3px', 
-            background: 'var(--primary)', 
-            margin: '3rem auto 0',
-            borderRadius: '2px'
-          }} />
-        </div>
-      </section>
+
+      {/* 2. Pillars — What We Do */}
+      <Pillars />
+
+      {/* 3. Featured This Month — The Living Room */}
+      <FeaturedThisMonth />
+
+      {/* 4. About — The Legend */}
+      <AboutSection />
+
+      {/* 5. For Artists — The Invitation */}
+      <ForArtistsSection />
+
+      {/* 6. Partnerships — The Bridge */}
+      <PartnershipSection />
+
+      {/* 7. Final CTA — Choose Your Path */}
+      <DoubleCTA />
     </main>
   );
 }

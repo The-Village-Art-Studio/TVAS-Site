@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   const t = useTranslations('Navigation');
+  const tFooter = useTranslations('Footer');
 
   return (
     <footer style={{ 
@@ -19,16 +20,18 @@ export default function Footer() {
       }}>
         {/* Brand Column */}
         <div style={{ gridColumn: 'span 2' }}>
-          <Image src="/logo.png" alt="TVAS Logo" width={60} height={60} style={{ marginBottom: '2rem' }} />
-          <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', fontWeight: 800 }}>THE VILLAGE ART STUDIO</h3>
-          <p style={{ opacity: 0.6, maxWidth: '350px', fontSize: '1rem', lineHeight: '1.8' }}>
-            A contemporary creative platform that helps local artists get seen, heard, and connected through interviews, showcases, and partnerships.
+          <Image src="/logo.png" alt="The Village Art Studio Logo" width={60} height={60} style={{ marginBottom: '2rem' }} />
+          <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', fontWeight: 800 }}>
+            {tFooter('brandName')}
+          </h3>
+          <p style={{ opacity: 0.6, maxWidth: '350px', fontSize: '1rem', lineHeight: '1.9' }}>
+            {tFooter('tagline')}
           </p>
         </div>
 
-        {/* Links Column */}
+        {/* Platform Column */}
         <div>
-          <h4 style={{ marginBottom: '2rem', fontSize: '0.8rem' }}>Platform</h4>
+          <h4 style={{ marginBottom: '2rem', fontSize: '0.8rem' }}>{tFooter('platformLabel')}</h4>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             <Link href="/podcast" className="link-editorial" style={{ fontSize: '0.9rem' }}>{t('podcast')}</Link>
             <Link href="/showcase" className="link-editorial" style={{ fontSize: '0.9rem' }}>{t('showcase')}</Link>
@@ -36,12 +39,13 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Links Column 2 */}
+        {/* Connect Column */}
         <div>
-          <h4 style={{ marginBottom: '2rem', fontSize: '0.8rem' }}>Connect</h4>
+          <h4 style={{ marginBottom: '2rem', fontSize: '0.8rem' }}>{tFooter('connectLabel')}</h4>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             <Link href="/about" className="link-editorial" style={{ fontSize: '0.9rem' }}>{t('about')}</Link>
             <Link href="/for-artists" className="link-editorial" style={{ fontSize: '0.9rem' }}>{t('forArtists')}</Link>
+            <Link href="/partnerships" className="link-editorial" style={{ fontSize: '0.9rem' }}>{t('partnerships')}</Link>
             <Link href="/contact" className="link-editorial" style={{ fontSize: '0.9rem' }}>{t('contact')}</Link>
           </nav>
         </div>
@@ -57,12 +61,14 @@ export default function Footer() {
         fontWeight: 600,
         textTransform: 'uppercase',
         letterSpacing: '0.1em',
-        opacity: 0.4
+        opacity: 0.4,
+        flexWrap: 'wrap',
+        gap: '1rem'
       }}>
-        <p>© {new Date().getFullYear()} The Village Art Studio</p>
+        <p>© {new Date().getFullYear()} {tFooter('copyright')}</p>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          <a href="#">Instagram</a>
-          <a href="#">TikTok</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
         </div>
       </div>
     </footer>

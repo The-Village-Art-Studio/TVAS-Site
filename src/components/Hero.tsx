@@ -1,50 +1,51 @@
 import {useTranslations} from 'next-intl';
+import {Link} from '@/i18n/routing';
 
 export default function Hero() {
-  const t = useTranslations('HomePage.hero');
+  const t = useTranslations('Hero');
 
   return (
     <section style={{
-      padding: 'var(--section-spacing-desktop) 0',
+      padding: 'calc(var(--section-spacing-desktop) * 1.25) 0',
       backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('/hero-mockup.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       textAlign: 'center',
       position: 'relative',
-      minHeight: '80vh',
+      minHeight: '85vh',
       display: 'flex',
       alignItems: 'center'
     }}>
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <span className="caption" style={{ display: 'block', marginBottom: '1.5rem' }}>
-          Contemporary Creative Platform
+          {t('eyebrow')}
         </span>
-        <h1 style={{ 
-          maxWidth: '1000px',
-          margin: '0 auto 2rem'
-        }}>
-          {t('title')}
+        <h1 style={{ maxWidth: '1000px', margin: '0 auto 2rem' }}>
+          {t('headline')}
         </h1>
-        <p style={{ 
-          fontSize: 'clamp(1.1rem, 3vw, 1.25rem)', 
-          maxWidth: '650px', 
+        <p style={{
+          fontSize: 'clamp(1.1rem, 3vw, 1.25rem)',
+          maxWidth: '680px',
           margin: '0 auto 3.5rem',
-          color: 'var(--foreground)',
-          opacity: 0.8
+          opacity: 0.8,
+          lineHeight: '1.8'
         }}>
-          {t('subtitle')}
+          {t('subheadline')}
         </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <button className="btn btn-primary">
-            {t('cta')}
-          </button>
-          <button className="btn btn-outline">
-            Meet the Artists
-          </button>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link href="/workshops" className="btn btn-primary" style={{
+            padding: '1.2rem 2.8rem',
+            boxShadow: '0 10px 30px rgba(12, 188, 245, 0.25)'
+          }}>
+            {t('ctaPrimary')}
+          </Link>
+          <Link href="/podcast" className="btn btn-outline">
+            {t('ctaSecondary')}
+          </Link>
         </div>
       </div>
-      
-      {/* Editorial Gradient fade to white */}
+
+      {/* Editorial gradient fade */}
       <div style={{
         position: 'absolute',
         bottom: 0,
@@ -53,7 +54,7 @@ export default function Hero() {
         height: '20vh',
         background: 'linear-gradient(to top, var(--background), transparent)',
         zIndex: 1
-      }}></div>
+      }} />
     </section>
   );
 }

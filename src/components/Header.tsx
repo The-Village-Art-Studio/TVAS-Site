@@ -53,7 +53,7 @@ export default function Header() {
               fontWeight: 600,
               opacity: 0.6
             }}>
-              Village Art Studio
+              The Village Art Studio
             </span>
           </div>
         </Link>

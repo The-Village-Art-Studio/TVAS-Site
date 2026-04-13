@@ -189,3 +189,22 @@ p, .body-text {
 .card-artist:hover .card-artist-image {
   transform: scale(0.97);
 }
+
+/* Split CTA card hover */
+.split-card:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Responsive: podcast feature card — remove span on mobile */
+@media (max-width: 768px) {
+  [style*='gridColumn: span 2'] {
+    grid-column: span 1 !important;
+  }
+  [style*='gridTemplateColumns: 1fr 1fr'] {
+    grid-template-columns: 1fr !important;
+  }
+  .section {
+    padding: var(--section-spacing-mobile) 0;
+  }
+}
