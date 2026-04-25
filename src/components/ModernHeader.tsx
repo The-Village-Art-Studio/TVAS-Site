@@ -37,7 +37,8 @@ export default function ModernHeader({ cycleLavaMode, currentLavaMode, nextLavaM
     { href: "/showcase", label: t('showcase'), icon: Palette },
     { href: "/podcast", label: t('podcast'), icon: Mic },
     { href: "/workshops", label: t('workshops'), icon: Calendar },
-    { href: "/about", label: t('about'), icon: Users },
+    { href: "/members", label: t('members'), icon: Users },
+    { href: "/about", label: t('about'), icon: Layers },
   ]
 
   const toggleMobileMenu = () => {

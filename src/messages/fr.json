@@ -11,7 +11,8 @@
     "about": "À Propos",
     "forArtists": "Pour les Artistes",
     "partnerships": "Partenariats",
-    "contact": "Contact"
+    "contact": "Contact",
+    "members": "Membres du Village"
   },
   "Hero": {
     "eyebrow": "Amplifier la Voix Créative de Toronto",
@@ -525,6 +526,36 @@
         "locationLabel": "Basé à",
         "location": "Toronto, Ontario",
         "followLabel": "Suivre"
+      }
+    },
+    "Members": {
+      "meta": {
+        "title": "Membres du Village — The Village Art Studio",
+        "description": "Découvrez la communauté diversifiée d'artistes qui façonnent le village."
+      },
+      "hero": {
+        "eyebrow": "Communauté",
+        "headline": "Les Membres du Village",
+        "lead": "Rencontrez les artistes et créateurs talentueux qui rendent notre communauté vibrante."
+      },
+      "list": {
+        "eyebrow": "Nos Artistes",
+        "headline": "Collectif Créatif",
+        "types": {
+          "painter": "Peintre",
+          "photographer": "Photographe",
+          "sculptor": "Sculpteur",
+          "digital": "Artiste Numérique",
+          "musician": "Musicien",
+          "writer": "Écrivain"
+        }
+      },
+      "cta": {
+        "eyebrow": "Rejoignez-nous",
+        "headline": "Devenir Membre",
+        "body": "Êtes-vous un artiste à la recherche d'une communauté de soutien et de visibilité pour votre travail ?",
+        "primary": "Postuler pour Rejoindre",
+        "secondary": "Contactez-nous"
       }
     }
   }

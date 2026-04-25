@@ -25,11 +25,11 @@ export default function FeaturedThisMonth() {
 
         {/* Side-by-Side Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Column: Spotlight Features (Slideshow/Stack) */}
+          {/* Left Column: Spotlight Features (Stack) */}
           <div className="lg:col-span-7 flex flex-col gap-8">
             {/* Podcast Card */}
-            <div className="group relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row h-full animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
-              <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
+            <div className="group flex-1 relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
+              <div className="md:w-1/2 relative h-48 md:h-auto overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-[#1a1a1a] bg-[url('/podcast-cover-placeholder.png')] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -39,14 +39,14 @@ export default function FeaturedThisMonth() {
                   {t('podcast.label')}
                 </div>
               </div>
-              <div className="md:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-                <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-4 leading-tight">
+              <div className="md:w-1/2 p-8 flex flex-col justify-center bg-white/40 dark:bg-black/40">
+                <h3 className="text-2xl font-extrabold text-foreground mb-4 leading-tight">
                   The Voice of the Village
                 </h3>
-                <p className="text-white/60 mb-8 leading-relaxed">
+                <p className="text-foreground/70 mb-6 leading-relaxed text-sm">
                   Deep-dive conversations with the creators shaping Toronto&apos;s cultural landscape.
                 </p>
-                <Button asChild variant="secondary" className="self-start rounded-full px-8 bg-white/10 hover:bg-white text-white hover:text-primary transition-all duration-300">
+                <Button asChild variant="outline" className="self-start rounded-full px-6 h-10 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
                   <Link href="/podcast">
                     {t('podcast.cta')}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -55,26 +55,31 @@ export default function FeaturedThisMonth() {
               </div>
             </div>
 
-            {/* Showcase Card (Smaller or second feature) */}
-            <div className="group relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row animate-in fade-in slide-in-from-left-8 duration-1000 delay-300">
-              <div className="md:w-2/5 relative h-48 md:h-auto overflow-hidden">
+            {/* Showcase Card */}
+            <div className="group flex-1 relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row animate-in fade-in slide-in-from-left-8 duration-1000 delay-300">
+              <div className="md:w-1/2 relative h-48 md:h-auto overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-[#f0f0f0] bg-[url('/showcase-thumb.png')] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-              </div>
-              <div className="md:w-3/5 p-8 flex flex-col justify-center">
-                <div className="text-primary text-[10px] font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+                <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2">
                   <ImageIcon size={14} />
                   {t('showcase.label')}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">
+              </div>
+              <div className="md:w-1/2 p-8 flex flex-col justify-center bg-white/40 dark:bg-black/40">
+                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">
                   Monthly Showcase
                 </h3>
-                <Link href="/showcase" className="group/link text-white/80 hover:text-primary font-bold inline-flex items-center gap-2 transition-colors">
-                  {t('showcase.cta')}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
-                </Link>
+                <p className="text-foreground/70 mb-6 leading-relaxed text-sm">
+                  A dedicated focus on one local artist, their work, and their unique creative process.
+                </p>
+                <Button asChild variant="outline" className="self-start rounded-full px-6 h-10 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                  <Link href="/showcase">
+                    {t('showcase.cta')}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -95,39 +100,39 @@ export default function FeaturedThisMonth() {
                   Artist Experiences @ La Gloria
                 </h3>
                 
-                <div className="space-y-8 mb-12">
+                <div className="space-y-6 mb-10">
                   <div className="flex items-start gap-4">
-                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white">
+                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white shrink-0">
                       <MapPin size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1 text-lg">Location</h4>
-                      <p className="text-white/70">La Gloria Mexican Coffee, Toronto</p>
+                      <h4 className="text-white font-bold mb-0.5 text-lg">Location</h4>
+                      <p className="text-white/70 text-sm">La Gloria Mexican Coffee, Toronto</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white">
+                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white shrink-0">
                       <Users size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1 text-lg">Capacity</h4>
-                      <p className="text-white/70">Limited to 8-12 guests for an intimate setting.</p>
+                      <h4 className="text-white font-bold mb-0.5 text-lg">Capacity</h4>
+                      <p className="text-white/70 text-sm">Limited to 8-12 guests for an intimate setting.</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white">
+                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white shrink-0">
                       <Clock size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1 text-lg">Duration</h4>
-                      <p className="text-white/70">Typical sessions last 2.5 - 3 hours.</p>
+                      <h4 className="text-white font-bold mb-0.5 text-lg">Duration</h4>
+                      <p className="text-white/70 text-sm">Typical sessions last 2.5 - 3 hours.</p>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-white/80 text-lg leading-relaxed mb-12 italic border-l-4 border-white/20 pl-6">
+                <p className="text-white/80 text-base leading-relaxed mb-10 italic border-l-4 border-white/20 pl-6">
                   &quot;Intimate workshops hosted at La Gloria Mexican Coffee. Connect with local artists over craft and conversation.&quot;
                 </p>
               </div>

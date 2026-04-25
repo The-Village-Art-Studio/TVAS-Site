@@ -9,31 +9,39 @@ interface PageHeroProps {
 
 export default function PageHero({ eyebrow, headline, lead, backgroundImage }: PageHeroProps) {
   return (
-    <section style={{
-      padding: '12rem 0 10rem',
-      backgroundImage: backgroundImage ? `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(${backgroundImage})` : 'none',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      textAlign: 'center',
-      borderBottom: '1px solid var(--border)',
-      background: backgroundImage ? undefined : 'var(--background)'
-    }}>
-      <div className="container reveal">
-        <span className="caption" style={{ display: 'block', marginBottom: '2.5rem' }}>
+    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden border-b border-border bg-background">
+      {/* Immersive Background elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[20%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[100px]" />
+      </div>
+
+      {backgroundImage && (
+        <div 
+          className="absolute inset-0 z-[-1] opacity-20 grayscale brightness-50"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      )}
+
+      <div className="container relative z-10 mx-auto px-6 text-center">
+        {/* Animated Eyebrow Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <span className="flex h-2 w-2 rounded-full bg-primary animate-ping" />
           {eyebrow}
-        </span>
-        <h1 style={{ maxWidth: '900px', margin: '0 auto 3.5rem', lineHeight: 1.1 }}>
+        </div>
+        
+        {/* High-Fidelity Headline */}
+        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold mb-10 text-foreground leading-[1.05] tracking-tight max-w-[1000px] mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
           {headline}
         </h1>
+
+        {/* Lead Text */}
         {lead && (
-          <p style={{
-            fontSize: '1.25rem',
-            maxWidth: '750px',
-            margin: '0 auto',
-            opacity: 0.6,
-            lineHeight: '1.9',
-            fontWeight: 400
-          }}>
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground/80 max-w-[800px] mx-auto leading-relaxed font-medium animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300">
             {lead}
           </p>
         )}
