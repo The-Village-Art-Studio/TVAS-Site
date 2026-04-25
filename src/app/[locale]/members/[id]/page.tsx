@@ -2,7 +2,7 @@ import {useTranslations} from 'next-intl';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
-import { ArrowLeft, Globe, Instagram, Twitter, Palette, Camera, Box, Cpu, Music, PenTool } from 'lucide-react';
+import { ArrowLeft, Globe, Camera, MessageSquare, Palette, Box, Cpu, Music, PenTool } from 'lucide-react';
 import { ArtistType } from '@/components/cards/ArtistMemberCard';
 import CTABanner from '@/components/shared/CTABanner';
 import { notFound } from 'next/navigation';
@@ -57,7 +57,7 @@ export default async function ArtistProfilePage({params}: {params: Promise<{loca
   const tGlobal = await getTranslations('Navigation');
 
   return (
-    <main className="bg-background pt-32 lg:pt-40 pb-24">
+    <main className="pt-32 lg:pt-40 pb-24">
       {/* Background Blobs */}
       <div className="absolute top-0 left-0 w-full h-[800px] overflow-hidden pointer-events-none">
         <div className="absolute top-[10%] right-[-10%] w-[40%] h-[50%] bg-primary/10 rounded-full blur-[120px]" />
@@ -117,10 +117,10 @@ export default async function ArtistProfilePage({params}: {params: Promise<{loca
                   <Globe size={24} />
                 </a>
                 <a href="#" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1">
-                  <Instagram size={24} />
+                  <Camera size={24} />
                 </a>
                 <a href="#" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1">
-                  <Twitter size={24} />
+                  <MessageSquare size={24} />
                 </a>
               </div>
             </div>

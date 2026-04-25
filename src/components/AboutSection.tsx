@@ -17,9 +17,9 @@ export default function AboutSection() {
           <div className="relative group order-2 lg:order-1">
             <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.01] bg-card">
               <div 
-                className="w-full h-full bg-muted grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                className="w-full h-full bg-muted transition-all duration-700 scale-105 group-hover:scale-100"
                 style={{
-                  backgroundImage: 'url("/about-studio.png")',
+                  backgroundImage: 'url("/founder.png")',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
@@ -30,10 +30,10 @@ export default function AboutSection() {
             {/* Glass Floating Badge */}
             <div className="absolute -bottom-10 -right-10 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-10 hidden sm:block animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
               <p className="font-heading font-black text-2xl tracking-tighter text-foreground mb-1">
-                The Village
+                Jacky Ho
               </p>
               <p className="text-[10px] text-primary uppercase tracking-[0.4em] font-black">
-                Toronto, Canada
+                Founder
               </p>
             </div>
             

@@ -30,7 +30,7 @@ export default function MembersPage() {
   const t = useTranslations('Pages.Members');
 
   return (
-    <main className="bg-background">
+    <main>
       <PageHero 
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}

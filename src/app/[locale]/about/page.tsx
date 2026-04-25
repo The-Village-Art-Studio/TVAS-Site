@@ -18,7 +18,7 @@ export default function AboutPage() {
   const t = useTranslations('Pages.About');
 
   return (
-    <main className="bg-background">
+    <main>
       <PageHero 
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}
@@ -30,11 +30,17 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
             {/* Story Image Area */}
             <div className="group relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl animate-in fade-in slide-in-from-left-8 duration-1000">
-              <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-500" />
-              <div className="absolute inset-0 bg-[url('/about-story-placeholder.png')] bg-center bg-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
-              {/* Glass decorative element */}
-              <div className="absolute bottom-8 right-8 p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl max-w-xs animate-pulse">
-                <p className="text-white text-sm font-medium">Building Toronto&apos;s Creative Soul since 2024.</p>
+              <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-500 z-10 pointer-events-none" />
+              <div className="absolute inset-0 bg-[url('/founder.png')] bg-center bg-cover transition-all duration-700 scale-105 group-hover:scale-100" />
+              
+              {/* Glass Floating Badge */}
+              <div className="absolute bottom-8 right-8 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-20 hidden sm:block animate-pulse">
+                <p className="font-heading font-black text-2xl tracking-tighter text-white mb-1">
+                  Jacky Ho
+                </p>
+                <p className="text-[10px] text-primary uppercase tracking-[0.4em] font-black">
+                  Founder
+                </p>
               </div>
             </div>
 

@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import PageHero from '@/components/shared/PageHero';
-import VideoCard from '@/components/cards/VideoCard';
+import VideoSlider from '@/components/VideoSlider';
 import CTABanner from '@/components/shared/CTABanner';
 import {getTranslations} from 'next-intl/server';
 import { Mic, Play, Headphones, ArrowRight } from 'lucide-react';
@@ -20,7 +20,7 @@ export default function PodcastPage() {
   const episodes = t.raw('grid.episodes') as any[];
 
   return (
-    <main className="bg-background">
+    <main>
       <PageHero 
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}
@@ -74,22 +74,7 @@ export default function PodcastPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {episodes.map((episode, index) => (
-              <div 
-                key={index}
-                className="animate-in fade-in slide-in-from-bottom-8 duration-1000"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <VideoCard 
-                  title={episode.title}
-                  artist={episode.artist}
-                  description={episode.description}
-                  youtubeId={episode.youtubeId || "dQw4w9WgXcQ"}
-                />
-              </div>
-            ))}
-          </div>
+          <VideoSlider episodes={episodes} />
         </div>
       </section>
 

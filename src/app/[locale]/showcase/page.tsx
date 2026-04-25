@@ -3,8 +3,9 @@ import PageHero from '@/components/shared/PageHero';
 import ShowcaseCard from '@/components/cards/ShowcaseCard';
 import CTABanner from '@/components/shared/CTABanner';
 import {getTranslations} from 'next-intl/server';
-import { Sparkles, Palette, ArrowRight, Lightbulb } from 'lucide-react';
+import { Sparkles, Palette, ArrowRight, Lightbulb, Grid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/routing';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -20,7 +21,7 @@ export default function ShowcasePage() {
   const pastShowcases = t.raw('past.showcases') as any[];
 
   return (
-    <main className="bg-background">
+    <main>
       <PageHero 
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}
@@ -56,10 +57,10 @@ export default function ShowcasePage() {
                   A detailed exploration of this month&apos;s featured artist, their creative process, and the specific series being showcased at The Village Art Studio.
                 </p>
                 <Button asChild size="lg" className="h-16 px-10 text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-xl shadow-primary/20 group transition-all duration-500">
-                  <a href="#past-showcases">
-                    {t('current.viewCta')}
+                  <Link href="/showcase/featured-artist">
+                    Learn More
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -90,6 +91,24 @@ export default function ShowcasePage() {
                 />
               </div>
             ))}
+            
+            {/* View All Card */}
+            <div 
+              className="animate-in fade-in slide-in-from-bottom-8 duration-1000 h-full"
+              style={{ animationDelay: `${pastShowcases.length * 100}ms` }}
+            >
+              <Link 
+                href="/showcase/archive"
+                className="group relative flex flex-col items-center justify-center h-full min-h-[300px] rounded-[3rem] bg-card/30 backdrop-blur-xl border-2 border-dashed border-border hover:border-primary hover:bg-card/80 transition-all duration-500"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                  <Grid size={32} />
+                </div>
+                <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
+                  View Full Showcase
+                </h3>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

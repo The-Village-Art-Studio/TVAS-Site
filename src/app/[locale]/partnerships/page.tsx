@@ -27,7 +27,7 @@ export default function PartnershipsPage() {
   const partnerTypeKeys = ['venue', 'brand', 'community'] as const;
 
   return (
-    <main className="bg-background">
+    <main>
       <PageHero 
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}

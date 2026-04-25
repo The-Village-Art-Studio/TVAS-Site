@@ -21,7 +21,7 @@ export default function WorkshopsPage() {
   const events = t.raw('experiences.events') as any[];
 
   return (
-    <main className="bg-background">
+    <main>
       <PageHero 
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}

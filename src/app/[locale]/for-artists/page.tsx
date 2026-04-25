@@ -29,7 +29,7 @@ export default function ForArtistsPage() {
   const steps = t.raw('howItWorks.steps') as any[];
 
   return (
-    <main className="bg-background">
+    <main>
       <PageHero 
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}
