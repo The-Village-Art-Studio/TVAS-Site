@@ -20,12 +20,12 @@ export default function Header() {
 
   return (
     <header style={{ 
-      background: 'rgba(255, 255, 255, 0.8)',
-      backdropFilter: 'blur(10px)',
+      background: 'rgba(255, 255, 255, 0.95)',
+      backdropFilter: 'blur(20px)',
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      padding: '1.5rem 0',
+      padding: '1.25rem 0',
       borderBottom: '1px solid var(--border)'
     }}>
       <div className="container" style={{ 
@@ -33,25 +33,26 @@ export default function Header() {
         justifyContent: 'space-between', 
         alignItems: 'center' 
       }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-          <Image src="/logo.png" alt="TVAS Logo" width={54} height={54} priority />
-          <div style={{ lineHeight: 1.1 }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <Image src="/logo.png" alt="The Village Art Studio Logo" width={52} height={52} priority />
+          <div style={{ lineHeight: 1 }}>
             <span style={{ 
               display: 'block',
               fontFamily: 'var(--font-heading)',
               fontWeight: 800, 
-              fontSize: '1.25rem',
-              letterSpacing: '-0.02em'
+              fontSize: '1.35rem',
+              letterSpacing: '-0.05em',
+              marginBottom: '0.1rem'
             }}>
               TVAS
             </span>
             <span style={{ 
               display: 'block',
-              fontSize: '0.65rem',
+              fontSize: '0.6rem',
               textTransform: 'uppercase',
-              letterSpacing: '0.2em',
-              fontWeight: 600,
-              opacity: 0.6
+              letterSpacing: '0.3em',
+              fontWeight: 700,
+              opacity: 0.5
             }}>
               The Village Art Studio
             </span>
@@ -59,18 +60,19 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', gap: '2rem' }}>
+        <nav style={{ display: 'flex', gap: '2.5rem' }}>
           {navLinks.map((link) => (
             <Link 
               key={link.href} 
               href={link.href as any} 
               style={{ 
-                fontSize: '0.9rem',
-                fontWeight: 600,
+                fontSize: '0.8rem',
+                fontWeight: 700,
                 textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                transition: 'color 0.2s ease',
-                color: 'var(--foreground)'
+                letterSpacing: '0.15em',
+                transition: 'all 0.3s ease',
+                color: 'var(--foreground)',
+                opacity: 0.7
               }}
               className="nav-link"
             >

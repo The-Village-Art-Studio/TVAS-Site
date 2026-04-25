@@ -8,19 +8,18 @@ export default function FeaturedThisMonth() {
     <section className="section">
       <div className="container">
         {/* Section Header */}
-        <div style={{ marginBottom: '4rem' }}>
-          <span className="caption" style={{ display: 'block', marginBottom: '1rem' }}>
+        <div style={{ marginBottom: '6rem' }}>
+          <span className="caption" style={{ display: 'block', marginBottom: '1.5rem' }}>
             {t('eyebrow')}
           </span>
-          <h2>{t('headline')}</h2>
-          <div className="divider" />
+          <h2 style={{ maxWidth: '600px' }}>{t('headline')}</h2>
         </div>
 
         {/* Asymmetric editorial grid: Large + Two stacked */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '3rem',
           alignItems: 'start'
         }}>
           {/* Podcast Feature — Large */}
@@ -31,25 +30,26 @@ export default function FeaturedThisMonth() {
             borderRadius: '4px',
             overflow: 'hidden',
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            minHeight: '320px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            minHeight: '420px',
+            boxShadow: '0 30px 60px rgba(0,0,0,0.15)'
           }}>
             {/* Image Area */}
-            <div style={{ background: '#2a2a2a', minHeight: '100%' }} />
+            <div style={{ background: '#1a1a1a url("/podcast-cover-placeholder.png") center/cover', minHeight: '300px' }} />
             {/* Content Area */}
-            <div style={{ padding: '3rem' }}>
-              <span className="caption" style={{ color: 'var(--primary)', display: 'block', marginBottom: '1.5rem' }}>
+            <div style={{ padding: '4rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <span className="caption" style={{ color: 'var(--primary)', display: 'block', marginBottom: '2rem' }}>
                 {t('podcast.label')}
               </span>
-              <h3 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.5rem' }}>
-                Episode Title Placeholder
+              <h3 style={{ color: 'white', marginBottom: '1.5rem', fontSize: '1.75rem', fontWeight: 800 }}>
+                The Voice of the Village
               </h3>
-              <p style={{ opacity: 0.7, marginBottom: '2rem', lineHeight: '1.7' }}>
-                A conversation with a Toronto-based artist about the intersection of public art and community belonging.
+              <p style={{ opacity: 0.6, marginBottom: '2.5rem', lineHeight: '1.8', fontSize: '1.1rem' }}>
+                Deep-dive conversations with the creators shaping Toronto&apos;s cultural landscape.
               </p>
-              <a href="/podcast" className="link-editorial" style={{ color: 'var(--primary)' }}>
-                {t('podcast.cta')} →
-              </a>
+              <Link href="/podcast" className="link-editorial" style={{ color: 'var(--primary)', alignSelf: 'start' }}>
+                {t('podcast.cta')} &rarr;
+              </Link>
             </div>
           </div>
 
@@ -57,39 +57,41 @@ export default function FeaturedThisMonth() {
           <div style={{
             background: 'var(--muted)',
             borderRadius: '4px',
-            overflow: 'hidden'
-          }}>
-            <div style={{ aspectRatio: '1.3', background: '#ddd' }} />
-            <div style={{ padding: '2rem' }}>
-              <span className="caption" style={{ display: 'block', marginBottom: '1rem' }}>
+            overflow: 'hidden',
+            transition: 'transform 0.4s ease, box-shadow 0.4s ease'
+          }} className="card-hover">
+            <div style={{ aspectRatio: '1', background: '#f0f0f0 url("/showcase-thumb.png") center/cover' }} />
+            <div style={{ padding: '2.5rem' }}>
+              <span className="caption" style={{ display: 'block', marginBottom: '1rem', opacity: 0.6 }}>
                 {t('showcase.label')}
               </span>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '1.5rem' }}>
-                Artist Name Placeholder
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', fontWeight: 800 }}>
+                Monthly Showcase
               </h3>
               <Link href="/showcase" className="link-editorial">
-                {t('showcase.cta')} →
+                {t('showcase.cta')} &rarr;
               </Link>
             </div>
           </div>
 
           {/* Workshop Card */}
           <div style={{
-            background: 'var(--primary-light)',
+            background: 'white',
             borderRadius: '4px',
-            padding: '2.5rem',
-            borderLeft: '4px solid var(--primary)'
+            padding: '3rem',
+            borderTop: '4px solid var(--primary)',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.04)'
           }}>
-            <span className="caption" style={{ display: 'block', marginBottom: '1rem' }}>
+            <span className="caption" style={{ display: 'block', marginBottom: '1.5rem' }}>
               {t('workshop.label')}
             </span>
-            <h3 style={{ fontSize: '1.3rem', marginBottom: '1rem' }}>
-              Artist Experience at La Gloria
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '1.25rem', fontWeight: 800 }}>
+              Artist Experiences
             </h3>
-            <p style={{ opacity: 0.8, marginBottom: '2rem', lineHeight: '1.7' }}>
-              Date, time and artist TBD. Check back soon for the next intimate workshop experience.
+            <p style={{ opacity: 0.6, marginBottom: '2.5rem', lineHeight: '1.8' }}>
+              Intimate workshops hosted at La Gloria Mexican Coffee. Connect with local artists over craft and conversation.
             </p>
-            <Link href="/workshops" className="btn btn-primary" style={{ display: 'inline-flex' }}>
+            <Link href="/workshops" className="btn btn-outline" style={{ display: 'inline-flex', width: '100%' }}>
               {t('workshop.cta')}
             </Link>
           </div>

@@ -5,6 +5,16 @@ import AboutSection from '@/components/AboutSection';
 import ForArtistsSection from '@/components/ForArtistsSection';
 import PartnershipSection from '@/components/PartnershipSection';
 import DoubleCTA from '@/components/DoubleCTA';
+import {getTranslations} from 'next-intl/server';
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  const t = await getTranslations({locale, namespace: 'Meta'});
+  return {
+    title: t('title'),
+    description: t('description')
+  };
+}
 
 export default function HomePage() {
   return (

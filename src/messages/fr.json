@@ -1,7 +1,7 @@
 {
   "Meta": {
-    "title": "The Village Art Studio — Là où l'Art rencontre la Communauté",
-    "description": "The Village Art Studio est une plateforme créative qui aide les artistes locaux à se faire voir, entendre et connecter grâce à des podcasts, des vitrines mensuelles et des expériences artistiques."
+    "title": "The Village Art Studio — Une Plateforme Créative Contemporaine pour les Artistes Locaux",
+    "description": "The Village Art Studio est une plateforme vivante qui amplifie les artistes locaux à travers des conversations en balado, des vitrines mensuelles et des expériences créatives intimes."
   },
   "Navigation": {
     "home": "Accueil",
@@ -14,129 +14,518 @@
     "contact": "Contact"
   },
   "Hero": {
-    "eyebrow": "Une Plateforme Créative Contemporaine",
-    "headline": "Là où l'Art rencontre la Communauté",
-    "subheadline": "The Village Art Studio amplifie les artistes locaux grâce à des conversations en balado, des vitrines mensuelles et des expériences créatives intimes — parce que chaque artiste mérite d'être vu.",
-    "ctaPrimary": "Explorer les Ateliers",
+    "eyebrow": "Amplifier la Voix Créative de Toronto",
+    "headline": "Là où l'Art Local Trouve sa Communauté",
+    "subheadline": "The Village Art Studio est une plateforme vivante permettant aux artistes locaux d'être vus, entendus et connectés à travers des vitrines intimes, des conversations en balado et des expériences créatives partagées.",
+    "ctaPrimary": "Explorer les Expériences",
     "ctaSecondary": "Écouter le Balado"
   },
   "Pillars": {
-    "eyebrow": "Ce Que Nous Faisons",
-    "headline": "Une Plateforme Construite Autour des Personnes, Pas des Produits",
+    "eyebrow": "Notre Fondation",
+    "headline": "Bâtie pour la Connexion, pas seulement pour la Curation",
     "items": {
       "podcast": {
         "label": "La Voix du Village",
-        "title": "Entretiens en Balado",
-        "description": "Des conversations approfondies avec des artistes locaux sur leur processus, leurs défis et ce qui les pousse à créer."
+        "title": "Le Balado",
+        "description": "Des conversations honnêtes et approfondies qui explorent le processus, les défis et les joies profondes d'être un artiste local."
       },
       "showcase": {
-        "label": "Sélection Mensuelle",
-        "title": "Vitrine d'Artistes",
-        "description": "Un éclairage curatif sur les artistes locaux émergents et établis, présenté avec intention et soin."
+        "label": "La Vitrine",
+        "title": "La Vitrine",
+        "description": "Un éclairage dédié et curatif qui offre à un artiste local un mois d'attention et de visibilité indivis."
       },
       "workshops": {
         "label": "Au La Gloria Mexican Coffee",
-        "title": "Expériences de Connexion Artistique",
-        "description": "Plus qu'un atelier. Une chance de créer aux côtés de l'artiste, d'entendre son histoire et de repartir avec quelque chose de réel."
+        "title": "Expériences de Connexion",
+        "description": "Des rencontres intimes dirigées par des artistes où vous créez aux côtés de l'artiste, entendez son histoire de vive voix et repartez avec une nouvelle perspective."
       },
       "support": {
         "label": "Pour les Créatifs",
-        "title": "Soutien aux Artistes",
-        "description": "Nous défendons les artistes locaux — en promouvant leur travail, en les connectant à des opportunités et en les aidant à gagner en visibilité."
+        "title": "Plaidoyer Artistique",
+        "description": "The Village Art Studio promeut le travail local, connecte les artistes à des opportunités et bâtit la visibilité que chaque créateur mérite."
       },
       "partnerships": {
         "label": "Collaboratif",
         "title": "Partenariats Créatifs",
-        "description": "Nous collaborons avec des cafés, des lieux, des marques et des organisations pour amener l'art dans les espaces communautaires du quotidien."
+        "description": "Nous collaborons avec des cafés, des marques et des organisations pour amener l'art local et la culture au cœur des espaces communautaires du quotidien."
       }
     }
   },
   "Featured": {
-    "eyebrow": "À l'Affiche Ce Mois-ci",
-    "headline": "Ce Qui Se Passe à The Village Art Studio",
+    "eyebrow": "En ce moment à The Village Art Studio",
+    "headline": "Moments Curatés",
     "podcast": {
       "label": "Dernier Épisode",
-      "cta": "Écouter Maintenant"
+      "cta": "Écouter la Conversation"
     },
     "showcase": {
       "label": "Artiste à l'Affiche",
-      "cta": "Voir la Vitrine"
+      "cta": "Entrer dans la Vitrine"
     },
     "workshop": {
-      "label": "Prochain Atelier",
+      "label": "Prochaine Expérience",
       "cta": "Réserver une Place"
     }
   },
   "About": {
-    "eyebrow": "Notre Histoire",
-    "headline": "L'Art est le Pont",
-    "body1": "The Village Art Studio a commencé comme un petit espace créatif. Il est devenu quelque chose de bien plus significatif — une plateforme vivante et respirante qui croit que les artistes locaux sont le cœur culturel de cette ville.",
-    "body2": "Nous ne faisons pas qu'exposer l'art. Nous racontons les histoires derrière. Nous connectons ceux qui le créent avec ceux qui ont besoin de le voir. Nous créons des espaces où création et communauté ne font qu'un.",
-    "cta": "Notre Histoire Complète"
+    "eyebrow": "Notre Vision",
+    "headline": "L'Art est le Cœur Culturel",
+    "body1": "The Village Art Studio est né d'une observation simple : Toronto abrite des artistes incroyables qui travaillent souvent dans l'isolement. Nous croyons que l'art n'a pas seulement besoin d'un mur — il a besoin d'une communauté.",
+    "body2": "Nous comblons le fossé entre l'artiste et son public, la création et la connexion. The Village Art Studio est plus qu'une plateforme ; c'est un foyer pour ceux qui croient au pouvoir du récit local.",
+    "cta": "Découvrir Notre Histoire"
   },
   "ForArtists": {
     "eyebrow": "Pour les Artistes",
-    "headline": "Votre Art Mérite une Scène",
-    "subheadline": "The Village Art Studio est fait pour vous — l'artiste local prêt à être vu, entendu et connecté.",
+    "headline": "Vous Créez. Nous Amplifions.",
+    "subheadline": "The Village Art Studio est votre scène. Nous fournissons la plateforme, le public et la communauté dont vous avez besoin pour grandir.",
     "benefits": {
       "podcast": {
-        "title": "Racontez Votre Histoire",
-        "description": "Soyez présenté sur La Voix du Village — notre balado longue durée où votre processus créatif occupe le devant de la scène."
+        "title": "Partagez Votre Histoire",
+        "description": "Soyez présenté sur La Voix du Village — notre balado longue durée où nous explorons la profondeur de votre parcours créatif."
       },
       "showcase": {
-        "title": "Exposez Votre Travail",
-        "description": "Montrez votre travail dans nos vitrines mensuelles, conçues pour honorer l'art et l'artiste derrière."
+        "title": "Gagnez une Réelle Visibilité",
+        "description": "Exposez votre travail dans nos vitrines mensuelles dédiées, curatées pour offrir à votre art l'attention qu'il mérite."
       },
       "workshops": {
         "title": "Animez une Expérience",
-        "description": "Animez une expérience de connexion artistique au La Gloria Mexican Coffee et bâtissez une relation authentique avec votre communauté."
+        "description": "Animez une rencontre intime au La Gloria Mexican Coffee et bâtissez des relations authentiques avec une communauté d'amateurs d'art."
       },
       "community": {
-        "title": "Rejoignez le Collectif",
-        "description": "Connectez-vous avec d'autres créatifs, collaborateurs et défenseurs de l'art local au sein de la communauté de The Village Art Studio."
+        "title": "Trouvez Vos Pairs",
+        "description": "Rejoignez un réseau de soutien de créatifs torontois qui défendent, collaborent et se célèbrent mutuellement via The Village Art Studio."
       }
     },
-    "cta": "Postuler pour Être Présenté"
+    "cta": "Postuler à la Plateforme"
   },
   "Partnerships": {
     "eyebrow": "Partenariats",
-    "headline": "Amenez l'Art dans Votre Espace",
-    "subheadline": "The Village Art Studio s'associe avec des cafés, des galeries, des marques et des organisations qui croient au pouvoir de l'art local pour transformer la communauté.",
+    "headline": "Collaborer avec le Cœur Créatif de Toronto",
+    "subheadline": "The Village Art Studio s'associe à des marques et organisations qui reconnaissent l'art comme un bâtisseur de communauté vital et un catalyseur de connexion.",
     "types": {
       "venue": {
-        "title": "Partenaires de Lieu",
-        "description": "Accueillez une vitrine, un atelier ou une soirée artistique dans votre espace."
+        "title": "Partenariats de Lieu",
+        "description": "Amenez une programmation culturelle vibrante dans votre espace grâce à des vitrines curatées et des événements artistiques intimes."
       },
       "brand": {
         "title": "Collaborations de Marque",
-        "description": "Alignez votre marque sur la scène artistique locale vibrante de Toronto grâce à des partenariats créatifs significatifs."
+        "description": "Alignez votre marque avec les talents émergents de Toronto à travers des partenariats créatifs authentiques et axés sur le récit."
       },
       "community": {
-        "title": "Organisations Communautaires",
-        "description": "Co-créez des programmes qui approfondissent les liens communautaires à travers l'art et l'expérience partagée."
+        "title": "Curation Communautaire",
+        "description": "Co-create accessible programming that deepens community bonds through the power of shared artistic experiences."
       }
     },
-    "cta": "Explorer les Partenariats"
+    "cta": "Démarrer une Conversation"
   },
   "FinalCTA": {
     "eyebrow": "Rejoindre The Village Art Studio",
-    "headline": "Comment Allez-vous Vous Connecter?",
+    "headline": "Comment Allez-vous Trouver Votre Place ?",
     "artist": {
-      "label": "Je Suis un Artiste",
-      "description": "Faites-vous voir, entendre et trouvez votre communauté.",
-      "cta": "Postuler pour Être Présenté"
+      "label": "Pour les Artistes",
+      "description": "Gagnez la visibilité et la communauté que votre travail créatif mérite.",
+      "cta": "Postuler à la Plateforme"
     },
     "partner": {
-      "label": "Je Suis un Partenaire",
-      "description": "Amenez l'art et la créativité dans votre espace ou votre marque.",
+      "label": "Pour les Partenaires",
+      "description": "Amenez une culture locale authentique et de la créativité dans votre espace.",
       "cta": "Devenez Partenaire"
     }
   },
   "Footer": {
-    "tagline": "The Village Art Studio est une plateforme créative contemporaine qui aide les artistes locaux à se faire voir, entendre et connecter.",
-    "platformLabel": "Plateforme",
+    "tagline": "The Village Art Studio est une plateforme créative contemporaine dédiée à aider les artistes locaux à se faire voir, entendre et connecter.",
+    "platformLabel": "La Plateforme",
     "connectLabel": "Connecter",
     "copyright": "The Village Art Studio. Tous droits réservés.",
     "brandName": "The Village Art Studio"
+  },
+  "Pages": {
+    "About": {
+      "meta": {
+        "title": "À Propos — The Village Art Studio",
+        "description": "Découvrez The Village Art Studio — notre mission de soutenir les artistes locaux et de connecter les communautés créatives à travers le storytelling, les vitrines et les expériences partagées."
+      },
+      "hero": {
+        "eyebrow": "Notre Histoire",
+        "headline": "Combler le Fossé entre Création et Connexion",
+        "lead": "The Village Art Studio a commencé par une question simple : comment pouvons-nous faire en sorte que les artistes locaux se sentent moins seuls et plus célébrés ?"
+      },
+      "story": {
+        "eyebrow": "La Genèse",
+        "headline": "Une Plateforme Enracinée dans un But",
+        "body1": "Ce qui a commencé comme un petit rassemblement créatif à Toronto est devenu une plateforme contemporaine dédiée à la visibilité des artistes. Nous avons reconnu que l'art le plus significatif se produit souvent dans les coins tranquilles de notre ville — et nous avons voulu mettre ce travail en lumière.",
+        "body2": "Aujourd'hui, The Village Art Studio sert d'écosystème vivant où les entretiens en balado, les vitrines mensuelles et les ateliers intimes au La Gloria Mexican Coffee s'unissent pour créer une communauté créative plus riche et plus connectée."
+      },
+      "mission": {
+        "quote": "Nous ne faisons pas qu'exposer l'art. Nous racontons les histoires derrière — parce que c'est l'histoire qui crée la connexion.",
+        "attribution": "The Village Art Studio"
+      },
+      "values": {
+        "eyebrow": "Nos Croyances",
+        "headline": "Guidés par l'Intention",
+        "visibility": {
+          "title": "Une Réelle Visibilité",
+          "description": "Chaque artiste local mérite d'être vu. Nous créons la scène et le projecteur pour garantir que leur travail résonne."
+        },
+        "connection": {
+          "title": "Connexion Humaine",
+          "description": "L'art est le pont. Nous bâtissons des relations authentiques entre les créateurs et la communauté qui les soutient."
+        },
+        "community": {
+          "title": "Communauté Créative",
+          "description": "Nous croyons que l'art enrichit les quartiers. The Village Art Studio s'engage à bâtir cette richesse, une expérience à la fois."
+        }
+      },
+      "cta": {
+        "eyebrow": "S'Impliquer",
+        "headline": "Trouvez Votre Place à The Village Art Studio",
+        "artist": {
+          "label": "Pour les Artistes",
+          "cta": "Postuler à la Plateforme"
+        },
+        "partner": {
+          "label": "Pour les Partenaires",
+          "cta": "Explorer les Partenariats"
+        }
+      }
+    },
+    "Podcast": {
+      "meta": {
+        "title": "Le Balado La Voix du Village — The Village Art Studio",
+        "description": "La Voix du Village est le balado de The Village Art Studio présentant des conversations approfondies avec des artistes locaux de Toronto sur leur processus créatif, leur vie et leur art."
+      },
+      "hero": {
+        "eyebrow": "La Voix du Village",
+        "headline": "Les Voix Derrière la Vision",
+        "lead": "Entrez dans le studio avec La Voix du Village. Des conversations brutes, perspicaces et honnêtes qui explorent le processus, la lutte et la joie profonde de créer à partir de rien."
+      },
+      "featured": {
+        "eyebrow": "Dernier Épisode",
+        "listenCta": "Écouter Maintenant",
+        "allCta": "Tous les Épisodes"
+      },
+      "grid": {
+        "eyebrow": "Épisodes Récents",
+        "headline": "Plus de Voix du Village",
+        "episodes": [
+          {
+            "number": "EP 06",
+            "title": "Trouver sa Voix à travers la Texture",
+            "artist": "Maria Santos",
+            "medium": "Artiste Textile",
+            "duration": "52 min",
+            "description": "Maria parle de grandir entre deux cultures et de la façon dont cette tension est devenue le fondement de son travail textile tactile et stratifié."
+          },
+          {
+            "number": "EP 05",
+            "title": "La Murale comme Mémoire Communautaire",
+            "artist": "Daniel Osei",
+            "medium": "Muraliste",
+            "duration": "61 min",
+            "description": "Daniel réfléchit à deux décennies de transformation de murs publics en récits communautaires à travers les quartiers de Toronto."
+          },
+          {
+            "number": "EP 04",
+            "title": "Céramique et Pratique Lente",
+            "artist": "Yuki Tanaka",
+            "medium": "Céramiste",
+            "duration": "44 min",
+            "description": "Dans une culture de gratification instantanée, Yuki plaide pour la lenteur — et comment l'argile lui a appris à cesser de performer pour commencer à créer."
+          },
+          {
+            "number": "EP 03",
+            "title": "Dessiner la Ville Invisible",
+            "artist": "Amara Diallo",
+            "medium": "Illustratrice et Graveuse",
+            "duration": "57 min",
+            "description": "Amara dessine les parties de Toronto que les cartes ne montrent pas — les ruelles cachées, les jardins communautaires, les visages derrière les vitrines."
+          },
+          {
+            "number": "EP 02",
+            "title": "Peinture à l'Huile et Fenêtres Ouvertes",
+            "artist": "Lena Marchetti",
+            "medium": "Peintre à l'Huile",
+            "duration": "48 min",
+            "description": "Lena peint la lumière — plus précisément la lumière de l'heure dorée de son studio de Kensington Market — et partage comment la peinture est devenue sa pratique spirituelle."
+          },
+          {
+            "number": "EP 01",
+            "title": "Bienvenue à La Voix du Village",
+            "artist": "The Village Art Studio",
+            "medium": "Introduction",
+            "duration": "18 min",
+            "description": "The Village Art Studio présente La Voix du Village — une nouvelle plateforme de balado pour les artistes locaux afin de partager leurs histoires, leur processus et leur vision."
+          }
+        ]
+      },
+      "cta": {
+        "eyebrow": "Sur La Voix du Village",
+        "headline": "Chaque Parcours Créatif Mérite d'être Entendu",
+        "body": "Nous recherchons toujours la prochaine voix — l'artiste local avec une perspective unique et une histoire à partager. Si vous êtes prêt à dire votre vérité, nous sommes prêts à l'écouter.",
+        "primary": "Postuler pour Être Invité",
+        "secondary": "Découvrir le Processus"
+      }
+    },
+    "Showcase": {
+      "meta": {
+        "title": "Vitrine Mensuelle — The Village Art Studio",
+        "description": "La Vitrine Mensuelle de The Village Art Studio offre aux artistes locaux une plateforme curative pour exposer leur travail et se connecter avec le public communautaire."
+      },
+      "hero": {
+        "eyebrow": "La Vitrine Mensuelle",
+        "headline": "Trente Jours d'Attention Indivise",
+        "lead": "Nous croyons que l'art mérite plus qu'un coup d'œil fugace. Chaque mois, The Village Art Studio organise une présentation dédiée qui permet au travail et à l'histoire d'un artiste de véritablement résonner."
+      },
+      "current": {
+        "eyebrow": "La Sélection du Mois",
+        "viewCta": "Voir la Vitrine Complète"
+      },
+      "past": {
+        "eyebrow": "Vitrines Passées",
+        "headline": "Une Année de Voix",
+        "showcases": [
+          {
+            "month": "Mars 2025",
+            "artist": "Priya Nair",
+            "medium": "Photographie",
+            "series": "Vol. 3"
+          },
+          {
+            "month": "Février 2025",
+            "artist": "Jerome Williams",
+            "medium": "Techniques Mixtes",
+            "series": "Vol. 2"
+          },
+          {
+            "month": "Janvier 2025",
+            "artist": "Sofia Reyes",
+            "medium": "Aquarelle",
+            "series": "Vol. 1"
+          }
+        ]
+      },
+      "concept": {
+        "eyebrow": "La Vision",
+        "headline": "Curation Intentionnelle",
+        "body": "L'art mérite du temps, de l'attention et du contexte. La vitrine mensuelle de The Village Art Studio offre à chaque artiste présenté un mois complet de visibilité — créant une réelle connexion avec notre communauté, en ligne et hors ligne."
+      },
+      "cta": {
+        "eyebrow": "Le Prochain Éclairage",
+        "headline": "Votre Travail Pourrait-il être Présenté ?",
+        "body": "Nous acceptons toujours les soumissions d'artistes de la région de Toronto. Notre processus de curation se concentre sur l'histoire, le savoir-faire et l'impact communautaire.",
+        "primary": "Postuler à la Vitrine",
+        "secondary": "En Savoir Plus"
+      }
+    },
+    "Workshops": {
+      "meta": {
+        "title": "Expériences de Connexion Artistique — The Village Art Studio",
+        "description": "The Village Art Studio organise des expériences créatives animées par des artistes au La Gloria Mexican Coffee — des ateliers intimes où vous créez aux côtés d'artistes locaux et entendez leurs histoires."
+      },
+      "hero": {
+        "eyebrow": "Expériences de Connexion",
+        "headline": "Soirées Intimes avec des Artistes Locaux",
+        "lead": "Accueillies au chaleureux La Gloria Mexican Coffee, nos expériences sont conçues pour briser le mur entre l'artiste et l'observateur. Vous n'apprenez pas seulement un métier ; vous partagez un moment."
+      },
+      "partnership": {
+        "eyebrow": "Notre Partenaire Fondateur",
+        "headline": "La Gloria Mexican Coffee",
+        "body1": "La Gloria Mexican Coffee est plus qu'un café — c'est un ancrage de quartier. Chaleureux, accueillant et profondément enraciné dans la communauté, La Gloria offre le cadre idéal, intime, pour que l'art se produise naturellement.",
+        "body2": "Ensemble, The Village Art Studio et La Gloria Mexican Coffee ont créé quelque chose de rare : un environnement où le café rencontre la toile, et où des inconnus deviennent des collaborateurs. Ici, vous apprenez non seulement la technique, mais aussi la perspective.",
+        "address": "Toronto, Ontario"
+      },
+      "experiences": {
+        "eyebrow": "Expériences à Venir",
+        "headline": "Trouvez Votre Expérience",
+        "events": [
+          {
+            "title": "Dessin de Portrait avec un Peintre Local",
+            "artist": "Artiste à l'Affiche TBD",
+            "date": "À Venir",
+            "duration": "3 heures",
+            "capacity": "12 invités",
+            "description": "Une expérience de dessin de portrait guidée par un peintre local. Aucune expérience requise — juste de la curiosité et une volonté de voir.",
+            "cta": "M'Avertir"
+          },
+          {
+            "title": "Matinée Gravure et Café",
+            "artist": "Artiste à l'Affiche TBD",
+            "date": "À Venir",
+            "duration": "2,5 heures",
+            "capacity": "10 invités",
+            "description": "Une introduction au monde méditatif de la gravure, animée par un graveur de Toronto autour d'un café du matin au La Gloria.",
+            "cta": "M'Avertir"
+          },
+          {
+            "title": "Aquarelle et Conversation",
+            "artist": "Artiste à l'Affiche TBD",
+            "date": "À Venir",
+            "duration": "2 heures",
+            "capacity": "8 invités",
+            "description": "Un après-midi aquarelle décontracté où vous peignez, discutez avec l'artiste et repartez avec une œuvre d'art et une nouvelle perspective.",
+            "cta": "M'Avertir"
+          }
+        ]
+      },
+      "quote": {
+        "text": "Je ne suis pas venue pour un cours d'art. Je suis venue rencontrer l'artiste. Je suis repartie avec l'impression de mieux comprendre à la fois l'œuvre et moi-même.",
+        "attribution": "Participant à l'Atelier"
+      },
+      "cta": {
+        "eyebrow": "Votre Invitation",
+        "headline": "Une Place à Table Vous Attend",
+        "body": "Petits groupes. Cadres intimes. Vraies conversations avec ceux qui rendent notre ville vibrante. Rejoignez The Village Art Studio pour notre prochain rassemblement.",
+        "primary": "Réserver une Expérience",
+        "secondary": "Voir Tout le Calendrier"
+      }
+    },
+    "ForArtists": {
+      "meta": {
+        "title": "Pour les Artistes — The Village Art Studio",
+        "description": "The Village Art Studio offre aux artistes locaux des passages en balado, des vitrines mensuelles, des opportunités de direction d'ateliers et une communauté créative de soutien."
+      },
+      "hero": {
+        "eyebrow": "Pour les Artistes",
+        "headline": "Votre Art. Notre Plateforme. Leur Attention.",
+        "lead": "The Village Art Studio est conçu pour amplifier votre voix créative. Nous offrons l'espace, le récit et la communauté pour aider votre travail à atteindre ceux qui l'apprécieront le plus."
+      },
+      "opportunities": {
+        "eyebrow": "Les Opportunités",
+        "headline": "Quatre Façons de Partager Votre Travail",
+        "items": {
+          "podcast": {
+            "title": "La Voix du Village",
+            "description": "Partagez votre processus créatif, vos inspirations et votre parcours sur notre balado longue durée, atteignant un public dévoué d'amateurs d'art et de collègues créateurs.",
+            "cta": "Postuler pour le Balado"
+          },
+          "showcase": {
+            "title": "La Vitrine Mensuelle",
+            "description": "Faites organiser et présenter votre travail dans une vitrine mensuelle dédiée — avec une promotion de haute fidélité sur les canaux numériques et communautaires de The Village Art Studio.",
+            "cta": "Soumettre Votre Art"
+          },
+          "workshops": {
+            "title": "Animer une Expérience",
+            "description": "Animez une expérience intime rassemblée au La Gloria Mexican Coffee. Partagez votre technique et votre perspective dans un environnement chaleureux et collaboratif.",
+            "cta": "Proposer un Atelier"
+          },
+          "community": {
+            "title": "Plaidoyer Artistique",
+            "description": "Faites partie d'un réseau actif de créatifs torontois qui se soutiennent, se promeuvent et collaborent via la plateforme de The Village Art Studio.",
+            "cta": "Nous Rejoindre"
+          }
+        }
+      },
+      "howItWorks": {
+        "eyebrow": "Le Parcours",
+        "headline": "Le Chemin vers la Visibilité",
+        "steps": [
+          {
+            "number": "01",
+            "title": "Racontez-nous Votre Histoire",
+            "description": "Contactez-nous via notre formulaire simple d'enquête pour artistes. Partagez qui vous êtes, ce que vous créez et la vision derrière votre travail."
+          },
+          {
+            "number": "02",
+            "title": "La Connexion Créative",
+            "description": "Notre équipe communiquera avec vous pour explorer davantage votre art et déterminer laquelle de nos plateformes sert le mieux vos objectifs actuels."
+          },
+          {
+            "number": "03",
+            "title": "Amplifier & Connecter",
+            "description": "Qu'il s'agisse d'un balado, d'une vitrine ou d'un atelier — votre voix devient partie intégrante du récit créatif permanent de The Village Art Studio."
+          }
+        ]
+      },
+      "cta": {
+        "eyebrow": "Prêt à Commencer ?",
+        "headline": "Votre Art Mérite son Public",
+        "body": "The Village Art Studio recherche toujours le prochain artiste local à amplifier. Notre processus est humain, authentique et conçu pour votre succès.",
+        "primary": "S'Enquérir Maintenant",
+        "secondary": "Écrire à l'Équipe"
+      }
+    },
+    "Partnerships": {
+      "meta": {
+        "title": "Partenariats — The Village Art Studio",
+        "description": "Associez-vous à The Village Art Studio pour amener l'art local et une programmation culturelle dans votre café, lieu ou marque. Partenariats d'événements créatifs et activations communautaires."
+      },
+      "hero": {
+        "eyebrow": "Partenariats",
+        "headline": "Collaborer avec le Cœur Créatif de Toronto",
+        "lead": "The Village Art Studio collabore avec des lieux, des marques et des organisations qui reconnaissent l'art comme un bâtisseur de communauté vital et un outil de connexion puissant."
+      },
+      "types": {
+        "eyebrow": "Voies de Collaboration",
+        "headline": "Comment Nous Travaillons Ensemble",
+        "venue": {
+          "title": "Partenariats de Lieu",
+          "description": "Amenez des moments culturels curatés dans votre espace. Des vitrines mensuelles aux ateliers intimes, The Village Art Studio gère la curation, les relations avec les artistes et la promotion. Vous fournissez la scène.",
+          "examples": "Cafés • Boutiques • Espaces de Curation • Lieux"
+        },
+        "brand": {
+          "title": "Collaborations de Marque",
+          "description": "Alignez votre marque avec les talents émergents de Toronto grâce à des partenariats authentiques et axés sur le récit — incluant des reportages éditoriaux, des expériences commanditées et du contenu culturel co-créé.",
+          "examples": "Marques Culturelles • Partenaires Médias • Champions Locaux"
+        },
+        "community": {
+          "title": "Organisations Communautaires",
+          "description": "Co-créez une programmation accessible qui approfondit les liens communautaires par l'art. The Village Art Studio travaille avec des organisations de quartier pour donner vie à des expériences créatives authentiques.",
+          "examples": "BIA • Organismes sans but lucratif • Collectifs Culturels"
+        }
+      },
+      "spotlight": {
+        "eyebrow": "Notre Partenaire Fondateur",
+        "headline": "La Gloria Mexican Coffee",
+        "body": "La Gloria Mexican Coffee a été le premier lieu à croire en ce que The Village Art Studio construisait. Ensemble, nous avons créé un modèle de ce à quoi la culture de café et la communauté créative peuvent ressembler — intime, chaleureux et véritablement connecté au quartier qu'il dessert."
+      },
+      "cta": {
+        "eyebrow": "Démarrer une Conversation",
+        "headline": "Chaque Grand Partenariat Commence Simplement",
+        "body": "Parlez-nous de votre espace, de votre vision et de votre public. Explorons comment The Village Art Studio peut amener plus d'art et de connexion dans votre monde.",
+        "primary": "Devenir Partenaire",
+        "secondary": "Écrire à l'Équipe"
+      }
+    },
+    "Contact": {
+      "meta": {
+        "title": "Contact — The Village Art Studio",
+        "description": "Contactez The Village Art Studio. Les demandes d'artistes, les propositions de partenariat et les questions générales sont les bienvenues."
+      },
+      "hero": {
+        "eyebrow": "Démarrer la Conversation",
+        "headline": "Créons Quelque Chose de Significatif",
+        "lead": "Que vous soyez un artiste local, un partenaire potentiel ou un soutien des arts — nous aimerions avoir de vos nouvelles."
+      },
+      "paths": {
+        "artist": {
+          "label": "Pour les Artistes",
+          "description": "Intéressé à être présenté sur La Voix du Village, à exposer dans notre vitrine ou à animer une expérience au La Gloria ? Parlez-nous de votre parcours.",
+          "subject": "Demande Artiste"
+        },
+        "partner": {
+          "label": "Pour les Partenaires",
+          "description": "Vous cherchez à accueillir, collaborer ou commanditer une programmation créative avec The Village Art Studio ? Discutons de votre vision.",
+          "subject": "Demande Partenariat"
+        }
+      },
+      "form": {
+        "namePlaceholder": "Votre Nom",
+        "emailPlaceholder": "Votre Courriel",
+        "subjectPlaceholder": "Sujet",
+        "messagePlaceholder": "Votre message...",
+        "submit": "Envoyer le Message",
+        "nameLabel": "Nom",
+        "emailLabel": "Courriel",
+        "subjectLabel": "Sujet",
+        "messageLabel": "Message"
+      },
+      "info": {
+        "emailLabel": "Courriel",
+        "email": "info@tvas.ca",
+        "locationLabel": "Basé à",
+        "location": "Toronto, Ontario",
+        "followLabel": "Suivre"
+      }
+    }
   }
 }
