@@ -1,95 +1,67 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/routing';
+import { Button } from './ui/button';
+import { Card, CardContent, CardHeader } from './ui/card';
 
 export default function DoubleCTA() {
   const t = useTranslations('FinalCTA');
 
   return (
-    <section className="section" style={{ background: 'var(--foreground)' }}>
-      <div className="container">
+    <section className="py-24 lg:py-40 bg-foreground text-background overflow-hidden relative">
+      {/* Background patterns */}
+      <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '8rem' }} className="reveal">
-          <span className="caption" style={{ display: 'block', marginBottom: '2.5rem', color: 'var(--primary)' }}>
+        <div className="text-center mb-20 max-w-4xl mx-auto">
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
             {t('eyebrow')}
           </span>
-          <h2 style={{ color: 'white', maxWidth: '900px', margin: '0 auto', lineHeight: 1.1 }}>{t('headline')}</h2>
+          <h2 className="text-4xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">
+            {t('headline')}
+          </h2>
         </div>
 
         {/* Dual Path Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '3rem'
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Artist Path */}
-          <div style={{
-            border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: '4px',
-            padding: '5rem',
-            transition: 'all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            background: 'rgba(255, 255, 255, 0.02)'
-          }}
-          className="reveal delay-1"
-          >
-            <div>
-              <span className="caption" style={{ display: 'block', marginBottom: '2rem', color: 'var(--primary)', opacity: 0.8 }}>
+          <Card className="bg-white/5 border-white/10 backdrop-blur-md p-8 lg:p-12 flex flex-col justify-between group hover:border-primary/50 transition-all duration-500">
+            <CardHeader className="p-0">
+              <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-8 block opacity-80">
                 {t('artist.label')}
               </span>
-              <p style={{
-                color: 'white',
-                fontSize: '1.25rem',
-                lineHeight: '1.8',
-                marginBottom: '4rem',
-                opacity: 0.6
-              }}>
+              <p className="text-white/60 text-xl leading-relaxed mb-12 font-medium">
                 {t('artist.description')}
               </p>
-            </div>
-            <Link href="/for-artists" className="btn btn-primary" style={{ width: '100%', textAlign: 'center', padding: '1.25rem' }}>
-              {t('artist.cta')}
-            </Link>
-          </div>
+            </CardHeader>
+            <CardContent className="p-0 pt-8">
+              <Button asChild size="lg" className="w-full h-14 text-lg font-bold rounded-xl shadow-2xl shadow-primary/20 hover:shadow-primary/40 group-hover:scale-[1.02] transition-all">
+                <Link href="/for-artists">
+                  {t('artist.cta')}
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
 
           {/* Partner Path */}
-          <div style={{
-            border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: '4px',
-            padding: '5rem',
-            transition: 'all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            background: 'rgba(255, 255, 255, 0.02)'
-          }}
-          className="reveal delay-2"
-          >
-            <div>
-              <span className="caption" style={{ display: 'block', marginBottom: '2rem', color: 'var(--primary)', opacity: 0.8 }}>
+          <Card className="bg-white/5 border-white/10 backdrop-blur-md p-8 lg:p-12 flex flex-col justify-between group hover:border-primary/50 transition-all duration-500">
+            <CardHeader className="p-0">
+              <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-8 block opacity-80">
                 {t('partner.label')}
               </span>
-              <p style={{
-                color: 'white',
-                fontSize: '1.25rem',
-                lineHeight: '1.8',
-                marginBottom: '4rem',
-                opacity: 0.6
-              }}>
+              <p className="text-white/60 text-xl leading-relaxed mb-12 font-medium">
                 {t('partner.description')}
               </p>
-            </div>
-            <Link href="/partnerships" className="btn btn-outline" style={{
-              width: '100%',
-              textAlign: 'center',
-              borderColor: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              padding: '1.25rem'
-            }}>
-              {t('partner.cta')}
-            </Link>
-          </div>
+            </CardHeader>
+            <CardContent className="p-0 pt-8">
+              <Button asChild size="lg" className="w-full h-14 text-lg font-bold rounded-xl bg-primary hover:bg-primary/90 text-white shadow-2xl shadow-primary/20 hover:shadow-primary/40 group-hover:scale-[1.02] transition-all">
+                <Link href="/partnerships">
+                  {t('partner.cta')}
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

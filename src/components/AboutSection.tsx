@@ -5,53 +5,50 @@ export default function AboutSection() {
   const t = useTranslations('About');
 
   return (
-    <section className="section" style={{ borderTop: '1px solid var(--border)' }}>
-      <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '8rem',
-          alignItems: 'center'
-        }}>
+    <section className="py-24 lg:py-32 border-t border-border bg-background">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Image Block */}
-          <div style={{
-            aspectRatio: '4/5',
-            background: 'var(--muted) url("/about-studio.png") center/cover',
-            borderRadius: '2px',
-            position: 'relative'
-          }} className="reveal">
-            <div style={{
-              position: 'absolute',
-              bottom: '3rem',
-              right: '-2rem',
-              background: 'white',
-              padding: '2.5rem 3rem',
-              boxShadow: '0 30px 60px rgba(0,0,0,0.08)',
-              zIndex: 2
-            }}>
-              <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.03em' }}>
+          <div className="relative group">
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[0.99]">
+              <div 
+                className="w-full h-full bg-muted"
+                style={{
+                  backgroundImage: 'url("/about-studio.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+            </div>
+            {/* Floating Badge */}
+            <div className="absolute -bottom-8 -right-8 bg-card border border-border p-8 rounded-2xl shadow-2xl z-10 hidden sm:block animate-in fade-in slide-in-from-bottom-4 duration-1000">
+              <p className="font-heading font-extrabold text-xl tracking-tight text-foreground">
                 The Village Art Studio
               </p>
-              <p style={{ fontSize: '0.7rem', opacity: 0.4, marginTop: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.2em', fontWeight: 700 }}>
+              <p className="text-[10px] text-muted-foreground mt-2 uppercase tracking-[0.3em] font-bold">
                 Established in Toronto
               </p>
             </div>
           </div>
 
           {/* Text Block */}
-          <div style={{ paddingRight: '2rem' }} className="reveal delay-2">
-            <span className="caption" style={{ display: 'block', marginBottom: '2rem' }}>
+          <div className="lg:pl-8">
+            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
               {t('eyebrow')}
             </span>
-            <h2 style={{ marginBottom: '3rem', lineHeight: 1.1 }}>{t('headline')}</h2>
-            <p style={{ fontSize: '1.125rem', lineHeight: '2', marginBottom: '1.5rem', opacity: 0.7 }}>
-              {t('body1')}
-            </p>
-            <p style={{ fontSize: '1.125rem', lineHeight: '2', marginBottom: '4rem', opacity: 0.7 }}>
-              {t('body2')}
-            </p>
-            <Link href="/about" className="link-editorial" style={{ fontSize: '1rem' }}>
-              {t('cta')} &rarr;
+            <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-10">
+              {t('headline')}
+            </h2>
+            <div className="space-y-6 text-muted-foreground text-lg leading-relaxed mb-12">
+              <p>{t('body1')}</p>
+              <p>{t('body2')}</p>
+            </div>
+            <Link 
+              href="/about" 
+              className="group inline-flex items-center gap-2 text-primary font-bold text-lg hover:gap-4 transition-all"
+            >
+              {t('cta')} 
+              <span className="text-2xl transition-transform group-hover:translate-x-1">&rarr;</span>
             </Link>
           </div>
         </div>

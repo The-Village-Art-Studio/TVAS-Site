@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    /* Vibrant Dawn - Light Theme (NEW DEFAULT) */
+    --background-light: 30 70% 97%; /* Warm Cream */
+    --foreground-light: 30 20% 25%; /* Deep Warm Brown/Gray */
+    --card-light: 0 0% 100%; /* White cards */
+    --card-foreground-light: 30 20% 25%;
+    --popover-light: 0 0% 100%;
+    --popover-foreground-light: 30 20% 25%;
+    --primary-light: 16 100% 65%; /* Vibrant Coral */
+    --primary-foreground-light: 0 0% 100%; /* White */
+    --secondary-light: 35 100% 70%; /* Sunny Yellow/Orange */
+    --secondary-foreground-light: 30 50% 30%; /* Darker warm tone for contrast */
+    --muted-light: 30 50% 92%; /* Light Warm Gray/Cream */
+    --muted-foreground-light: 30 30% 55%; /* Medium Warm Gray */
+    --accent-light: 175 70% 50%; /* Bright Teal */
+    --accent-foreground-light: 0 0% 100%; /* White */
+    --destructive-light: 0 80% 60%; /* Softer Red */
+    --destructive-foreground-light: 0 0% 100%;
+    --border-light: 30 30% 88%; /* Soft Warm Border */
+    --input-light: 30 40% 94%;
+    --ring-light: 16 90% 70%; /* Lighter Coral for ring */
+
+    /* Vibrant Dawn - Dark Theme */
+    --background-dark: 260 30% 20%; /* Deep Muted Plum/Indigo */
+    --foreground-dark: 30 50% 90%; /* Light Warm Cream/Peach */
+    --card-dark: 260 30% 25%; /* Slightly Lighter Plum */
+    --card-foreground-dark: 30 50% 90%;
+    --popover-dark: 260 30% 15%;
+    --popover-foreground-dark: 30 50% 90%;
+    --primary-dark: 25 100% 70%; /* Brighter Coral for Dark Mode */
+    --primary-foreground-dark: 260 50% 15%; /* Dark for contrast on bright primary */
+    --secondary-dark: 40 100% 75%; /* Brighter Sunny Yellow for Dark Mode */
+    --secondary-foreground-dark: 260 40% 20%;
+    --muted-dark: 260 25% 30%; /* Muted Dark Plum */
+    --muted-foreground-dark: 260 30% 70%;
+    --accent-dark: 170 80% 60%; /* Brighter Teal for Dark Mode */
+    --accent-foreground-dark: 260 50% 15%;
+    --destructive-dark: 0 80% 65%;
+    --destructive-foreground-dark: 0 0% 100%;
+    --border-dark: 260 25% 35%;
+    --input-dark: 260 25% 35%;
+    --ring-dark: 25 90% 75%;
+
+    --radius: 0.75rem;
+
+    /* Default to Light Theme variables */
+    --background: var(--background-light);
+    --foreground: var(--foreground-light);
+    --card: var(--card-light);
+    --card-foreground: var(--card-foreground-light);
+    --popover: var(--popover-light);
+    --popover-foreground: var(--popover-foreground-light);
+    --primary: var(--primary-light);
+    --primary-foreground: var(--primary-foreground-light);
+    --secondary: var(--secondary-light);
+    --secondary-foreground: var(--secondary-foreground-light);
+    --muted: var(--muted-light);
+    --muted-foreground: var(--muted-foreground-light);
+    --accent: var(--accent-light);
+    --accent-foreground: var(--accent-foreground-light);
+    --destructive: var(--destructive-light);
+    --destructive-foreground: var(--destructive-foreground-light);
+    --border: var(--border-light);
+    --input: var(--input-light);
+    --ring: var(--ring-light);
+  }
+
+  .dark {
+    --background: var(--background-dark);
+    --foreground: var(--foreground-dark);
+    --card: var(--card-dark);
+    --card-foreground: var(--card-foreground-dark);
+    --popover: var(--popover-dark);
+    --popover-foreground: var(--popover-foreground-dark);
+    --primary: var(--primary-dark);
+    --primary-foreground: var(--primary-foreground-dark);
+    --secondary: var(--secondary-dark);
+    --secondary-foreground: var(--secondary-foreground-dark);
+    --muted: var(--muted-dark);
+    --muted-foreground: var(--muted-foreground-dark);
+    --accent: var(--accent-dark);
+    --accent-foreground: var(--accent-foreground-dark);
+    --destructive: var(--destructive-dark);
+    --destructive-foreground: var(--destructive-foreground-dark);
+    --border: var(--border-dark);
+    --input: var(--input-dark);
+    --ring: var(--ring-dark);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+  }
+
+  body.app-loading {
+    overflow: hidden;
+  }
+}
+
+/* Prose styles for markdown content */
+@layer base {
+  .prose {
+    @apply text-foreground;
+  }
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose strong {
+    @apply text-foreground;
+  }
+  .prose a {
+    @apply text-primary hover:text-primary/80;
+  }
+  .prose code {
+    @apply text-secondary-foreground bg-secondary/20 px-1 py-0.5 rounded-sm font-mono text-sm;
+  }
+  .prose blockquote {
+    @apply border-l-4 border-primary/50 pl-4 italic text-muted-foreground;
+  }
+
+  /* Dark mode prose styles are inherited correctly due to CSS var overrides in .dark */
+}

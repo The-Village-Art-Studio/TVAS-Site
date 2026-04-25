@@ -7,68 +7,58 @@ export default function Footer() {
   const tFooter = useTranslations('Footer');
 
   return (
-    <footer style={{ 
-      background: 'var(--background)', 
-      padding: 'var(--section-spacing-desktop) 0 4rem',
-      borderTop: '1px solid var(--border)' 
-    }}>
-      <div className="container" style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-        gap: '4rem',
-        marginBottom: '6rem'
-      }}>
+    <footer className="relative z-10 bg-background/60 backdrop-blur-xl py-24 lg:pt-32 lg:pb-16 border-t border-border">
+      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24 mb-20">
         {/* Brand Column */}
-        <div style={{ gridColumn: 'span 2' }}>
-          <Image src="/logo.png" alt="The Village Art Studio Logo" width={52} height={52} style={{ marginBottom: '2.5rem' }} />
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
-            {tFooter('brandName')}
-          </h3>
-          <p style={{ opacity: 0.5, maxWidth: '400px', fontSize: '1.05rem', lineHeight: '1.9' }}>
+        <div className="lg:col-span-2">
+          <div className="flex items-center gap-3 mb-8 group">
+            <Image src="/logo.png" width={40} height={40} alt="Logo" className="group-hover:scale-110 transition-transform duration-500" />
+            <h3 className="text-3xl font-extrabold tracking-tighter">
+              {tFooter('brandName')}
+            </h3>
+          </div>
+          <p className="text-muted-foreground/80 max-w-md text-xl leading-relaxed font-medium">
             {tFooter('tagline')}
           </p>
         </div>
 
         {/* Platform Column */}
         <div>
-          <h4 style={{ marginBottom: '2.5rem', fontSize: '0.75rem', letterSpacing: '0.2em' }}>{tFooter('platformLabel')}</h4>
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <Link href="/podcast" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>{t('podcast')}</Link>
-            <Link href="/showcase" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>{t('showcase')}</Link>
-            <Link href="/workshops" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>{t('workshops')}</Link>
+          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-8">
+            {tFooter('platformLabel')}
+          </h4>
+          <nav className="flex flex-col gap-4">
+            <Link href="/podcast" className="text-foreground/70 hover:text-primary transition-colors font-bold text-lg">{t('podcast')}</Link>
+            <Link href="/showcase" className="text-foreground/70 hover:text-primary transition-colors font-bold text-lg">{t('showcase')}</Link>
+            <Link href="/workshops" className="text-foreground/70 hover:text-primary transition-colors font-bold text-lg">{t('workshops')}</Link>
           </nav>
         </div>
 
         {/* Connect Column */}
         <div>
-          <h4 style={{ marginBottom: '2.5rem', fontSize: '0.75rem', letterSpacing: '0.2em' }}>{tFooter('connectLabel')}</h4>
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <Link href="/about" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>{t('about')}</Link>
-            <Link href="/for-artists" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>{t('forArtists')}</Link>
-            <Link href="/partnerships" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>{t('partnerships')}</Link>
-            <Link href="/contact" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', color: 'inherit' }}>{t('contact')}</Link>
+          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-8">
+            {tFooter('connectLabel')}
+          </h4>
+          <nav className="flex flex-col gap-4">
+            <Link href="/about" className="text-foreground/70 hover:text-primary transition-colors font-bold text-lg">{t('about')}</Link>
+            <Link href="/for-artists" className="text-foreground/70 hover:text-primary transition-colors font-bold text-lg">{t('forArtists')}</Link>
+            <Link href="/partnerships" className="text-foreground/70 hover:text-primary transition-colors font-bold text-lg">{t('partnerships')}</Link>
+            <Link href="/contact" className="text-foreground/70 hover:text-primary transition-colors font-bold text-lg">{t('contact')}</Link>
           </nav>
         </div>
       </div>
 
-      <div className="container" style={{ 
-        borderTop: '1px solid var(--border)', 
-        paddingTop: '3rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        fontSize: '0.75rem',
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: '0.2em',
-        opacity: 0.3,
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
-        <p>© {new Date().getFullYear()} {tFooter('copyright')}</p>
-        <div style={{ display: 'flex', gap: '2.5rem' }}>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>TikTok</a>
+      <div className="container mx-auto px-6 pt-12 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center gap-6">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60">
+          © {new Date().getFullYear()} {tFooter('copyright')}
+        </p>
+        <div className="flex gap-8">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40 hover:text-primary transition-colors">
+            Instagram
+          </a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40 hover:text-primary transition-colors">
+            TikTok
+          </a>
         </div>
       </div>
     </footer>
