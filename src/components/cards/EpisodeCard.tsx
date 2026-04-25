@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, Clock, Mic, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface EpisodeCardProps {
   number: string;
@@ -48,11 +49,11 @@ export default function EpisodeCard({
         </p>
 
         <Button asChild variant="outline" className="self-start rounded-full px-8 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 shadow-lg group/btn">
-          <button onClick={() => {}}>
+          <Link href="/podcast">
             <Play size={14} className="mr-2 fill-current" />
             Listen Now
             <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </Button>
       </div>
     </div>

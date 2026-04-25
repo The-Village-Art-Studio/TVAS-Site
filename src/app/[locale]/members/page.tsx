@@ -4,6 +4,7 @@ import ArtistMemberCard, { ArtistType } from '@/components/cards/ArtistMemberCar
 import CTABanner from '@/components/shared/CTABanner';
 import {getTranslations} from 'next-intl/server';
 import { Users } from 'lucide-react';
+import { Link } from '@/i18n/routing';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -15,14 +16,14 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
 }
 
 const MOCK_MEMBERS = [
-  { name: 'Elena Marchetti', type: 'painter' as ArtistType, image: '/artists/elena.png' },
-  { name: 'Daniel Osei', type: 'photographer' as ArtistType, image: '/artists/daniel.png' },
-  { name: 'Maria Santos', type: 'digital' as ArtistType, image: '/artists/maria.png' },
-  { name: 'Yuki Tanaka', type: 'sculptor' as ArtistType, image: '/artists/yuki.png' },
-  { name: 'Amara Diallo', type: 'musician' as ArtistType, image: '/artists/amara.png' },
-  { name: 'Julian Vance', type: 'writer' as ArtistType, image: '/artists/julian.png' },
-  { name: 'Sofia Reyes', type: 'painter' as ArtistType, image: '/artists/sofia.png' },
-  { name: 'Marcus Chen', type: 'photographer' as ArtistType, image: '/artists/marcus.png' },
+  { id: 'elena-marchetti', name: 'Elena Marchetti', type: 'painter' as ArtistType, image: '/artists/elena.png' },
+  { id: 'daniel-osei', name: 'Daniel Osei', type: 'photographer' as ArtistType, image: '/artists/daniel.png' },
+  { id: 'maria-santos', name: 'Maria Santos', type: 'digital' as ArtistType, image: '/artists/maria.png' },
+  { id: 'yuki-tanaka', name: 'Yuki Tanaka', type: 'sculptor' as ArtistType, image: '/artists/yuki.png' },
+  { id: 'amara-diallo', name: 'Amara Diallo', type: 'musician' as ArtistType, image: '/artists/amara.png' },
+  { id: 'julian-vance', name: 'Julian Vance', type: 'writer' as ArtistType, image: '/artists/julian.png' },
+  { id: 'sofia-reyes', name: 'Sofia Reyes', type: 'painter' as ArtistType, image: '/artists/sofia.png' },
+  { id: 'marcus-chen', name: 'Marcus Chen', type: 'photographer' as ArtistType, image: '/artists/marcus.png' },
 ];
 
 export default function MembersPage() {
@@ -55,12 +56,14 @@ export default function MembersPage() {
                 className="animate-in fade-in slide-in-from-bottom-8 duration-1000"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <ArtistMemberCard 
-                  name={member.name}
-                  type={member.type}
-                  typeLabel={t(`list.types.${member.type}`)}
-                  imageUrl={member.image}
-                />
+                <Link href={`/members/${member.id}`} className="block">
+                  <ArtistMemberCard 
+                    name={member.name}
+                    type={member.type}
+                    typeLabel={t(`list.types.${member.type}`)}
+                    imageUrl={member.image}
+                  />
+                </Link>
               </div>
             ))}
           </div>

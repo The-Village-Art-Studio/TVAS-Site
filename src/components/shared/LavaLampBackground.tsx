@@ -198,7 +198,8 @@ function EnhancedLavaBlob({
 }) {
   const meshRef = useRef<THREE.Mesh>(null)
   const internalTimeRef = useRef(blobData.timeOffset)
-  const { viewport, camera, clock: r3fClock } = useThree()
+  const startTimeRef = useRef(performance.now() / 1000)
+  const { viewport, camera } = useThree()
   const frustum = useMemo(() => new THREE.Frustum(), [])
   const projScreenMatrix = useMemo(() => new THREE.Matrix4(), [])
   const [isReadyToAppear, setIsReadyToAppear] = useState(false)
@@ -301,7 +302,7 @@ function EnhancedLavaBlob({
 
     const positions = geometry.attributes.position.array as Float32Array
     const vertex = new THREE.Vector3()
-    const morphTime = r3fClock.getElapsedTime() * blobData.morphSpeed * 0.65 + blobData.timeOffset
+    const morphTime = (performance.now() / 1000 - startTimeRef.current) * blobData.morphSpeed * 0.65 + blobData.timeOffset
     const currentMorphIntensity = blobData.morphIntensity + blobData.repulsionIntensity * 1.5
 
     for (let i = 0; i < originalPositions.length; i += 3) {
@@ -393,12 +394,11 @@ function CameraController() {
 }
 
 function EnhancedLavaLampScene({ mode = "standard" }: { mode?: BlobMode }) {
-  const { viewport, clock } = useThree()
+  const { viewport } = useThree()
   const currentConfig = BLOB_CONFIGURATIONS[mode]
   const originalCountForMode = ORIGINAL_COUNTS[mode]
 
   const [blobDataArray, setBlobDataArray] = useState<BlobData[]>(() => {
-    const initialTime = clock.getElapsedTime()
     return Array.from({ length: currentConfig.count }, (_, i) => {
       const isInitial = i < originalCountForMode
       return createBlob(
@@ -415,14 +415,13 @@ function EnhancedLavaLampScene({ mode = "standard" }: { mode?: BlobMode }) {
   useEffect(() => {
     const newConfig = BLOB_CONFIGURATIONS[mode]
     const newOriginalCount = ORIGINAL_COUNTS[mode]
-    const initialTime = clock.getElapsedTime()
     setBlobDataArray(
       Array.from({ length: newConfig.count }, (_, i) => {
         const isInitial = i < newOriginalCount
         return createBlob(`blob-${i}-${mode}`, viewport, newConfig, isInitial, isInitial ? i : i - newOriginalCount)
       }),
     )
-  }, [mode, viewport, clock])
+  }, [mode, viewport])
 
   useEffect(() => {
     allBlobsRef.current = blobDataArray

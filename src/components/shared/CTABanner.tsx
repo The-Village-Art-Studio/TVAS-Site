@@ -49,17 +49,30 @@ export default function CTABanner({
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <Button asChild size="lg" className="h-16 px-12 text-xl font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-2xl shadow-primary/20 hover:scale-[1.05] transition-all duration-500 group">
-            <Link href={primaryCta.href as any}>
-              {primaryCta.label}
-              <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            {primaryCta.href.startsWith('mailto:') || primaryCta.href.startsWith('http') ? (
+              <a href={primaryCta.href}>
+                {primaryCta.label}
+                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              </a>
+            ) : (
+              <Link href={primaryCta.href as any}>
+                {primaryCta.label}
+                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            )}
           </Button>
 
           {secondaryCta && (
             <Button asChild variant="outline" size="lg" className={`h-16 px-12 text-xl font-bold rounded-2xl backdrop-blur-xl border-white/20 transition-all duration-500 ${isDark ? 'bg-white/10 text-white hover:bg-white hover:text-primary' : 'bg-background/10 text-foreground hover:bg-foreground hover:text-background'}`}>
-              <Link href={secondaryCta.href as any}>
-                {secondaryCta.label}
-              </Link>
+              {secondaryCta.href.startsWith('mailto:') || secondaryCta.href.startsWith('http') ? (
+                <a href={secondaryCta.href}>
+                  {secondaryCta.label}
+                </a>
+              ) : (
+                <Link href={secondaryCta.href as any}>
+                  {secondaryCta.label}
+                </Link>
+              )}
             </Button>
           )}
         </div>

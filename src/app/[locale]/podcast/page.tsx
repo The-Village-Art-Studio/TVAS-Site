@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import PageHero from '@/components/shared/PageHero';
-import EpisodeCard from '@/components/cards/EpisodeCard';
+import VideoCard from '@/components/cards/VideoCard';
 import CTABanner from '@/components/shared/CTABanner';
 import {getTranslations} from 'next-intl/server';
 import { Mic, Play, Headphones, ArrowRight } from 'lucide-react';
@@ -56,15 +56,15 @@ export default function PodcastPage() {
                 {episodes[0].description}
               </p>
               <Button asChild size="lg" className="h-16 px-10 text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white self-start shadow-xl shadow-primary/20 group">
-                <button onClick={() => {}}>
+                <a href="#episodes">
                   {t('featured.listenCta')}
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </Button>
             </div>
           </div>
 
-          <div className="text-center mb-20 max-w-3xl mx-auto">
+          <div id="episodes" className="text-center mb-20 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-8">
               <Headphones size={14} />
               {t('grid.eyebrow')}
@@ -75,19 +75,17 @@ export default function PodcastPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {episodes.slice(1).map((episode, index) => (
+            {episodes.map((episode, index) => (
               <div 
                 key={index}
                 className="animate-in fade-in slide-in-from-bottom-8 duration-1000"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <EpisodeCard 
-                  number={episode.number}
+                <VideoCard 
                   title={episode.title}
                   artist={episode.artist}
-                  medium={episode.medium}
-                  duration={episode.duration}
                   description={episode.description}
+                  youtubeId={episode.youtubeId || "dQw4w9WgXcQ"}
                 />
               </div>
             ))}

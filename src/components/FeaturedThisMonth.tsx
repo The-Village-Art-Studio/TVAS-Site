@@ -29,12 +29,12 @@ export default function FeaturedThisMonth() {
           <div className="lg:col-span-7 flex flex-col gap-8">
             {/* Podcast Card */}
             <div className="group flex-1 relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
-              <div className="md:w-1/2 relative h-48 md:h-auto overflow-hidden">
+              <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                 <div 
-                  className="absolute inset-0 bg-[#1a1a1a] bg-[url('/podcast-cover-placeholder.png')] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 bg-[#1a1a1a] bg-[url('/podcast-cover.png')] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/40" />
-                <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2">
+                <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2 z-20">
                   <Mic size={14} />
                   {t('podcast.label')}
                 </div>
@@ -57,18 +57,18 @@ export default function FeaturedThisMonth() {
 
             {/* Showcase Card */}
             <div className="group flex-1 relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row animate-in fade-in slide-in-from-left-8 duration-1000 delay-300">
-              <div className="md:w-1/2 relative h-48 md:h-auto overflow-hidden">
+              <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-[#f0f0f0] bg-[url('/showcase-thumb.png')] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2">
+                <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2 z-20">
                   <ImageIcon size={14} />
                   {t('showcase.label')}
                 </div>
               </div>
               <div className="md:w-1/2 p-8 flex flex-col justify-center bg-white/40 dark:bg-black/40">
-                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">
+                <h3 className="text-2xl font-extrabold text-foreground mb-4 leading-tight">
                   Monthly Showcase
                 </h3>
                 <p className="text-foreground/70 mb-6 leading-relaxed text-sm">
@@ -96,48 +96,48 @@ export default function FeaturedThisMonth() {
                   {t('workshop.label')}
                 </div>
                 
-                <h3 className="text-3xl lg:text-4xl font-extrabold text-white mb-8 leading-tight">
+                <h3 className="text-3xl lg:text-5xl font-extrabold text-white mb-8 leading-tight">
                   Artist Experiences @ La Gloria
                 </h3>
                 
-                <div className="space-y-6 mb-10">
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white shrink-0">
-                      <MapPin size={20} />
+                <div className="space-y-8 mb-10">
+                  <div className="flex items-start gap-5">
+                    <div className="mt-1 p-2.5 bg-white/10 rounded-2xl text-white shrink-0 shadow-inner">
+                      <MapPin size={22} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-0.5 text-lg">Location</h4>
-                      <p className="text-white/70 text-sm">La Gloria Mexican Coffee, Toronto</p>
+                      <h4 className="text-white font-bold mb-0.5 text-xl">Location</h4>
+                      <p className="text-white/70 text-base">La Gloria Mexican Coffee, Toronto</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white shrink-0">
-                      <Users size={20} />
+                  <div className="flex items-start gap-5">
+                    <div className="mt-1 p-2.5 bg-white/10 rounded-2xl text-white shrink-0 shadow-inner">
+                      <Users size={22} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-0.5 text-lg">Capacity</h4>
-                      <p className="text-white/70 text-sm">Limited to 8-12 guests for an intimate setting.</p>
+                      <h4 className="text-white font-bold mb-0.5 text-xl">Capacity</h4>
+                      <p className="text-white/70 text-base">Limited to 8-12 guests for an intimate setting.</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 p-2 bg-white/10 rounded-xl text-white shrink-0">
-                      <Clock size={20} />
+                  <div className="flex items-start gap-5">
+                    <div className="mt-1 p-2.5 bg-white/10 rounded-2xl text-white shrink-0 shadow-inner">
+                      <Clock size={22} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-0.5 text-lg">Duration</h4>
-                      <p className="text-white/70 text-sm">Typical sessions last 2.5 - 3 hours.</p>
+                      <h4 className="text-white font-bold mb-0.5 text-xl">Duration</h4>
+                      <p className="text-white/70 text-base">Typical sessions last 2.5 - 3 hours.</p>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-white/80 text-base leading-relaxed mb-10 italic border-l-4 border-white/20 pl-6">
+                <p className="text-white/80 text-lg leading-relaxed mb-10 italic border-l-4 border-white/20 pl-6 py-2">
                   &quot;Intimate workshops hosted at La Gloria Mexican Coffee. Connect with local artists over craft and conversation.&quot;
                 </p>
               </div>
 
-              <Button asChild size="lg" className="w-full h-16 text-xl font-bold rounded-2xl bg-white hover:bg-white/90 text-primary shadow-2xl transition-all duration-300 relative z-10">
+              <Button asChild size="lg" className="w-full h-18 text-xl font-bold rounded-[1.5rem] bg-white hover:bg-white/90 text-primary shadow-[0_20px_50px_rgba(0,0,0,0.2)] hover:shadow-none transition-all duration-300 relative z-10 border-0">
                 <Link href="/workshops">
                   {t('workshop.cta')}
                 </Link>

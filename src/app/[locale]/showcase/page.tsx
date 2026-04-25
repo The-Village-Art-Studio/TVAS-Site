@@ -56,10 +56,10 @@ export default function ShowcasePage() {
                   A detailed exploration of this month&apos;s featured artist, their creative process, and the specific series being showcased at The Village Art Studio.
                 </p>
                 <Button asChild size="lg" className="h-16 px-10 text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-xl shadow-primary/20 group transition-all duration-500">
-                  <button onClick={() => {}}>
+                  <a href="#past-showcases">
                     {t('current.viewCta')}
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </a>
                 </Button>
               </div>
             </div>

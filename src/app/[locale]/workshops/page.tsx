@@ -93,6 +93,7 @@ export default function WorkshopsPage() {
                   capacity={event.capacity}
                   description={event.description}
                   cta={event.cta}
+                  externalHref={event.externalHref}
                 />
               </div>
             ))}

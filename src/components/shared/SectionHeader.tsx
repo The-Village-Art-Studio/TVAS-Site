@@ -1,4 +1,5 @@
 import React from 'react';
+import { LucideIcon } from 'lucide-react';
 
 interface SectionHeaderProps {
   eyebrow: string;
@@ -6,6 +7,7 @@ interface SectionHeaderProps {
   lead?: string;
   align?: 'left' | 'center';
   maxWidth?: string;
+  icon?: LucideIcon;
 }
 
 export default function SectionHeader({ 
@@ -13,21 +15,20 @@ export default function SectionHeader({
   headline, 
   lead, 
   align = 'left',
-  maxWidth = '800px'
+  maxWidth = 'max-w-3xl',
+  icon: Icon
 }: SectionHeaderProps) {
   return (
-    <div style={{ 
-      marginBottom: '6rem', 
-      textAlign: align,
-      maxWidth: align === 'center' ? maxWidth : '100%',
-      margin: align === 'center' ? '0 auto 6rem' : '0 0 6rem'
-    }} className="reveal">
-      <span className="caption" style={{ display: 'block', marginBottom: '2rem' }}>
+    <div className={`mb-24 ${align === 'center' ? `mx-auto text-center ${maxWidth}` : 'text-left'}`}>
+      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-8 ${align === 'center' ? 'mx-auto' : ''}`}>
+        {Icon && <Icon size={14} className="animate-pulse" />}
         {eyebrow}
-      </span>
-      <h2 style={{ marginBottom: lead ? '2.5rem' : '0', lineHeight: 1.1 }}>{headline}</h2>
+      </div>
+      <h2 className="text-4xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-[1.1]">
+        {headline}
+      </h2>
       {lead && (
-        <p style={{ fontSize: '1.25rem', opacity: 0.6, lineHeight: '1.9', maxWidth: '750px', margin: align === 'center' ? '0 auto' : '0' }}>
+        <p className="text-xl text-muted-foreground/80 leading-relaxed">
           {lead}
         </p>
       )}

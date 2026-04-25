@@ -9,10 +9,10 @@
     "showcase": "Vitrine",
     "workshops": "Ateliers",
     "about": "À Propos",
+    "members": "Membres du Village",
     "forArtists": "Pour les Artistes",
     "partnerships": "Partenariats",
-    "contact": "Contact",
-    "members": "Membres du Village"
+    "contact": "Contact"
   },
   "Hero": {
     "eyebrow": "Amplifier la Voix Créative de Toronto",
@@ -206,56 +206,35 @@
         "allCta": "Tous les Épisodes"
       },
       "grid": {
-        "eyebrow": "Épisodes Récents",
-        "headline": "Plus de Voix du Village",
+        "eyebrow": "Galerie Vidéo",
+        "headline": "Regardez les Conversations",
         "episodes": [
           {
-            "number": "EP 06",
+            "number": "06",
             "title": "Trouver sa Voix à travers la Texture",
             "artist": "Maria Santos",
             "medium": "Artiste Textile",
             "duration": "52 min",
-            "description": "Maria parle de grandir entre deux cultures et de la façon dont cette tension est devenue le fondement de son travail textile tactile et stratifié."
+            "description": "Maria parle de grandir entre deux cultures et de la façon dont cette tension est devenue le fondement de son travail textile tactile et stratifié.",
+            "youtubeId": "dQw4w9WgXcQ"
           },
           {
-            "number": "EP 05",
+            "number": "05",
             "title": "La Murale comme Mémoire Communautaire",
             "artist": "Daniel Osei",
             "medium": "Muraliste",
             "duration": "61 min",
-            "description": "Daniel réfléchit à deux décennies de transformation de murs publics en récits communautaires à travers les quartiers de Toronto."
+            "description": "Daniel réfléchit à deux décennies de transformation de murs publics en récits communautaires à travers les quartiers de Toronto.",
+            "youtubeId": "dQw4w9WgXcQ"
           },
           {
-            "number": "EP 04",
+            "number": "04",
             "title": "Céramique et Pratique Lente",
             "artist": "Yuki Tanaka",
             "medium": "Céramiste",
             "duration": "44 min",
-            "description": "Dans une culture de gratification instantanée, Yuki plaide pour la lenteur — et comment l'argile lui a appris à cesser de performer pour commencer à créer."
-          },
-          {
-            "number": "EP 03",
-            "title": "Dessiner la Ville Invisible",
-            "artist": "Amara Diallo",
-            "medium": "Illustratrice et Graveuse",
-            "duration": "57 min",
-            "description": "Amara dessine les parties de Toronto que les cartes ne montrent pas — les ruelles cachées, les jardins communautaires, les visages derrière les vitrines."
-          },
-          {
-            "number": "EP 02",
-            "title": "Peinture à l'Huile et Fenêtres Ouvertes",
-            "artist": "Lena Marchetti",
-            "medium": "Peintre à l'Huile",
-            "duration": "48 min",
-            "description": "Lena peint la lumière — plus précisément la lumière de l'heure dorée de son studio de Kensington Market — et partage comment la peinture est devenue sa pratique spirituelle."
-          },
-          {
-            "number": "EP 01",
-            "title": "Bienvenue à La Voix du Village",
-            "artist": "The Village Art Studio",
-            "medium": "Introduction",
-            "duration": "18 min",
-            "description": "The Village Art Studio présente La Voix du Village — une nouvelle plateforme de balado pour les artistes locaux afin de partager leurs histoires, leur processus et leur vision."
+            "description": "Dans une culture de gratification instantanée, Yuki plaide pour la lenteur — et comment l'argile lui a appris à cesser de performer pour commencer à créer.",
+            "youtubeId": "dQw4w9WgXcQ"
           }
         ]
       },
@@ -346,7 +325,8 @@
             "duration": "3 heures",
             "capacity": "12 invités",
             "description": "Une expérience de dessin de portrait guidée par un peintre local. Aucune expérience requise — juste de la curiosité et une volonté de voir.",
-            "cta": "M'Avertir"
+            "cta": "En Savoir Plus",
+            "externalHref": "https://www.eventbrite.ca"
           },
           {
             "title": "Matinée Gravure et Café",
@@ -355,7 +335,8 @@
             "duration": "2,5 heures",
             "capacity": "10 invités",
             "description": "Une introduction au monde méditatif de la gravure, animée par un graveur de Toronto autour d'un café du matin au La Gloria.",
-            "cta": "M'Avertir"
+            "cta": "En Savoir Plus",
+            "externalHref": "https://www.eventbrite.ca"
           },
           {
             "title": "Aquarelle et Conversation",
@@ -364,7 +345,8 @@
             "duration": "2 heures",
             "capacity": "8 invités",
             "description": "Un après-midi aquarelle décontracté où vous peignez, discutez avec l'artiste et repartez avec une œuvre d'art et une nouvelle perspective.",
-            "cta": "M'Avertir"
+            "cta": "En Savoir Plus",
+            "externalHref": "https://www.eventbrite.ca"
           }
         ]
       },

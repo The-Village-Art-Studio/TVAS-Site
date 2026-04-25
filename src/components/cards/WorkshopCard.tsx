@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Clock, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface WorkshopCardProps {
   title: string;
@@ -10,6 +11,7 @@ interface WorkshopCardProps {
   capacity: string;
   description: string;
   cta: string;
+  externalHref?: string;
 }
 
 export default function WorkshopCard({ 
@@ -19,7 +21,8 @@ export default function WorkshopCard({
   duration, 
   capacity, 
   description, 
-  cta 
+  cta,
+  externalHref
 }: WorkshopCardProps) {
   return (
     <div className="group relative flex flex-col p-8 lg:p-10 rounded-[2.5rem] bg-card/50 backdrop-blur-xl border border-border/50 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden">
@@ -54,10 +57,17 @@ export default function WorkshopCard({
         </p>
 
         <Button asChild variant="outline" className="self-start rounded-full px-8 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 shadow-lg group/btn">
-          <button onClick={() => {}}>
-            {cta}
-            <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-          </button>
+          {externalHref ? (
+            <a href={externalHref} target="_blank" rel="noopener noreferrer">
+              {cta}
+              <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+            </a>
+          ) : (
+            <Link href="/workshops">
+              {cta}
+              <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
+          )}
         </Button>
       </div>
     </div>

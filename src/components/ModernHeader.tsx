@@ -1,7 +1,7 @@
 "use client"
 
-import {useTranslations} from 'next-intl';
-import {Link, usePathname} from '@/i18n/routing';
+import {useTranslations, useLocale} from 'next-intl';
+import {Link, usePathname, useRouter} from '@/i18n/routing';
 import Image from 'next/image';
 import {
   LayoutDashboard,
@@ -28,6 +28,8 @@ interface HeaderProps {
 
 export default function ModernHeader({ cycleLavaMode, currentLavaMode, nextLavaMode }: HeaderProps) {
   const pathname = usePathname()
+  const router = useRouter()
+  const locale = useLocale()
   const t = useTranslations('Navigation');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const drawerRef = useRef<HTMLDivElement>(null)
@@ -43,6 +45,11 @@ export default function ModernHeader({ cycleLavaMode, currentLavaMode, nextLavaM
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const toggleLanguage = () => {
+    const nextLocale = locale === 'en' ? 'fr' : 'en';
+    router.replace(pathname, {locale: nextLocale});
   }
 
   useEffect(() => {
@@ -73,7 +80,7 @@ export default function ModernHeader({ cycleLavaMode, currentLavaMode, nextLavaM
 
   return (
     <>
-      <header className="fixed top-4 left-4 right-4 z-[60] h-16 bg-background/80 backdrop-blur-lg border border-border/50 rounded-2xl shadow-2xl transition-all max-w-7xl mx-auto">
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] h-16 w-[calc(100%-2rem)] max-w-7xl bg-background/80 backdrop-blur-lg border border-border/50 rounded-2xl shadow-2xl transition-all">
         <div className="container mx-auto flex items-center justify-between px-6 h-full">
           <Link
             href="/"
@@ -101,31 +108,15 @@ export default function ModernHeader({ cycleLavaMode, currentLavaMode, nextLavaM
           </nav>
 
           <div className="flex items-center gap-2">
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={cycleLavaMode}
-                    variant="ghost"
-                    size="icon"
-                    className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full"
-                    aria-label="Cycle Background Mode"
-                  >
-                    <Layers className="h-5 w-5" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Cycle Atmosphere: {nextLavaMode}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
             <div className="hidden sm:flex items-center gap-2 border-l pl-4 ml-2">
                <Button variant="ghost" size="sm" asChild>
                  <Link href="/contact" className="font-bold">{t('contact')}</Link>
                </Button>
                <Button size="sm" className="rounded-full px-6 font-bold shadow-lg shadow-primary/20" asChild>
                  <Link href="/partnerships">{t('partnerships')}</Link>
+               </Button>
+               <Button variant="outline" size="sm" onClick={toggleLanguage} className="rounded-full px-4 font-bold border-primary/20 hover:bg-primary hover:text-white transition-colors">
+                 {locale === 'en' ? 'FR' : 'EN'}
                </Button>
             </div>
 
@@ -181,12 +172,26 @@ export default function ModernHeader({ cycleLavaMode, currentLavaMode, nextLavaM
                 ))}
               </nav>
               
-              <div className="mt-auto pt-6 border-t">
-                <Button className="w-full rounded-xl h-12 font-bold mb-3" asChild>
-                  <Link href="/partnerships">{t('partnerships')}</Link>
+              <div className="mt-auto border-t pt-6 space-y-4">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-between rounded-xl h-12 text-lg font-bold border-primary/20"
+                  onClick={() => {
+                    toggleLanguage()
+                    setIsMobileMenuOpen(false)
+                  }}
+                >
+                  <span>Language</span>
+                  <span>{locale === 'en' ? 'FR' : 'EN'}</span>
+                </Button>
+
+                <Button asChild className="w-full justify-center rounded-xl h-12 text-lg font-bold bg-primary text-white shadow-lg shadow-primary/20">
+                  <Link href="/partnerships" onClick={() => setIsMobileMenuOpen(false)}>
+                    {t('partnerships')}
+                  </Link>
                 </Button>
                 <Button variant="outline" className="w-full rounded-xl h-12 font-bold" asChild>
-                   <Link href="/contact">{t('contact')}</Link>
+                   <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>{t('contact')}</Link>
                 </Button>
               </div>
             </div>

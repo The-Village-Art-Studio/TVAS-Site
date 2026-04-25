@@ -9,10 +9,10 @@
     "showcase": "Showcase",
     "workshops": "Workshops",
     "about": "About",
+    "members": "Village Members",
     "forArtists": "For Artists",
     "partnerships": "Partnerships",
-    "contact": "Contact",
-    "members": "Village Members"
+    "contact": "Contact"
   },
   "Hero": {
     "eyebrow": "Amplifying Toronto's Creative Voice",
@@ -206,56 +206,35 @@
         "allCta": "All Episodes"
       },
       "grid": {
-        "eyebrow": "Recent Episodes",
-        "headline": "More Voices From The Village",
+        "eyebrow": "Video Gallery",
+        "headline": "Watch the Conversations",
         "episodes": [
           {
-            "number": "EP 06",
+            "number": "06",
             "title": "Finding Your Voice Through Texture",
             "artist": "Maria Santos",
             "medium": "Textile Artist",
             "duration": "52 min",
-            "description": "Maria talks about growing up between two cultures and how that tension became the foundation of her tactile, layered textile work."
+            "description": "Maria talks about growing up between two cultures and how that tension became the foundation of her tactile, layered textile work.",
+            "youtubeId": "dQw4w9WgXcQ"
           },
           {
-            "number": "EP 05",
+            "number": "05",
             "title": "The Mural as Community Memory",
             "artist": "Daniel Osei",
             "medium": "Muralist",
             "duration": "61 min",
-            "description": "Daniel reflects on two decades of transforming public walls into community narratives across Toronto neighbourhoods."
+            "description": "Daniel reflects on two decades of transforming public walls into community narratives across Toronto neighbourhoods.",
+            "youtubeId": "dQw4w9WgXcQ"
           },
           {
-            "number": "EP 04",
+            "number": "04",
             "title": "Ceramics and the Slow Practice",
             "artist": "Yuki Tanaka",
             "medium": "Ceramicist",
             "duration": "44 min",
-            "description": "In a culture of instant gratification, Yuki makes the case for slowness — and how clay taught her to stop performing and start creating."
-          },
-          {
-            "number": "EP 03",
-            "title": "Drawing the Invisible City",
-            "artist": "Amara Diallo",
-            "medium": "Illustrator & Printmaker",
-            "duration": "57 min",
-            "description": "Amara draws the parts of Toronto that maps don't show — the hidden alleyways, the community gardens, the faces behind storefronts."
-          },
-          {
-            "number": "EP 02",
-            "title": "Oil Paint and Open Windows",
-            "artist": "Lena Marchetti",
-            "medium": "Oil Painter",
-            "duration": "48 min",
-            "description": "Lena paints light — specifically the golden hour light of her Kensington Market studio — and shares how painting became her spiritual practice."
-          },
-          {
-            "number": "EP 01",
-            "title": "Welcome to The Village Voice",
-            "artist": "The Village Art Studio",
-            "medium": "Introduction",
-            "duration": "18 min",
-            "description": "The Village Art Studio introduces The Village Voice — a new podcast platform for local artists to share their stories, their process, and their vision."
+            "description": "In a culture of instant gratification, Yuki makes the case for slowness — and how clay taught her to stop performing and start creating.",
+            "youtubeId": "dQw4w9WgXcQ"
           }
         ]
       },
@@ -346,7 +325,8 @@
             "duration": "3 hours",
             "capacity": "12 guests",
             "description": "A guided portrait drawing experience led by a local painter. No experience required — just curiosity and a willingness to see.",
-            "cta": "Notify Me"
+            "cta": "Learn More",
+            "externalHref": "https://www.eventbrite.ca"
           },
           {
             "title": "Printmaking & Coffee Morning",
@@ -355,7 +335,8 @@
             "duration": "2.5 hours",
             "capacity": "10 guests",
             "description": "An introduction to the meditative world of printmaking, hosted by a Toronto printmaker over a La Gloria morning brew.",
-            "cta": "Notify Me"
+            "cta": "Learn More",
+            "externalHref": "https://www.eventbrite.ca"
           },
           {
             "title": "Watercolour & Conversation",
@@ -364,7 +345,8 @@
             "duration": "2 hours",
             "capacity": "8 guests",
             "description": "A relaxed watercolour afternoon where you paint, talk with the artist, and leave with both a piece of art and a new perspective.",
-            "cta": "Notify Me"
+            "cta": "Learn More",
+            "externalHref": "https://www.eventbrite.ca"
           }
         ]
       },
