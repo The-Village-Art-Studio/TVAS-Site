@@ -168,10 +168,13 @@ export default function ContactPage() {
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-8">
-                    <a href="#" className="text-lg font-bold hover:text-primary transition-all hover:translate-x-1 flex items-center gap-2">
+                    <a href="https://www.facebook.com/profile.php?id=61554590920288" target="_blank" rel="noopener noreferrer" className="text-lg font-bold hover:text-primary transition-all hover:translate-x-1 flex items-center gap-2">
+                      Facebook <ArrowRight size={16} />
+                    </a>
+                    <a href="https://www.instagram.com/tvas.ca/" target="_blank" rel="noopener noreferrer" className="text-lg font-bold hover:text-primary transition-all hover:translate-x-1 flex items-center gap-2">
                       Instagram <ArrowRight size={16} />
                     </a>
-                    <a href="#" className="text-lg font-bold hover:text-primary transition-all hover:translate-x-1 flex items-center gap-2">
+                    <a href="https://www.tiktok.com/@tvas.ca" target="_blank" rel="noopener noreferrer" className="text-lg font-bold hover:text-primary transition-all hover:translate-x-1 flex items-center gap-2">
                       TikTok <ArrowRight size={16} />
                     </a>
                   </div>

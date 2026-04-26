@@ -53,10 +53,13 @@ export default function Footer() {
           © {new Date().getFullYear()} {tFooter('copyright')}
         </p>
         <div className="flex gap-8">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40 hover:text-primary transition-colors">
+          <a href="https://www.facebook.com/profile.php?id=61554590920288" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40 hover:text-primary transition-colors">
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/tvas.ca/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40 hover:text-primary transition-colors">
             Instagram
           </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40 hover:text-primary transition-colors">
+          <a href="https://www.tiktok.com/@tvas.ca" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/40 hover:text-primary transition-colors">
             TikTok
           </a>
         </div>
