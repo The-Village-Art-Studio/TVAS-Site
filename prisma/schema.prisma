@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Event {
+  id             String   @id @default(cuid())
+  titleEn        String
+  titleFr        String
+  descriptionEn  String
+  descriptionFr  String
+  imageUrl       String
+  link           String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Showcase {
+  id             String   @id @default(cuid())
+  titleEn        String
+  titleFr        String
+  artistName     String
+  mediumEn       String
+  mediumFr       String
+  seriesEn       String
+  seriesFr       String
+  statementEn    String
+  statementFr    String
+  monthYear      String
+  galleryItems   String   // Stored as JSON string
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Podcast {
+  id             String   @id @default(cuid())
+  titleEn        String
+  titleFr        String
+  artist         String
+  descriptionEn  String
+  descriptionFr  String
+  youtubeId      String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Workshop {
+  id             String   @id @default(cuid())
+  titleEn        String
+  titleFr        String
+  descriptionEn  String
+  descriptionFr  String
+  date           String
+  price          String
+  type           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Member {
+  id             String   @id @default(cuid())
+  name           String
+  type           String   // e.g. painter, photographer
+  imageUrl       String
+  statementEn    String
+  statementFr    String
+  socialLinks    String   // Stored as JSON string
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Lead {
+  id             String   @id @default(cuid())
+  name           String
+  email          String
+  subject        String
+  message        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
