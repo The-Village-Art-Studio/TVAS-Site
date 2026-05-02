@@ -4,8 +4,9 @@ import WorkshopCard from '@/components/cards/WorkshopCard';
 import QuoteBlock from '@/components/shared/QuoteBlock';
 import CTABanner from '@/components/shared/CTABanner';
 import Image from 'next/image';
-import {getTranslations} from 'next-intl/server';
 import { Coffee, MapPin, Calendar, Star } from 'lucide-react';
+import prisma from '@/lib/prisma';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -16,9 +17,13 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   };
 }
 
-export default function WorkshopsPage() {
-  const t = useTranslations('Pages.Workshops');
-  const events = t.raw('experiences.events') as any[];
+export default async function WorkshopsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Pages.Workshops' });
+  
+  const events = await prisma.event.findMany({
+    orderBy: { createdAt: 'desc' }
+  });
 
   return (
     <main>
@@ -81,19 +86,19 @@ export default function WorkshopsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {events.map((event, index) => (
               <div 
-                key={index} 
+                key={event.id} 
                 className="animate-in fade-in slide-in-from-bottom-8 duration-1000"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <WorkshopCard 
-                  title={event.title}
-                  artist={event.artist}
-                  date={event.date}
-                  duration={event.duration}
-                  capacity={event.capacity}
-                  description={event.description}
-                  cta={event.cta}
-                  externalHref={event.externalHref}
+                  title={locale === 'fr' ? event.titleFr : event.titleEn}
+                  artist={"Featured Artist"} // Placeholder since Event model doesn't have artist
+                  date={"Upcoming"}
+                  duration={"TBA"}
+                  capacity={"Limited"}
+                  description={locale === 'fr' ? event.descriptionFr : event.descriptionEn}
+                  cta={t('experiences.cta')}
+                  externalHref={event.link || undefined}
                 />
               </div>
             ))}

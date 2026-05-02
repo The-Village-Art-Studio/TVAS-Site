@@ -2,7 +2,17 @@ import createNextIntlPlugin from 'next-intl/plugin';
  
 const withNextIntl = createNextIntlPlugin();
  
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+    ],
+  },
+};
  
 export default withNextIntl(nextConfig);

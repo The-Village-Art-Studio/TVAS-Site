@@ -1,10 +1,16 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import { Mic, Image as ImageIcon, Calendar, ArrowRight, MapPin, Users, Clock } from 'lucide-react';
+import prisma from '@/lib/prisma';
 
-export default function FeaturedThisMonth() {
-  const t = useTranslations('Featured');
+export default async function FeaturedThisMonth({ locale }: { locale: string }) {
+  const t = await getTranslations({ locale, namespace: 'Featured' });
+
+  // Fetch the latest content
+  const latestPodcast = await prisma.podcast.findFirst({ orderBy: { createdAt: 'desc' } });
+  const latestShowcase = await prisma.showcase.findFirst({ orderBy: { createdAt: 'desc' } });
+  const latestEvent = await prisma.event.findFirst({ orderBy: { createdAt: 'desc' } });
 
   return (
     <section className="py-24 lg:py-40 relative overflow-hidden">
@@ -31,7 +37,8 @@ export default function FeaturedThisMonth() {
             <div className="group flex-1 relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row animate-in fade-in slide-in-from-left-8 duration-1000 delay-200">
               <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                 <div 
-                  className="absolute inset-0 bg-[#1a1a1a] bg-[url('/podcast-cover.png')] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 bg-[#1a1a1a] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${latestPodcast?.imageUrl || '/podcast-cover.png'})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/40" />
                 <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2 z-20">
@@ -41,10 +48,10 @@ export default function FeaturedThisMonth() {
               </div>
               <div className="md:w-1/2 p-8 flex flex-col justify-center bg-white/40 dark:bg-black/40">
                 <h3 className="text-2xl font-extrabold text-foreground mb-4 leading-tight">
-                  The Voice of the Village
+                  {latestPodcast ? (locale === 'fr' ? latestPodcast.titleFr : latestPodcast.titleEn) : 'The Voice of the Village'}
                 </h3>
-                <p className="text-foreground/70 mb-6 leading-relaxed text-sm">
-                  Deep-dive conversations with the creators shaping Toronto&apos;s cultural landscape.
+                <p className="text-foreground/70 mb-6 leading-relaxed text-sm line-clamp-2">
+                  {latestPodcast ? (locale === 'fr' ? latestPodcast.descriptionFr : latestPodcast.descriptionEn) : "Deep-dive conversations with the creators shaping Toronto's cultural landscape."}
                 </p>
                 <Button asChild variant="outline" className="self-start rounded-full px-6 h-10 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
                   <Link href="/podcast">
@@ -59,7 +66,8 @@ export default function FeaturedThisMonth() {
             <div className="group flex-1 relative bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary/30 flex flex-col md:flex-row animate-in fade-in slide-in-from-left-8 duration-1000 delay-300">
               <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                 <div 
-                  className="absolute inset-0 bg-[#f0f0f0] bg-[url('/showcase-thumb.png')] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 bg-[#f0f0f0] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url('/showcase-thumb.png')` }}
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                 <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2 z-20">
@@ -69,10 +77,10 @@ export default function FeaturedThisMonth() {
               </div>
               <div className="md:w-1/2 p-8 flex flex-col justify-center bg-white/40 dark:bg-black/40">
                 <h3 className="text-2xl font-extrabold text-foreground mb-4 leading-tight">
-                  Monthly Showcase
+                  {latestShowcase ? latestShowcase.artistName : 'Monthly Showcase'}
                 </h3>
-                <p className="text-foreground/70 mb-6 leading-relaxed text-sm">
-                  A dedicated focus on one local artist, their work, and their unique creative process.
+                <p className="text-foreground/70 mb-6 leading-relaxed text-sm line-clamp-2">
+                  {latestShowcase ? (locale === 'fr' ? latestShowcase.statementFr : latestShowcase.statementEn) : "A dedicated focus on one local artist, their work, and their unique creative process."}
                 </p>
                 <Button asChild variant="outline" className="self-start rounded-full px-6 h-10 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300">
                   <Link href="/showcase">
@@ -97,7 +105,7 @@ export default function FeaturedThisMonth() {
                 </div>
                 
                 <h3 className="text-3xl lg:text-5xl font-extrabold text-white mb-8 leading-tight">
-                  Artist Experiences @ La Gloria
+                  {latestEvent ? (locale === 'fr' ? latestEvent.titleFr : latestEvent.titleEn) : 'Artist Experiences @ La Gloria'}
                 </h3>
                 
                 <div className="space-y-8 mb-10">
@@ -132,8 +140,8 @@ export default function FeaturedThisMonth() {
                   </div>
                 </div>
 
-                <p className="text-white/80 text-lg leading-relaxed mb-10 italic border-l-4 border-white/20 pl-6 py-2">
-                  &quot;Intimate workshops hosted at La Gloria Mexican Coffee. Connect with local artists over craft and conversation.&quot;
+                <p className="text-white/80 text-lg leading-relaxed mb-10 italic border-l-4 border-white/20 pl-6 py-2 line-clamp-3">
+                  &quot;{latestEvent ? (locale === 'fr' ? latestEvent.descriptionFr : latestEvent.descriptionEn) : "Intimate workshops hosted at La Gloria Mexican Coffee. Connect with local artists over craft and conversation."}&quot;
                 </p>
               </div>
 

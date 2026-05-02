@@ -6,6 +6,7 @@ import {getTranslations} from 'next-intl/server';
 import { Sparkles, Palette, ArrowRight, Lightbulb, Grid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
+import prisma from '@/lib/prisma';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -16,9 +17,17 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   };
 }
 
-export default function ShowcasePage() {
-  const t = useTranslations('Pages.Showcase');
-  const pastShowcases = t.raw('past.showcases') as any[];
+export default async function ShowcasePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Pages.Showcase' });
+  
+  // Fetch from DB
+  const allShowcases = await prisma.showcase.findMany({
+    orderBy: { createdAt: 'desc' }
+  });
+
+  const featuredShowcase = allShowcases.length > 0 ? allShowcases[0] : null;
+  const pastShowcases = allShowcases.slice(1);
 
   return (
     <main>
@@ -48,20 +57,22 @@ export default function ShowcasePage() {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-[0.2em] mb-6">
-                  Vol. 4 &bull; April 2025
+                  {featuredShowcase?.seriesEn} &bull; {featuredShowcase?.monthYear}
                 </div>
                 <h2 className="text-4xl lg:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1]">
-                  Featured Artist Name
+                  {featuredShowcase?.titleEn || 'Featured Artist Name'}
                 </h2>
                 <p className="text-xl text-muted-foreground/80 leading-relaxed mb-12">
-                  A detailed exploration of this month&apos;s featured artist, their creative process, and the specific series being showcased at The Village Art Studio.
+                  {featuredShowcase?.statementEn || "A detailed exploration of this month's featured artist, their creative process, and the specific series being showcased at The Village Art Studio."}
                 </p>
-                <Button asChild size="lg" className="h-16 px-10 text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-xl shadow-primary/20 group transition-all duration-500">
-                  <Link href="/showcase/featured-artist">
-                    Learn More
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
+                {featuredShowcase && (
+                  <Button asChild size="lg" className="h-16 px-10 text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-xl shadow-primary/20 group transition-all duration-500">
+                    <Link href={`/showcase/${featuredShowcase.id}`}>
+                      Learn More
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -79,16 +90,18 @@ export default function ShowcasePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {pastShowcases.map((showcase, index) => (
               <div 
-                key={index}
+                key={showcase.id}
                 className="animate-in fade-in slide-in-from-bottom-8 duration-1000"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <ShowcaseCard 
-                  month={showcase.month}
-                  artist={showcase.artist}
-                  medium={showcase.medium}
-                  series={showcase.series}
-                />
+                <Link href={`/showcase/${showcase.id}`}>
+                  <ShowcaseCard 
+                    month={showcase.monthYear}
+                    artist={showcase.artistName}
+                    medium={showcase.mediumEn}
+                    series={showcase.seriesEn}
+                  />
+                </Link>
               </div>
             ))}
             

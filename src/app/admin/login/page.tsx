@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock, Mail, ArrowRight, Loader2 } from 'lucide-react';
+import { Lock, Mail, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
@@ -18,9 +18,8 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
-    // Simple authentication check based on user provided credentials
+    // Authentication check
     if (email === 'jackyho@tvas.ca' && password === '@Dad0933718328') {
-      // Set the auth cookie
       document.cookie = "tvas_admin_auth=authenticated; path=/; max-age=86400; SameSite=Strict";
       router.push('/admin');
     } else {
@@ -30,62 +29,67 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Background Blobs */}
-      <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Aesthetic Background Elements */}
+      <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-100 rounded-full blur-[100px] pointer-events-none opacity-60" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-100 rounded-full blur-[100px] pointer-events-none opacity-60" />
 
       <div className="w-full max-w-md relative z-10 animate-in fade-in zoom-in duration-700">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <Image src="/logo.png" width={48} height={48} alt="TVAS Logo" />
-            <h1 className="text-3xl font-black tracking-tighter text-white uppercase">
-              Admin Portal
-            </h1>
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-4 mb-6">
+            <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center p-2.5 shadow-xl shadow-blue-200">
+              <Image src="/logo.png" width={40} height={40} alt="TVAS Logo" className="brightness-0 invert object-contain" />
+            </div>
+            <div className="text-left">
+              <h1 className="text-2xl font-black tracking-tighter text-slate-900 uppercase leading-none">
+                TVAS Admin
+              </h1>
+              <p className="text-[10px] text-blue-600 font-black uppercase tracking-widest mt-1 flex items-center gap-1.5">
+                <ShieldCheck size={12} />
+                Secure Portal
+              </p>
+            </div>
           </div>
-          <p className="text-zinc-500 font-medium tracking-wide">
-            Enter your credentials to manage The Village Art Studio
-          </p>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-10 shadow-2xl">
+        <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-2xl shadow-blue-900/5">
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 ml-1">
-                Email Address
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
+                Administrator Email
               </label>
               <div className="relative group">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-primary transition-colors" size={20} />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors" size={20} />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white outline-none focus:border-primary/50 transition-all placeholder:text-zinc-700"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 pl-12 pr-4 text-slate-900 outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-50 transition-all font-bold placeholder:text-slate-300"
                   placeholder="admin@tvas.ca"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 ml-1">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">
                 Password
               </label>
               <div className="relative group">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-primary transition-colors" size={20} />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors" size={20} />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white outline-none focus:border-primary/50 transition-all placeholder:text-zinc-700"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 pl-12 pr-4 text-slate-900 outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-50 transition-all font-bold placeholder:text-slate-300"
                   placeholder="••••••••••••"
                 />
               </div>
             </div>
 
             {error && (
-              <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-sm py-3 px-4 rounded-xl text-center font-medium animate-shake">
+              <div className="bg-red-50 border border-red-100 text-red-600 text-sm py-4 px-4 rounded-xl text-center font-bold animate-shake">
                 {error}
               </div>
             )}
@@ -93,13 +97,13 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-16 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold text-lg shadow-xl shadow-primary/20 transition-all active:scale-95 flex items-center justify-center gap-2"
+              className="w-full h-16 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg shadow-xl shadow-blue-200 transition-all active:translate-y-1 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <Loader2 className="animate-spin" />
               ) : (
                 <>
-                  Sign In
+                  Authenticate
                   <ArrowRight size={20} />
                 </>
               )}
@@ -107,8 +111,8 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center mt-12 text-zinc-600 text-sm font-medium">
-          Secure Access Only • Built for The Village Art Studio
+        <p className="text-center mt-10 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">
+          Authorized Personnel Only • TVAS CMS v2.0
         </p>
       </div>
     </div>

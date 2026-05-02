@@ -16,7 +16,8 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   };
 }
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   return (
     <main>
       {/* 1. Hero — The Statement */}
@@ -26,7 +27,7 @@ export default function HomePage() {
       <Pillars />
 
       {/* 3. Featured This Month — The Living Room */}
-      <FeaturedThisMonth />
+      <FeaturedThisMonth locale={locale} />
 
       {/* 4. About — The Legend */}
       <AboutSection />

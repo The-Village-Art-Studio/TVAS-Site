@@ -5,17 +5,21 @@ import type { NextRequest } from 'next/server';
 
 const intlMiddleware = createMiddleware(routing);
 
-export function middleware(request: NextRequest) {
-  // Check if it's an admin route (excluding login and api routes)
+export default function proxy(request: NextRequest) {
+  // Check if it's an admin route
   const pathname = request.nextUrl.pathname;
-  if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
-    const authCookie = request.cookies.get('tvas_admin_auth');
-    if (!authCookie || authCookie.value !== 'authenticated') {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+  if (pathname.startsWith('/admin')) {
+    if (!pathname.startsWith('/admin/login')) {
+      const authCookie = request.cookies.get('tvas_admin_auth');
+      if (!authCookie || authCookie.value !== 'authenticated') {
+        return NextResponse.redirect(new URL('/admin/login', request.url));
+      }
     }
+    // Return NextResponse.next() to bypass intlMiddleware for admin routes
+    return NextResponse.next();
   }
 
-  // Handle i18n
+  // Handle i18n for all other routes
   return intlMiddleware(request);
 }
 

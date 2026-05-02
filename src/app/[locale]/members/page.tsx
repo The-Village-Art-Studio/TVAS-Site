@@ -1,37 +1,41 @@
-import {useTranslations} from 'next-intl';
 import PageHero from '@/components/shared/PageHero';
 import ArtistMemberCard, { ArtistType } from '@/components/cards/ArtistMemberCard';
 import CTABanner from '@/components/shared/CTABanner';
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Users } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import prisma from '@/lib/prisma';
 
-export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: 'Pages.Members.meta'});
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Pages.Members.meta' });
   return {
     title: t('title'),
-    description: t('description')
+    description: t('description'),
   };
 }
 
-const MOCK_MEMBERS = [
-  { id: 'elena-marchetti', name: 'Elena Marchetti', type: 'painter' as ArtistType, image: '/artists/elena.png' },
-  { id: 'daniel-osei', name: 'Daniel Osei', type: 'photographer' as ArtistType, image: '/artists/daniel.png' },
-  { id: 'maria-santos', name: 'Maria Santos', type: 'digital' as ArtistType, image: '/artists/maria.png' },
-  { id: 'yuki-tanaka', name: 'Yuki Tanaka', type: 'sculptor' as ArtistType, image: '/artists/yuki.png' },
-  { id: 'amara-diallo', name: 'Amara Diallo', type: 'musician' as ArtistType, image: '/artists/amara.png' },
-  { id: 'julian-vance', name: 'Julian Vance', type: 'writer' as ArtistType, image: '/artists/julian.png' },
-  { id: 'sofia-reyes', name: 'Sofia Reyes', type: 'painter' as ArtistType, image: '/artists/sofia.png' },
-  { id: 'marcus-chen', name: 'Marcus Chen', type: 'photographer' as ArtistType, image: '/artists/marcus.png' },
-];
+async function getMembers() {
+  try {
+    return await prisma.member.findMany({
+      orderBy: { createdAt: 'asc' },
+      select: { id: true, name: true, type: true, imageUrl: true },
+    });
+  } catch (error) {
+    console.error('Failed to fetch members:', error);
+    return [];
+  }
+}
 
-export default function MembersPage() {
-  const t = useTranslations('Pages.Members');
+export default async function MembersPage() {
+  const [members, t] = await Promise.all([
+    getMembers(),
+    getTranslations('Pages.Members'),
+  ]);
 
   return (
     <main>
-      <PageHero 
+      <PageHero
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}
         lead={t('hero.lead')}
@@ -49,28 +53,35 @@ export default function MembersPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-            {MOCK_MEMBERS.map((member, index) => (
-              <div 
-                key={index}
-                className="animate-in fade-in slide-in-from-bottom-8 duration-1000"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <Link href={`/members/${member.id}`} className="block">
-                  <ArtistMemberCard 
-                    name={member.name}
-                    type={member.type}
-                    typeLabel={t(`list.types.${member.type}`)}
-                    imageUrl={member.image}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
+          {members.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+              {members.map((member, index) => (
+                <div
+                  key={member.id}
+                  className="animate-in fade-in slide-in-from-bottom-8 duration-1000"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <Link href={`/members/${member.id}`} className="block">
+                    <ArtistMemberCard
+                      name={member.name}
+                      type={member.type as ArtistType}
+                      typeLabel={t(`list.types.${member.type}`)}
+                      imageUrl={member.imageUrl}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-24 text-muted-foreground">
+              <Users size={48} className="mx-auto mb-4 opacity-30" />
+              <p className="text-lg font-medium">No artists found.</p>
+            </div>
+          )}
         </div>
       </section>
 
-      <CTABanner 
+      <CTABanner
         eyebrow={t('cta.eyebrow')}
         headline={t('cta.headline')}
         body={t('cta.body')}
