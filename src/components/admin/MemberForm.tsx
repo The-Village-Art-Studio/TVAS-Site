@@ -51,6 +51,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
     setUploading(true);
     const data = new FormData();
     data.set('file', file);
+    data.set('type', 'member');
 
     try {
       const res = await fetch('/api/upload', {
@@ -169,7 +170,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
                         <Plus size={32} />
                       </div>
                       <span className="font-bold text-slate-600">Upload Portrait</span>
-                      <span className="text-xs text-slate-400 mt-2">Recommended: 800 x 1000px</span>
+                      <span className="text-xs text-slate-400 mt-2">Recommended: Square 800 x 800px</span>
                     </>
                   )}
                   <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />

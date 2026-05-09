@@ -12,6 +12,12 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
   const latestShowcase = await prisma.showcase.findFirst({ orderBy: { createdAt: 'desc' } });
   const latestEvent = await prisma.event.findFirst({ orderBy: { createdAt: 'desc' } });
 
+  // Fetch the global podcast hero cover setting
+  const heroSetting = await prisma.siteSetting.findUnique({
+    where: { key: 'podcast_latest_cover' }
+  });
+  const heroImageUrl = heroSetting?.value || latestPodcast?.imageUrl || '/podcast-cover.png';
+
   return (
     <section className="py-24 lg:py-40 relative overflow-hidden">
       {/* Background Blobs for depth */}
@@ -38,7 +44,7 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
               <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-[#1a1a1a] bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${latestPodcast?.imageUrl || '/podcast-cover.png'})` }}
+                  style={{ backgroundImage: `url(${heroImageUrl})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/40" />
                 <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2 z-20">
