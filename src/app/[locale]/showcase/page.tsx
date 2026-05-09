@@ -51,9 +51,8 @@ export default async function ShowcasePage({ params }: { params: Promise<{ local
               <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
               
               <div className="relative aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10">
-                <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-500 z-10" />
                 <div 
-                  className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100 bg-center bg-cover"
+                  className="absolute inset-0 bg-center bg-cover"
                   style={{ backgroundImage: `url(${featuredShowcase?.imageUrl || '/featured-artist-placeholder.png'})` }}
                 />
               </div>

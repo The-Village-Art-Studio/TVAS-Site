@@ -47,7 +47,7 @@ export default async function PodcastPage({ params }: { params: Promise<{ locale
               
               <div className="lg:w-[45%] relative bg-zinc-900 overflow-hidden aspect-square shrink-0">
                 <div 
-                  className="absolute inset-0 bg-center bg-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100" 
+                  className="absolute inset-0 bg-center bg-cover" 
                   style={{ backgroundImage: `url(${heroImageUrl})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-foreground" />
