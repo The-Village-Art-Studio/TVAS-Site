@@ -69,7 +69,7 @@ export default async function ShowcaseDetailsPage({params}: {params: Promise<{lo
           <div className="lg:col-span-5 relative">
             <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border border-border/50">
               <Image 
-                src={'/featured-artist-placeholder.png'} // Artist Image would normally be stored in DB too, using placeholder
+                src={showcase.imageUrl || '/featured-artist-placeholder.png'} 
                 alt={showcase.artistName}
                 fill
                 className="object-cover"

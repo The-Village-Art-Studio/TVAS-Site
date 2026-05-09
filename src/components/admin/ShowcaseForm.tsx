@@ -16,11 +16,13 @@ import {
   Palette,
   Eye,
   Layout,
-  Music
+  Music,
+  Camera
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import ImageCropper from './ImageCropper';
 
 interface ShowcaseFormProps {
   initialData?: any;
@@ -35,6 +37,9 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
   const [videoError, setVideoError] = useState('');
   const [showVideoInput, setShowVideoInput] = useState(false);
   const [videoUrlInput, setVideoUrlInput] = useState('');
+  const [showCropper, setShowCropper] = useState(false);
+  const [tempImage, setTempImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const [formData, setFormData] = useState({
     titleEn: initialData?.titleEn || '',
@@ -47,10 +52,63 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
     statementEn: initialData?.statementEn || '',
     statementFr: initialData?.statementFr || '',
     monthYear: initialData?.monthYear || '',
+    imageUrl: initialData?.imageUrl || '',
     galleryItems: initialData?.galleryItems ? JSON.parse(initialData.galleryItems) : []
   });
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMainImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setSelectedFile(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        setTempImage(reader.result);
+        setShowCropper(true);
+      }
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+  const onCropComplete = async (cropArea: any) => {
+    if (!selectedFile) return;
+    
+    setShowCropper(false);
+    setUploading(true);
+    setError('');
+
+    const data = new FormData();
+    data.set('file', selectedFile);
+    data.set('type', 'showcase'); // Triggers 800x800 square on server
+    
+    data.set('cropX', Math.round(cropArea.x).toString());
+    data.set('cropY', Math.round(cropArea.y).toString());
+    data.set('cropWidth', Math.round(cropArea.width).toString());
+    data.set('cropHeight', Math.round(cropArea.height).toString());
+
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: data
+      });
+      const result = await res.json();
+      if (result.success) {
+        setFormData(prev => ({ ...prev, imageUrl: result.url }));
+      } else {
+        setError('Upload failed: ' + result.error);
+      }
+    } catch (err) {
+      setError('Upload failed');
+    } finally {
+      setUploading(false);
+      setTempImage(null);
+      setSelectedFile(null);
+    }
+  };
+
+  const handleGalleryImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -137,8 +195,8 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
       } else {
         setError(result.error || 'Something went wrong');
       }
-    } catch (err) {
-      setError('Failed to save showcase');
+    } catch (err: any) {
+      setError('Failed to save showcase: ' + (err.message || 'Network error'));
     } finally {
       setLoading(false);
     }
@@ -180,6 +238,39 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
         <div className="lg:col-span-5 space-y-8">
           <div className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm space-y-8">
             <div className="flex items-center gap-2 text-slate-900 text-xs font-black uppercase tracking-widest">
+              <Camera size={14} className="text-blue-600" />
+              Spotlight Image
+            </div>
+
+            <div className="relative aspect-square rounded-[1.5rem] overflow-hidden bg-slate-50 border-2 border-dashed border-slate-200 group cursor-pointer hover:border-blue-300 hover:bg-blue-50/30 transition-all">
+              {formData.imageUrl ? (
+                <>
+                  <Image src={formData.imageUrl} alt="Preview" fill className="object-cover" />
+                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                    <Button type="button" variant="destructive" className="rounded-xl font-bold" onClick={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}>
+                      <Trash2 size={18} className="mr-2" /> Replace Image
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <label className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
+                  {uploading ? (
+                    <Loader2 className="animate-spin text-blue-600" size={32} />
+                  ) : (
+                    <>
+                      <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                        <Plus size={32} />
+                      </div>
+                      <span className="font-bold text-slate-600">Feature Image</span>
+                      <span className="text-xs text-slate-400 mt-2">Recommended: Square 800 x 800px</span>
+                    </>
+                  )}
+                  <input type="file" className="hidden" accept="image/*" onChange={handleMainImageUpload} disabled={uploading} />
+                </label>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 text-slate-900 text-xs font-black uppercase tracking-widest pt-4">
               <Layers size={14} className="text-blue-600" />
               Exhibition Profile
             </div>
@@ -247,6 +338,40 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 text-slate-900 outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-50 transition-all font-bold text-sm"
                   />
                 </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Medium (FR)</label>
+                  <input 
+                    type="text" 
+                    value={formData.mediumFr}
+                    onChange={(e) => setFormData(prev => ({ ...prev, mediumFr: e.target.value }))}
+                    required
+                    placeholder="Huile sur toile"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 text-slate-900 outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all font-bold text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Series Name (EN)</label>
+                  <input 
+                    type="text" 
+                    value={formData.seriesEn}
+                    onChange={(e) => setFormData(prev => ({ ...prev, seriesEn: e.target.value }))}
+                    placeholder="e.g. Vol. 1"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 text-slate-900 outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-50 transition-all font-bold text-sm"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Series Name (FR)</label>
+                  <input 
+                    type="text" 
+                    value={formData.seriesFr}
+                    onChange={(e) => setFormData(prev => ({ ...prev, seriesFr: e.target.value }))}
+                    placeholder="e.g. Vol. 1"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 text-slate-900 outline-none focus:bg-white focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all font-bold text-sm"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -260,7 +385,7 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
               <div className="flex gap-2">
                 <label className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer">
                   {uploading ? <Loader2 size={16} className="animate-spin" /> : <Plus size={20} />}
-                  <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
+                  <input type="file" className="hidden" accept="image/*" onChange={handleGalleryImageUpload} disabled={uploading} />
                 </label>
                 <button type="button" onClick={() => setShowVideoInput(!showVideoInput)} className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:text-red-600 hover:bg-red-50 hover:border-red-200 transition-all">
                   <Video size={20} />
@@ -375,6 +500,19 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
           )}
         </div>
       </div>
+
+      {showCropper && tempImage && (
+        <ImageCropper
+          image={tempImage}
+          onCropComplete={onCropComplete}
+          onCancel={() => {
+            setShowCropper(false);
+            setTempImage(null);
+            setSelectedFile(null);
+          }}
+          aspect={1}
+        />
+      )}
     </form>
   );
 }

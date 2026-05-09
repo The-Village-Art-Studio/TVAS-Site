@@ -13,7 +13,7 @@ export async function PUT(
     // Fetch existing showcase to check for removed images
     const oldShowcase = await prisma.showcase.findUnique({
       where: { id },
-      select: { galleryItems: true }
+      select: { galleryItems: true, imageUrl: true }
     });
 
     const showcase = await prisma.showcase.update({
@@ -30,6 +30,7 @@ export async function PUT(
         statementFr: data.statementFr,
         monthYear: data.monthYear,
         galleryItems: data.galleryItems,
+        imageUrl: data.imageUrl,
       }
     });
 
@@ -44,6 +45,11 @@ export async function PUT(
         if (!newUrls.includes(url)) {
           await deleteLocalImage(url);
         }
+      }
+
+      // Cleanup main image if replaced
+      if (oldShowcase.imageUrl && oldShowcase.imageUrl !== data.imageUrl) {
+        await deleteLocalImage(oldShowcase.imageUrl);
       }
     }
 
@@ -64,7 +70,7 @@ export async function DELETE(
     // Fetch showcase to get gallery items before deleting
     const showcase = await prisma.showcase.findUnique({
       where: { id },
-      select: { galleryItems: true }
+      select: { galleryItems: true, imageUrl: true }
     });
 
     await prisma.showcase.delete({
@@ -79,6 +85,11 @@ export async function DELETE(
           await deleteLocalImage(item.url);
         }
       }
+    }
+
+    // Delete main image
+    if (showcase?.imageUrl) {
+      await deleteLocalImage(showcase.imageUrl);
     }
 
     return NextResponse.json({ success: true });

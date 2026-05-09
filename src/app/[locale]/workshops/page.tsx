@@ -92,12 +92,13 @@ export default async function WorkshopsPage({ params }: { params: Promise<{ loca
               >
                 <WorkshopCard 
                   title={locale === 'fr' ? event.titleFr : event.titleEn}
-                  artist={"Featured Artist"} // Placeholder since Event model doesn't have artist
-                  date={"Upcoming"}
-                  duration={"TBA"}
-                  capacity={"Limited"}
+                  artist={"Featured Artist"}
+                  date={locale === 'fr' ? event.locationFr : event.locationEn}
+                  duration={locale === 'fr' ? event.durationFr : event.durationEn}
+                  capacity={locale === 'fr' ? event.capacityFr : event.capacityEn}
                   description={locale === 'fr' ? event.descriptionFr : event.descriptionEn}
                   cta={t('experiences.cta')}
+                  imageUrl={event.imageUrl}
                   externalHref={event.link || undefined}
                 />
               </div>

@@ -13,6 +13,8 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 
+import DeleteEventButton from '@/components/admin/DeleteEventButton';
+
 async function getEvents() {
   try {
     return await prisma.event.findMany({
@@ -60,10 +62,6 @@ export default async function AdminEventsPage() {
                   fill 
                   className="object-cover transition-all duration-700 group-hover:scale-110"
                 />
-                <div className="absolute top-6 left-6 px-4 py-2 rounded-xl bg-white/90 backdrop-blur-md text-slate-900 flex flex-col items-center shadow-lg border border-white/20">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">Oct</span>
-                  <span className="text-xl font-black leading-none">24</span>
-                </div>
               </div>
 
               <div className="p-8 flex-1 flex flex-col">
@@ -92,19 +90,14 @@ export default async function AdminEventsPage() {
                     >
                       <Edit2 size={16} />
                     </Link>
-                    <button className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:text-red-600 hover:bg-red-50 hover:border-red-200 transition-all shadow-sm">
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                    <Clock size={12} className="text-slate-300" />
-                    14:00 - 17:00
+                    <DeleteEventButton id={event.id} title={event.titleEn} />
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
       ) : (
         <div className="py-24 flex flex-col items-center justify-center text-slate-400 gap-6 bg-white rounded-[2.5rem] border border-dashed border-slate-200 shadow-sm">
           <div className="w-20 h-20 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-300">

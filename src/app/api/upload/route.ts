@@ -37,8 +37,8 @@ export async function POST(request: NextRequest) {
       pipeline = pipeline.extract({ left: cropX, top: cropY, width: cropWidth, height: cropHeight });
     }
 
-    // If it's a member profile photo, resize to final 800x800
-    if (type === 'member') {
+    // If it's a member profile, showcase, or podcast photo, resize to final 800x800
+    if (['member', 'showcase', 'podcast', 'event'].includes(type || '')) {
       pipeline = pipeline.resize(800, 800, {
         fit: 'cover',
         position: 'center'

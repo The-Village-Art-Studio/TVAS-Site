@@ -13,7 +13,6 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import DeletePodcastButton from '@/components/admin/DeletePodcastButton';
-import PodcastHeroSettings from '@/components/admin/PodcastHeroSettings';
 
 async function getPodcasts() {
   try {
@@ -50,8 +49,7 @@ export default async function AdminPodcastsPage() {
         </Link>
       </div>
 
-      {/* Featured Section Settings */}
-      <PodcastHeroSettings />
+
 
       {/* Grid Section */}
       {podcasts.length > 0 ? (

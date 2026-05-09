@@ -5,9 +5,13 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
     
-    // Generate an ID from title if not provided
-    const id = data.id || data.titleEn.toLowerCase().replace(/\s+/g, '-');
+    // Generate a slug-based ID, but append a small random string to ensure uniqueness
+    // while keeping URLs relatively clean.
+    const slug = data.titleEn.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    const id = data.id || `${slug}-${Math.random().toString(36).substring(2, 7)}`;
     
+    console.log("Creating showcase with data:", { ...data, id });
+
     const showcase = await prisma.showcase.create({
       data: {
         id,
@@ -22,6 +26,7 @@ export async function POST(request: NextRequest) {
         statementFr: data.statementFr,
         monthYear: data.monthYear,
         galleryItems: data.galleryItems,
+        imageUrl: data.imageUrl,
       }
     });
 
@@ -30,7 +35,7 @@ export async function POST(request: NextRequest) {
     console.error("Create showcase error:", error);
     return NextResponse.json({ 
       success: false, 
-      error: error.code === 'P2002' ? 'A showcase with this title already exists' : 'Failed to create showcase' 
+      error: `Server Error: ${error.message || 'Unknown error'}`
     }, { status: 500 });
   }
 }

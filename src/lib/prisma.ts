@@ -7,7 +7,7 @@ process.env.DATABASE_URL = 'file:/Users/jackyho/Documents/GitHub/TVAS-Site/dev.d
 
 const prismaClientSingleton = () => {
   const dbUrl = process.env.DATABASE_URL!;
-  console.error("PRISMA INITIALIZING V11 WITH:", dbUrl);
+  console.error("PRISMA INITIALIZING V12 WITH:", dbUrl);
   
   const libsql = createClient({
     url: dbUrl,
@@ -19,11 +19,11 @@ const prismaClientSingleton = () => {
 }
 
 declare global {
-  var prismaGlobalV11: undefined | ReturnType<typeof prismaClientSingleton>
+  var prismaGlobalV12: undefined | ReturnType<typeof prismaClientSingleton>
 }
 
-const prisma = globalThis.prismaGlobalV11 ?? prismaClientSingleton()
+const prisma = globalThis.prismaGlobalV12 ?? prismaClientSingleton()
 
 export default prisma
 
-if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobalV11 = prisma
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobalV12 = prisma

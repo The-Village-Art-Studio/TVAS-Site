@@ -37,36 +37,42 @@ export default async function ShowcasePage({ params }: { params: Promise<{ local
         lead={t('hero.lead')}
       />
 
-      <section className="py-24 lg:py-40 relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
+      <section className="py-16 lg:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10">
           {/* Current Featured Artist */}
-          <div className="mb-32">
+          <div className="mb-24">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
               <Sparkles size={14} />
               {t('current.eyebrow')}
             </div>
             
-            <div className="group relative grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center p-8 lg:p-16 rounded-[3.5rem] bg-card/50 backdrop-blur-xl border border-border/50 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+            <div className="group relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center p-6 lg:p-12 rounded-[2.5rem] bg-card/50 backdrop-blur-xl border border-border/50 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 max-w-6xl mx-auto">
               {/* Background Blob */}
               <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
               
-              <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl z-10">
+              <div className="relative aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10">
                 <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-500 z-10" />
-                <div className="absolute inset-0 bg-[url('/featured-artist-placeholder.png')] bg-center bg-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" />
+                <div 
+                  className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100 bg-center bg-cover"
+                  style={{ backgroundImage: `url(${featuredShowcase?.imageUrl || '/featured-artist-placeholder.png'})` }}
+                />
               </div>
 
               <div className="relative z-10">
                 <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-[0.2em] mb-6">
                   {featuredShowcase?.seriesEn} &bull; {featuredShowcase?.monthYear}
                 </div>
-                <h2 className="text-4xl lg:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1]">
-                  {featuredShowcase?.titleEn || 'Featured Artist Name'}
+                <h2 className="text-3xl lg:text-5xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+                  {featuredShowcase ? featuredShowcase.artistName : 'Featured Artist Name'}
                 </h2>
-                <p className="text-xl text-muted-foreground/80 leading-relaxed mb-12">
+                <h3 className="text-xl lg:text-2xl font-black text-primary uppercase tracking-tight mb-6 leading-[1.1]">
+                  {featuredShowcase?.titleEn || 'Showcase Title'}
+                </h3>
+                <p className="text-base text-muted-foreground/80 leading-relaxed mb-8 line-clamp-5">
                   {featuredShowcase?.statementEn || "A detailed exploration of this month's featured artist, their creative process, and the specific series being showcased at The Village Art Studio."}
                 </p>
                 {featuredShowcase && (
-                  <Button asChild size="lg" className="h-16 px-10 text-lg font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-xl shadow-primary/20 group transition-all duration-500">
+                  <Button asChild size="lg" className="h-14 px-8 text-base font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-xl shadow-primary/20 group transition-all duration-500">
                     <Link href={`/showcase/${featuredShowcase.id}`}>
                       Learn More
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -100,6 +106,7 @@ export default async function ShowcasePage({ params }: { params: Promise<{ local
                     artist={showcase.artistName}
                     medium={showcase.mediumEn}
                     series={showcase.seriesEn}
+                    imageUrl={showcase.imageUrl || undefined}
                   />
                 </Link>
               </div>
