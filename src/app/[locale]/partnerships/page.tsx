@@ -86,7 +86,7 @@ export default function PartnershipsPage() {
           {/* Spotlight Section */}
           <div className="relative rounded-[4rem] overflow-hidden bg-foreground shadow-2xl flex flex-col lg:flex-row min-h-[600px]">
             <div className="lg:w-1/2 relative bg-zinc-900 overflow-hidden min-h-[400px]">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80')] bg-center bg-cover grayscale opacity-50 transition-all duration-700 hover:grayscale-0 hover:opacity-80" />
+              <div className="absolute inset-0 bg-[url('/la_gloria_interior.jpeg')] bg-center bg-cover transition-all duration-700 hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-foreground" />
             </div>
 

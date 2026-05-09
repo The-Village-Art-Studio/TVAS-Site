@@ -59,10 +59,9 @@ export default async function WorkshopsPage({ params }: { params: Promise<{ loca
             </div>
 
             <div className="group relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl animate-in fade-in slide-in-from-right-8 duration-1000 delay-200">
-              <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-500 z-10" />
               <Image 
-                src="/la_gloria_workshop_1776084783262.png" 
-                alt="Workshop at La Gloria Mexican Coffee" 
+                src="/la_gloria_interior.jpeg" 
+                alt="La Gloria Mexican Coffee Interior" 
                 fill
                 className="object-cover transition-transform duration-700 scale-105 group-hover:scale-100"
               />
