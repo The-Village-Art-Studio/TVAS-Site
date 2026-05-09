@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
-import { ArrowLeft, Globe, Camera, MessageSquare, Palette, Box, Cpu, Music, PenTool, AtSign, Hash } from 'lucide-react';
+import { ArrowLeft, Globe, Camera, Palette, Box, Cpu, Music, PenTool } from 'lucide-react';
 import { ArtistType } from '@/components/cards/ArtistMemberCard';
 import CTABanner from '@/components/shared/CTABanner';
 import { notFound } from 'next/navigation';
@@ -47,7 +47,7 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
   if (!member) notFound();
 
   // Parse social links JSON
-  let socialLinks: { website?: string; instagram?: string; twitter?: string } = {};
+  let socialLinks: { website?: string; instagram?: string; twitter?: string; tiktok?: string } = {};
   try {
     socialLinks = member.socialLinks ? JSON.parse(member.socialLinks) : {};
   } catch { /* ignore */ }
@@ -105,7 +105,7 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
             </div>
 
             {/* Social Links */}
-            {(socialLinks.website || socialLinks.instagram || socialLinks.twitter) && (
+            {(socialLinks.website || socialLinks.instagram || socialLinks.twitter || socialLinks.tiktok) && (
               <div className="pt-12 border-t border-border/50">
                 <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground/60 mb-6">
                   Connect &amp; Explore
@@ -119,7 +119,7 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
                       title="Portfolio Website"
                       className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
                     >
-                      <Globe size={24} />
+                      <Globe size={22} />
                     </a>
                   )}
                   {socialLinks.instagram && (
@@ -130,7 +130,12 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
                       title="Instagram"
                       className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
                     >
-                      <Hash size={24} />
+                      {/* Instagram SVG */}
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                      </svg>
                     </a>
                   )}
                   {socialLinks.twitter && (
@@ -141,17 +146,26 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
                       title="X / Twitter"
                       className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
                     >
-                      <AtSign size={24} />
+                      {/* X (Twitter) SVG */}
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.263 5.632 5.9-5.632Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
                     </a>
                   )}
-                  {/* Always show contact icon */}
-                  <a
-                    href="/contact"
-                    title="Contact"
-                    className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
-                  >
-                    <MessageSquare size={24} />
-                  </a>
+                  {socialLinks.tiktok && (
+                    <a
+                      href={`https://tiktok.com/@${socialLinks.tiktok.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="TikTok"
+                      className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
+                    >
+                      {/* TikTok SVG */}
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </div>
             )}

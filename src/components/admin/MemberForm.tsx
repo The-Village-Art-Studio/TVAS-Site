@@ -8,8 +8,9 @@ import {
   Image as ImageIcon, 
   Loader2, 
   Globe, 
-  AtSign,
   Hash,
+  AtSign,
+  Music2,
   Plus,
   Trash2,
   Camera,
@@ -42,10 +43,17 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
     imageUrl: initialData?.imageUrl || '',
     statementEn: initialData?.statementEn || '',
     statementFr: initialData?.statementFr || '',
-    socialLinks: initialData?.socialLinks ? JSON.parse(initialData.socialLinks) : {
+    socialLinks: initialData?.socialLinks ? {
       website: '',
       instagram: '',
-      twitter: ''
+      twitter: '',
+      tiktok: '',
+      ...JSON.parse(initialData.socialLinks)
+    } : {
+      website: '',
+      instagram: '',
+      twitter: '',
+      tiktok: ''
     }
   });
 
@@ -252,7 +260,8 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
               {[
                 { key: 'website', label: 'Portfolio Website', icon: Globe, color: 'text-slate-400' },
                 { key: 'instagram', label: 'Instagram Username', icon: Hash, color: 'text-slate-400' },
-                { key: 'twitter', label: 'Twitter / X Handle', icon: AtSign, color: 'text-slate-400' }
+                { key: 'twitter', label: 'Twitter / X Handle', icon: AtSign, color: 'text-slate-400' },
+                { key: 'tiktok', label: 'TikTok Username', icon: Music2, color: 'text-slate-400' }
               ].map((item) => (
                 <div key={item.key} className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">{item.label}</label>
@@ -260,7 +269,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
                     <item.icon size={18} className={`absolute left-5 top-1/2 -translate-y-1/2 ${item.color} group-focus-within:text-blue-600 transition-colors`} />
                     <input 
                       type="text" 
-                      value={formData.socialLinks[item.key]}
+                      value={formData.socialLinks[item.key] || ''}
                       onChange={(e) => setFormData(prev => ({
                         ...prev,
                         socialLinks: { ...prev.socialLinks, [item.key]: e.target.value }

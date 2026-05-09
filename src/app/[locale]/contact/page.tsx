@@ -1,24 +1,23 @@
-import {useTranslations} from 'next-intl';
 import PageHero from '@/components/shared/PageHero';
-import {getTranslations} from 'next-intl/server';
-import { Mail, MapPin, MessageSquare, Globe, Send, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { getTranslations } from 'next-intl/server';
+import { Mail, MapPin, MessageSquare, Globe, ArrowRight } from 'lucide-react';
+import ContactForm from '@/components/ContactForm';
 
-export async function generateMetadata({params}: {params: Promise<{locale: string}>}) {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: 'Pages.Contact.meta'});
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Pages.Contact.meta' });
   return {
     title: t('title'),
-    description: t('description')
+    description: t('description'),
   };
 }
 
-export default function ContactPage() {
-  const t = useTranslations('Pages.Contact');
+export default async function ContactPage() {
+  const t = await getTranslations('Pages.Contact');
 
   return (
     <main>
-      <PageHero 
+      <PageHero
         eyebrow={t('hero.eyebrow')}
         headline={t('hero.headline')}
         lead={t('hero.lead')}
@@ -33,79 +32,25 @@ export default function ContactPage() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
-            {/* Contact Form */}
-            <div className="p-8 lg:p-12 rounded-[3rem] bg-card/50 backdrop-blur-xl border border-border/50 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16" />
-              
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-10">
-                  <Send size={12} />
-                  {t('form.submit')}
-                </div>
-                
-                <form action="mailto:info@tvas.ca" method="get" encType="text/plain" className="space-y-10">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 block px-1">
-                      {t('form.nameLabel')} <span className="text-primary">*</span>
-                    </label>
-                    <input 
-                      type="text" 
-                      name="name"
-                      placeholder={t('form.namePlaceholder')}
-                      required
-                      className="w-100 w-full bg-transparent border-b border-border/50 py-4 px-1 text-lg font-medium outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/30"
-                    />
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 block px-1">
-                      {t('form.emailLabel')} <span className="text-primary">*</span>
-                    </label>
-                    <input 
-                      type="email" 
-                      name="email"
-                      placeholder={t('form.emailPlaceholder')}
-                      required
-                      className="w-100 w-full bg-transparent border-b border-border/50 py-4 px-1 text-lg font-medium outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/30"
-                    />
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 block px-1">
-                      {t('form.subjectLabel')}
-                    </label>
-                    <div className="relative">
-                      <select 
-                        name="subject"
-                        className="w-100 w-full bg-transparent border-b border-border/50 py-4 px-1 text-lg font-medium outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
-                      >
-                        <option value="General inquiry">{t('form.subjectPlaceholder')}</option>
-                        <option value={t('paths.artist.subject')}>{t('paths.artist.label')}</option>
-                        <option value={t('paths.partner.subject')}>{t('paths.partner.label')}</option>
-                      </select>
-                      <ArrowRight size={18} className="absolute right-2 top-1/2 -translate-y-1/2 rotate-90 text-primary pointer-events-none" />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 block px-1">
-                      {t('form.messageLabel')} <span className="text-primary">*</span>
-                    </label>
-                    <textarea 
-                      name="body"
-                      rows={5}
-                      placeholder={t('form.messagePlaceholder')}
-                      required
-                      className="w-100 w-full bg-transparent border-b border-border/50 py-4 px-1 text-lg font-medium outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/30 resize-none"
-                    />
-                  </div>
-                  
-                  <Button type="submit" size="lg" className="w-full h-16 text-lg font-bold rounded-2xl bg-primary text-white shadow-xl shadow-primary/20 hover:scale-[1.02] transition-all duration-500">
-                    {t('form.submit')}
-                  </Button>
-                </form>
-              </div>
-            </div>
+
+            {/* Contact Form — client component, i18n labels passed as props */}
+            <ContactForm
+              labels={{
+                submit: t('form.submit'),
+                nameLabel: t('form.nameLabel'),
+                namePlaceholder: t('form.namePlaceholder'),
+                emailLabel: t('form.emailLabel'),
+                emailPlaceholder: t('form.emailPlaceholder'),
+                subjectLabel: t('form.subjectLabel'),
+                subjectPlaceholder: t('form.subjectPlaceholder'),
+                messageLabel: t('form.messageLabel'),
+                messagePlaceholder: t('form.messagePlaceholder'),
+                artistSubject: t('paths.artist.subject'),
+                artistLabel: t('paths.artist.label'),
+                partnerSubject: t('paths.partner.subject'),
+                partnerLabel: t('paths.partner.label'),
+              }}
+            />
 
             {/* Contact Info & Paths */}
             <div className="flex flex-col gap-12 lg:gap-20">
@@ -121,7 +66,7 @@ export default function ContactPage() {
                     {t('paths.artist.description')}
                   </p>
                 </div>
-                
+
                 <div className="group p-10 rounded-[2.5rem] bg-card/50 backdrop-blur-xl border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-500">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500">
                     <MapPin size={24} />
@@ -147,7 +92,7 @@ export default function ContactPage() {
                     {t('info.email')}
                   </a>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-primary">
                     <MapPin size={18} />
@@ -155,11 +100,9 @@ export default function ContactPage() {
                       {t('info.locationLabel')}
                     </span>
                   </div>
-                  <p className="text-2xl font-bold">
-                    {t('info.location')}
-                  </p>
+                  <p className="text-2xl font-bold">{t('info.location')}</p>
                 </div>
-                
+
                 <div className="space-y-6 md:col-span-2 pt-4">
                   <div className="flex items-center gap-3 text-primary">
                     <Globe size={18} />
@@ -181,6 +124,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
