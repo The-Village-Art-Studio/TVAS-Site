@@ -74,7 +74,7 @@ export default async function AdminMembersPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {members.map((member) => (
             <div key={member.id} className="group bg-white border border-slate-200 rounded-[2rem] overflow-hidden flex flex-col hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500">
-              <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
+              <div className="relative aspect-square overflow-hidden bg-slate-100">
                 <Image 
                   src={member.imageUrl} 
                   alt={member.name} 

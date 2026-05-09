@@ -14,11 +14,13 @@ import {
   Trash2,
   Camera,
   UserCircle,
-  Link as LinkIcon
+  Link as LinkIcon,
+  Maximize2
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import ImageCropper from './ImageCropper';
 
 interface MemberFormProps {
   initialData?: any;
@@ -30,6 +32,9 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
+  const [showCropper, setShowCropper] = useState(false);
+  const [tempImage, setTempImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const [formData, setFormData] = useState({
     name: initialData?.name || '',
@@ -48,10 +53,36 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
     const file = e.target.files?.[0];
     if (!file) return;
 
+    setSelectedFile(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        setTempImage(reader.result);
+        setShowCropper(true);
+      }
+    };
+    reader.readAsDataURL(file);
+    
+    // Clear the input so the same file can be selected again
+    e.target.value = '';
+  };
+
+  const onCropComplete = async (cropArea: any) => {
+    if (!selectedFile) return;
+    
+    setShowCropper(false);
     setUploading(true);
+    setError('');
+
     const data = new FormData();
-    data.set('file', file);
+    data.set('file', selectedFile);
     data.set('type', 'member');
+    
+    // Pass precise crop coordinates
+    data.set('cropX', Math.round(cropArea.x).toString());
+    data.set('cropY', Math.round(cropArea.y).toString());
+    data.set('cropWidth', Math.round(cropArea.width).toString());
+    data.set('cropHeight', Math.round(cropArea.height).toString());
 
     try {
       const res = await fetch('/api/upload', {
@@ -68,6 +99,8 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
       setError('Upload failed');
     } finally {
       setUploading(false);
+      setTempImage(null);
+      setSelectedFile(null);
     }
   };
 
@@ -150,7 +183,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
               Portrait Image
             </div>
 
-            <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden bg-slate-50 border-2 border-dashed border-slate-200 group cursor-pointer hover:border-blue-300 hover:bg-blue-50/30 transition-all">
+            <div className="relative aspect-square rounded-[1.5rem] overflow-hidden bg-slate-50 border-2 border-dashed border-slate-200 group cursor-pointer hover:border-blue-300 hover:bg-blue-50/30 transition-all">
               {formData.imageUrl ? (
                 <>
                   <Image src={formData.imageUrl} alt="Preview" fill className="object-cover" />
@@ -301,6 +334,19 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
           )}
         </div>
       </div>
+
+      {showCropper && tempImage && (
+        <ImageCropper
+          image={tempImage}
+          onCropComplete={onCropComplete}
+          onCancel={() => {
+            setShowCropper(false);
+            setTempImage(null);
+            setSelectedFile(null);
+          }}
+          aspect={1}
+        />
+      )}
     </form>
   );
 }

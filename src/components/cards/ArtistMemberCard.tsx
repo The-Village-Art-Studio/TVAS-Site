@@ -27,7 +27,7 @@ export default function ArtistMemberCard({ name, type, typeLabel, imageUrl }: Ar
   return (
     <div className="group relative flex flex-col rounded-[2rem] bg-card/50 backdrop-blur-xl border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
       {/* Profile Photo Area */}
-      <div className="relative aspect-[4/5] overflow-hidden">
+      <div className="relative aspect-square overflow-hidden">
         <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/5 transition-colors duration-500 z-10" />
         <Image 
           src={imageUrl} 
