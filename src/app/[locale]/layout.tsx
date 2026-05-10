@@ -5,6 +5,8 @@ import {routing} from '@/i18n/routing';
 import "./globals.css";
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
 
+export const dynamic = 'force-dynamic';
+
 export default async function LocaleLayout({
   children,
   params

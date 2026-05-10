@@ -1,6 +1,8 @@
 import "@/app/[locale]/globals.css";
 import AdminLayoutClient from "@/components/admin/AdminLayoutClient";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'TVAS Admin',
   description: 'The Village Art Studio Administration Portal',
