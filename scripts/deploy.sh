@@ -27,6 +27,16 @@ set -e
 
 cd $APP_DIR
 
+echo "-> Ensuring Swap space exists (prevents build crashes)..."
+if [ $(free -m | awk '/^Swap:/ {print $2}') -eq 0 ]; then
+  echo "Creating 2GB swap file..."
+  fallocate -l 2G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=2048
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap sw 0 0' >> /etc/fstab
+fi
+
 echo "-> Updating .env for production..."
 sed -i 's|DATABASE_URL=.*|DATABASE_URL="file:///var/www/tvas-site/prod.db"|g' .env
 sed -i 's|NEXT_PUBLIC_SITE_URL=.*|NEXT_PUBLIC_SITE_URL="https://www.tvas.ca"|g' .env
