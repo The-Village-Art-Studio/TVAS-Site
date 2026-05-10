@@ -28,6 +28,15 @@ export async function POST(request: NextRequest) {
     
     // Save to public/uploads after converting to webp
     const uploadDir = join(process.cwd(), 'public', 'uploads');
+    
+    // Ensure the directory exists
+    const { mkdir } = require('fs/promises');
+    try {
+      await mkdir(uploadDir, { recursive: true });
+    } catch (err) {
+      console.error("Could not create uploads directory", err);
+    }
+
     const filepath = join(uploadDir, uniqueFilename);
     
     let pipeline = sharp(buffer);

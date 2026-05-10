@@ -2,8 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { PrismaLibSQL } from '@prisma/adapter-libsql'
 import { createClient } from '@libsql/client'
 
-// Set the environment variable explicitly for Prisma's internal engine
-process.env.DATABASE_URL = 'file:/Users/jackyho/Documents/GitHub/TVAS-Site/dev.db';
+// The DATABASE_URL is loaded automatically from .env
 
 const prismaClientSingleton = () => {
   const dbUrl = process.env.DATABASE_URL!;

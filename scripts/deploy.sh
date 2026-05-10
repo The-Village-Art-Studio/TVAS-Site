@@ -28,14 +28,17 @@ set -e
 cd $APP_DIR
 
 echo "-> Updating .env for production..."
-sed -i 's|DATABASE_URL=.*|DATABASE_URL="file:./prod.db"|g' .env
+sed -i 's|DATABASE_URL=.*|DATABASE_URL="file:/var/www/tvas-site/prod.db"|g' .env
 sed -i 's|NEXT_PUBLIC_SITE_URL=.*|NEXT_PUBLIC_SITE_URL="https://www.tvas.ca"|g' .env
 
 echo "-> Running npm install..."
-npm install
+npm install --legacy-peer-deps
 
 echo "-> Generating Prisma Client..."
 npx prisma generate
+
+echo "-> Pushing Database Schema..."
+npx prisma db push --accept-data-loss
 
 echo "-> Building Next.js..."
 npm run build
