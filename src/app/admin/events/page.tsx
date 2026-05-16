@@ -56,12 +56,19 @@ export default async function AdminEventsPage() {
           {events.map((event) => (
             <div key={event.id} className="group bg-white border border-slate-200 rounded-[2rem] overflow-hidden flex flex-col hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500">
               <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
-                <Image 
-                  src={event.imageUrl} 
-                  alt={event.titleEn} 
-                  fill 
-                  className="object-cover transition-all duration-700 group-hover:scale-110"
-                />
+                {event.imageUrl ? (
+                  <Image 
+                    src={event.imageUrl} 
+                    alt={event.titleEn} 
+                    fill 
+                    unoptimized
+                    className="object-cover transition-all duration-700 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-300">
+                    <Calendar size={48} />
+                  </div>
+                )}
               </div>
 
               <div className="p-8 flex-1 flex flex-col">

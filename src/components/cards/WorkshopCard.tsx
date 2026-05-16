@@ -36,6 +36,7 @@ export default function WorkshopCard({
             src={imageUrl} 
             alt={title} 
             fill 
+            unoptimized
             className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
         ) : (
