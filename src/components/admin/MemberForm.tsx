@@ -245,6 +245,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
                   <option value="digital">Digital Artist</option>
                   <option value="musician">Musician</option>
                   <option value="writer">Writer</option>
+                  <option value="mixed_media">Mixed Media</option>
                 </select>
               </div>
             </div>
