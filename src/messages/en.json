@@ -530,7 +530,9 @@
           "sculptor": "Sculptor",
           "digital": "Digital Artist",
           "musician": "Musician",
-          "writer": "Writer"
+          "writer": "Writer",
+          "mixed_media": "Mixed Media Artist",
+          "multi_disciplinary": "Multi-Disciplinary Artist"
         }
       },
       "cta": {
