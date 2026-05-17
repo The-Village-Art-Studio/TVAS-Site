@@ -33,6 +33,7 @@ export default function ArtistMemberCard({ name, type, typeLabel, imageUrl }: Ar
           src={imageUrl} 
           alt={name}
           fill
+          unoptimized
           className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
         />
         

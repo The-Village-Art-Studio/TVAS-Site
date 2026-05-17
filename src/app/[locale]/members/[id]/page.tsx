@@ -80,6 +80,7 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
                   src={member.imageUrl}
                   alt={member.name}
                   fill
+                  unoptimized
                   className="object-cover"
                   priority
                 />
