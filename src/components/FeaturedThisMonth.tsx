@@ -10,7 +10,7 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
   // Fetch the latest content
   const latestPodcast = await prisma.podcast.findFirst({ orderBy: { createdAt: 'desc' } });
   const latestShowcase = await prisma.showcase.findFirst({ orderBy: { createdAt: 'desc' } });
-  const latestEvent = await prisma.event.findFirst({ orderBy: { createdAt: 'desc' } });
+  const latestEvent = await prisma.event.findFirst({ orderBy: { eventDate: 'desc' } });
 
   // Use the latest podcast's cover image
   const heroImageUrl = latestPodcast?.imageUrl || '/podcast-cover.png';

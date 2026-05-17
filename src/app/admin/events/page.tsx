@@ -19,7 +19,7 @@ async function getEvents() {
   try {
     return await prisma.event.findMany({
       orderBy: [
-        { eventDate: 'asc' },
+        { eventDate: 'desc' },
         { createdAt: 'desc' }
       ],
     });
