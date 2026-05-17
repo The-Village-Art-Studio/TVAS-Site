@@ -74,6 +74,7 @@ export default async function ShowcaseDetailsPage({params}: {params: Promise<{lo
                 fill
                 className="object-cover"
                 priority
+                unoptimized
               />
             </div>
           </div>
@@ -131,6 +132,7 @@ export default async function ShowcaseDetailsPage({params}: {params: Promise<{lo
                         alt={item.title}
                         fill
                         className="object-cover transition-all duration-700 group-hover:scale-105"
+                        unoptimized
                       />
                     </div>
                     <div className="p-8 flex-grow flex flex-col">

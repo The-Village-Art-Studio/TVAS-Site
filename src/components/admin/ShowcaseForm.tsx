@@ -245,7 +245,7 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
             <div className="relative aspect-square rounded-[1.5rem] overflow-hidden bg-slate-50 border-2 border-dashed border-slate-200 group cursor-pointer hover:border-blue-300 hover:bg-blue-50/30 transition-all">
               {formData.imageUrl ? (
                 <>
-                  <Image src={formData.imageUrl} alt="Preview" fill className="object-cover" />
+                  <Image src={formData.imageUrl} alt="Preview" fill className="object-cover" unoptimized />
                   <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                     <Button type="button" variant="destructive" className="rounded-xl font-bold" onClick={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}>
                       <Trash2 size={18} className="mr-2" /> Replace Image
@@ -415,7 +415,7 @@ export default function ShowcaseForm({ initialData, isEditing = false }: Showcas
               {formData.galleryItems.map((item: any, index: number) => (
                 <div key={index} className="relative aspect-square rounded-[1.5rem] overflow-hidden bg-slate-50 border border-slate-200 group">
                   {item.type === 'image' ? (
-                    <Image src={item.url} alt="Gallery" fill className="object-cover" />
+                    <Image src={item.url} alt="Gallery" fill className="object-cover" unoptimized />
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-slate-300">
                       <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center">

@@ -65,6 +65,7 @@ export default async function AdminShowcasesPage() {
                         alt={showcase.titleEn} 
                         fill 
                         className="object-cover transition-all duration-700 group-hover:scale-110"
+                        unoptimized
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-300">

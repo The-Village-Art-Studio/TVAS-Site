@@ -64,6 +64,7 @@ export default async function WorkshopsPage({ params }: { params: Promise<{ loca
                 alt="La Gloria Mexican Coffee Interior" 
                 fill
                 className="object-cover transition-transform duration-700 scale-105 group-hover:scale-100"
+                unoptimized
               />
               <div className="absolute top-8 left-8 p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl z-20 animate-pulse">
                 <Star className="text-primary mb-2" size={24} fill="currentColor" />
