@@ -38,6 +38,9 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
     titleFr: initialData?.titleFr || '',
     descriptionEn: initialData?.descriptionEn || '',
     descriptionFr: initialData?.descriptionFr || '',
+    dateEn: initialData?.dateEn || '',
+    dateFr: initialData?.dateFr || '',
+    order: initialData?.order || 0,
     locationEn: initialData?.locationEn || 'La Gloria Mexican Coffee, Toronto',
     locationFr: initialData?.locationFr || 'La Gloria Mexican Coffee, Toronto',
     capacityEn: initialData?.capacityEn || 'Limited to 8-12 guests',
@@ -178,6 +181,51 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
                 value={formData.titleFr}
                 onChange={e => setFormData(prev => ({ ...prev, titleFr: e.target.value }))}
                 required
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-50 transition-all"
+              />
+            </div>
+          </div>
+
+          {/* New Fields: Date, Order */}
+          <div className="grid grid-cols-2 gap-8 pt-4 border-t border-slate-100">
+            <div className="space-y-4">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                <Calendar size={14} className="text-blue-600" />
+                Date (English)
+              </label>
+              <input 
+                type="text" 
+                value={formData.dateEn}
+                onChange={e => setFormData(prev => ({ ...prev, dateEn: e.target.value }))}
+                placeholder="e.g. May 30"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-50 transition-all"
+              />
+            </div>
+            <div className="space-y-4">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                <Calendar size={14} className="text-blue-600" />
+                Date (French)
+              </label>
+              <input 
+                type="text" 
+                value={formData.dateFr}
+                onChange={e => setFormData(prev => ({ ...prev, dateFr: e.target.value }))}
+                placeholder="e.g. 30 Mai"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-50 transition-all"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 pt-4 border-t border-slate-100">
+            <div className="space-y-4">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                <Star size={14} className="text-blue-600" />
+                Display Order
+              </label>
+              <input 
+                type="number" 
+                value={formData.order}
+                onChange={e => setFormData(prev => ({ ...prev, order: parseInt(e.target.value) || 0 }))}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-50 transition-all"
               />
             </div>

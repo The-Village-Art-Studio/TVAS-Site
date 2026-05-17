@@ -22,7 +22,10 @@ export default async function WorkshopsPage({ params }: { params: Promise<{ loca
   const t = await getTranslations({ locale, namespace: 'Pages.Workshops' });
   
   const events = await prisma.event.findMany({
-    orderBy: { createdAt: 'desc' }
+    orderBy: [
+      { order: 'asc' },
+      { createdAt: 'desc' }
+    ]
   });
 
   return (
@@ -93,7 +96,7 @@ export default async function WorkshopsPage({ params }: { params: Promise<{ loca
                 <WorkshopCard 
                   title={locale === 'fr' ? event.titleFr : event.titleEn}
                   artist={"Featured Artist"}
-                  date={locale === 'fr' ? event.locationFr : event.locationEn}
+                  date={locale === 'fr' ? (event.dateFr || event.locationFr) : (event.dateEn || event.locationEn)}
                   duration={locale === 'fr' ? event.durationFr : event.durationEn}
                   capacity={locale === 'fr' ? event.capacityFr : event.capacityEn}
                   description={locale === 'fr' ? event.descriptionFr : event.descriptionEn}

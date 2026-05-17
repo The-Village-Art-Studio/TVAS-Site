@@ -4,7 +4,10 @@ import prisma from '@/lib/prisma';
 export async function GET() {
   try {
     const events = await prisma.event.findMany({
-      orderBy: { createdAt: 'desc' }
+      orderBy: [
+        { order: 'asc' },
+        { createdAt: 'desc' }
+      ]
     });
     return NextResponse.json(events);
   } catch (error) {
@@ -21,6 +24,9 @@ export async function POST(request: Request) {
         titleFr: body.titleFr,
         descriptionEn: body.descriptionEn,
         descriptionFr: body.descriptionFr,
+        dateEn: body.dateEn || "",
+        dateFr: body.dateFr || "",
+        order: body.order || 0,
         locationEn: body.locationEn || "La Gloria Mexican Coffee, Toronto",
         locationFr: body.locationFr || "La Gloria Mexican Coffee, Toronto",
         capacityEn: body.capacityEn || "Limited to 8-12 guests",

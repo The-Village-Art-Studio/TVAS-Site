@@ -6,6 +6,7 @@ import { ArrowLeft, Sparkles, Image as ImageIcon } from 'lucide-react';
 import CTABanner from '@/components/shared/CTABanner';
 import { notFound } from 'next/navigation';
 import VideoCard from '@/components/cards/VideoCard';
+import LightboxGallery from '@/components/shared/LightboxGallery';
 
 // Shared type for showcase gallery items
 type GalleryItem = {
@@ -110,44 +111,7 @@ export default async function ShowcaseDetailsPage({params}: {params: Promise<{lo
             Featured Artworks
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {parsedGallery.map((item: GalleryItem, index: number) => (
-              <div 
-                key={index}
-                className="animate-in fade-in slide-in-from-bottom-8 duration-1000 flex flex-col"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {item.type === 'video' ? (
-                  <VideoCard 
-                    title={item.title || "Video Process"}
-                    artist={showcase.artistName}
-                    description={item.description || "Video documentation"}
-                    youtubeId={item.youtubeId || ''}
-                  />
-                ) : (
-                  <div className="group relative rounded-[2rem] bg-card/50 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
-                    <div className="relative aspect-video overflow-hidden">
-                      <Image 
-                        src={item.url || ''} 
-                        alt={item.title}
-                        fill
-                        className="object-cover transition-all duration-700 group-hover:scale-105"
-                        unoptimized
-                      />
-                    </div>
-                    <div className="p-8 flex-grow flex flex-col">
-                      <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
-                        {item.title || "Gallery Artwork"}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {item.description || "Mixed Media"}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          <LightboxGallery items={parsedGallery} artistName={showcase.artistName} />
         </div>
       </div>
 
