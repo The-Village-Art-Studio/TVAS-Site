@@ -55,6 +55,31 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
   const [tempImage, setTempImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
+  const handleDateSync = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const dateStr = e.target.value;
+    if (!dateStr) return;
+
+    try {
+      const [year, month, day] = dateStr.split('-');
+      const dateObj = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+      
+      const enFormatter = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric' });
+      const frFormatter = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long' });
+      
+      const dateEn = enFormatter.format(dateObj);
+      const dateFrRaw = frFormatter.format(dateObj);
+      const dateFr = dateFrRaw.replace(/^[a-z]|\s[a-z]/g, match => match.toUpperCase());
+
+      setFormData(prev => ({
+        ...prev,
+        dateEn,
+        dateFr
+      }));
+    } catch (err) {
+      console.error("Error formatting date", err);
+    }
+  };
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -188,6 +213,18 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
 
           {/* New Fields: Date, Order */}
           <div className="grid grid-cols-2 gap-8 pt-4 border-t border-slate-100">
+            <div className="space-y-4 col-span-2">
+              <label className="text-xs font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                <Calendar size={14} className="text-blue-600" />
+                Select Date (Auto-syncs English & French)
+              </label>
+              <input 
+                type="date" 
+                onChange={handleDateSync}
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-50 transition-all cursor-pointer"
+              />
+            </div>
+            
             <div className="space-y-4">
               <label className="text-xs font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
                 <Calendar size={14} className="text-blue-600" />

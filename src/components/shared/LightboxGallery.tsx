@@ -82,7 +82,7 @@ export default function LightboxGallery({ items, artistName }: LightboxGalleryPr
 
       {selectedIndex !== null && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          className="fixed top-[80px] inset-x-0 bottom-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-sm"
           onClick={closeLightbox}
         >
           <button 
