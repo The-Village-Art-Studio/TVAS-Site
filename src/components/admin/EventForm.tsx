@@ -40,7 +40,7 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
     descriptionFr: initialData?.descriptionFr || '',
     dateEn: initialData?.dateEn || '',
     dateFr: initialData?.dateFr || '',
-    order: initialData?.order || 0,
+    eventDate: initialData?.eventDate || '',
     locationEn: initialData?.locationEn || 'La Gloria Mexican Coffee, Toronto',
     locationFr: initialData?.locationFr || 'La Gloria Mexican Coffee, Toronto',
     capacityEn: initialData?.capacityEn || 'Limited to 8-12 guests',
@@ -73,7 +73,8 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
       setFormData(prev => ({
         ...prev,
         dateEn,
-        dateFr
+        dateFr,
+        eventDate: dateStr
       }));
     } catch (err) {
       console.error("Error formatting date", err);
@@ -220,6 +221,7 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
               </label>
               <input 
                 type="date" 
+                value={formData.eventDate}
                 onChange={handleDateSync}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-50 transition-all cursor-pointer"
               />
@@ -253,19 +255,6 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 pt-4 border-t border-slate-100">
-            <div className="space-y-4">
-              <label className="text-xs font-black uppercase tracking-widest text-slate-500 flex items-center gap-2">
-                <Star size={14} className="text-blue-600" />
-                Display Order
-              </label>
-              <input 
-                type="number" 
-                value={formData.order}
-                onChange={e => setFormData(prev => ({ ...prev, order: parseInt(e.target.value) || 0 }))}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-50 transition-all"
-              />
-            </div>
           </div>
 
           {/* New Fields: Location, Capacity, Duration */}

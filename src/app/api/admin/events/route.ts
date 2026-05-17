@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const events = await prisma.event.findMany({
       orderBy: [
-        { order: 'asc' },
+        { eventDate: 'asc' },
         { createdAt: 'desc' }
       ]
     });
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
         descriptionFr: body.descriptionFr,
         dateEn: body.dateEn || "",
         dateFr: body.dateFr || "",
-        order: body.order || 0,
+        eventDate: body.eventDate || "",
         locationEn: body.locationEn || "La Gloria Mexican Coffee, Toronto",
         locationFr: body.locationFr || "La Gloria Mexican Coffee, Toronto",
         capacityEn: body.capacityEn || "Limited to 8-12 guests",

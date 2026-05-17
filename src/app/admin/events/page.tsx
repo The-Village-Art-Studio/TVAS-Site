@@ -19,7 +19,7 @@ async function getEvents() {
   try {
     return await prisma.event.findMany({
       orderBy: [
-        { order: 'asc' },
+        { eventDate: 'asc' },
         { createdAt: 'desc' }
       ],
     });
@@ -85,10 +85,6 @@ export default async function AdminEventsPage() {
                       {event.dateEn || event.locationEn}
                     </span>
                   )}
-                  <span className="px-3 py-1 rounded-full bg-purple-50 text-[10px] font-black uppercase tracking-[0.2em] text-purple-700 flex items-center gap-1">
-                    <Star size={12} />
-                    Order: {event.order || 0}
-                  </span>
                   <Link href={event.link || '#'} target="_blank" className="text-slate-400 hover:text-blue-600 transition-colors ml-auto">
                     <ExternalLink size={16} />
                   </Link>

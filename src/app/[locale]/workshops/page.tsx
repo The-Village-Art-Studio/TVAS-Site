@@ -23,7 +23,7 @@ export default async function WorkshopsPage({ params }: { params: Promise<{ loca
   
   const events = await prisma.event.findMany({
     orderBy: [
-      { order: 'asc' },
+      { eventDate: 'asc' },
       { createdAt: 'desc' }
     ]
   });

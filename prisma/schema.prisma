@@ -24,7 +24,7 @@ model Event {
   durationFr     String   @default("2.5 - 3 heures")
   imageUrl       String
   link           String?
-  order          Int      @default(0)
+  eventDate      String   @default("")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
