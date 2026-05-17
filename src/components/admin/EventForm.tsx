@@ -255,8 +255,6 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
             </div>
           </div>
 
-          </div>
-
           {/* New Fields: Location, Capacity, Duration */}
           <div className="grid grid-cols-2 gap-8 pt-4 border-t border-slate-100">
             <div className="space-y-4">
