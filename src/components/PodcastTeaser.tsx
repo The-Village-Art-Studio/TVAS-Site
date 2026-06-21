@@ -38,7 +38,7 @@ export default function PodcastTeaser() {
           {/* Text Content Block */}
           <div style={{ padding: '2rem' }}>
             <span className="caption" style={{ display: 'block', marginBottom: '1.2rem' }}>
-              The Village Voice
+              Muse & Medium
             </span>
             <h2 style={{ marginBottom: '1.5rem' }}>{t('title')}</h2>
             <p className="body-text" style={{ marginBottom: '2.5rem', lineHeight: '1.8' }}>

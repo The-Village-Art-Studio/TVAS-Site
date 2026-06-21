@@ -26,7 +26,7 @@
     "headline": "Bâtie pour la Connexion, pas seulement pour la Curation",
     "items": {
       "podcast": {
-        "label": "La Voix du Village",
+        "label": "Muse & Medium",
         "title": "Le Balado",
         "description": "Des conversations honnêtes et approfondies qui explorent le processus, les défis et les joies profondes d'être un artiste local."
       },
@@ -82,7 +82,7 @@
     "benefits": {
       "podcast": {
         "title": "Partagez Votre Histoire",
-        "description": "Soyez présenté sur La Voix du Village — notre balado longue durée où nous explorons la profondeur de votre parcours créatif."
+        "description": "Soyez présenté sur Muse & Medium — notre balado longue durée où nous explorons la profondeur de votre parcours créatif."
       },
       "showcase": {
         "title": "Gagnez une Réelle Visibilité",
@@ -192,13 +192,13 @@
     },
     "Podcast": {
       "meta": {
-        "title": "Le Balado La Voix du Village — The Village Art Studio",
-        "description": "La Voix du Village est le balado de The Village Art Studio présentant des conversations approfondies avec des artistes locaux de Toronto sur leur processus créatif, leur vie et leur art."
+        "title": "Le Balado Muse & Medium — The Village Art Studio",
+        "description": "Muse & Medium est le balado de The Village Art Studio présentant des conversations approfondies avec des artistes locaux de Toronto sur leur processus créatif, leur vie et leur art."
       },
       "hero": {
-        "eyebrow": "La Voix du Village",
+        "eyebrow": "Muse & Medium",
         "headline": "Les Voix Derrière la Vision",
-        "lead": "Entrez dans le studio avec La Voix du Village. Des conversations brutes, perspicaces et honnêtes qui explorent le processus, la lutte et la joie profonde de créer à partir de rien."
+        "lead": "Entrez dans le studio avec Muse & Medium. Des conversations brutes, perspicaces et honnêtes qui explorent le processus, la lutte et la joie profonde de créer à partir de rien."
       },
       "featured": {
         "eyebrow": "Dernier Épisode",
@@ -239,7 +239,7 @@
         ]
       },
       "cta": {
-        "eyebrow": "Sur La Voix du Village",
+        "eyebrow": "Sur Muse & Medium",
         "headline": "Chaque Parcours Créatif Mérite d'être Entendu",
         "body": "Nous recherchons toujours la prochaine voix — l'artiste local avec une perspective unique et une histoire à partager. Si vous êtes prêt à dire votre vérité, nous sommes prêts à l'écouter.",
         "primary": "Postuler pour Être Invité",
@@ -378,7 +378,7 @@
         "headline": "Quatre Façons de Partager Votre Travail",
         "items": {
           "podcast": {
-            "title": "La Voix du Village",
+            "title": "Muse & Medium",
             "description": "Partagez votre processus créatif, vos inspirations et votre parcours sur notre balado longue durée, atteignant un public dévoué d'amateurs d'art et de collègues créateurs.",
             "cta": "Postuler pour le Balado"
           },
@@ -483,7 +483,7 @@
       "paths": {
         "artist": {
           "label": "Pour les Artistes",
-          "description": "Intéressé à être présenté sur La Voix du Village, à exposer dans notre vitrine ou à animer une expérience au La Gloria ? Parlez-nous de votre parcours.",
+          "description": "Intéressé à être présenté sur Muse & Medium, à exposer dans notre vitrine ou à animer une expérience au La Gloria ? Parlez-nous de votre parcours.",
           "subject": "Demande Artiste"
         },
         "partner": {

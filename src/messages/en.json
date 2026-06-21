@@ -26,7 +26,7 @@
     "headline": "Built for Connection, Not Just Curation",
     "items": {
       "podcast": {
-        "label": "The Village Voice",
+        "label": "Muse & Medium",
         "title": "The Podcast",
         "description": "Honest, long-form conversations that delve into the process, the struggles, and the profound joys of being a local artist."
       },
@@ -82,7 +82,7 @@
     "benefits": {
       "podcast": {
         "title": "Share Your Story",
-        "description": "Be featured on The Village Voice — our long-form podcast where we explore the depth of your creative journey."
+        "description": "Be featured on Muse & Medium — our long-form podcast where we explore the depth of your creative journey."
       },
       "showcase": {
         "title": "Gain Real Visibility",
@@ -192,13 +192,13 @@
     },
     "Podcast": {
       "meta": {
-        "title": "The Village Voice Podcast — The Village Art Studio",
-        "description": "The Village Voice is The Village Art Studio's podcast featuring long-form conversations with local Toronto artists about their creative process, their lives, and their art."
+        "title": "Muse & Medium Podcast — The Village Art Studio",
+        "description": "Muse & Medium is The Village Art Studio's podcast featuring long-form conversations with local Toronto artists about their creative process, their lives, and their art."
       },
       "hero": {
-        "eyebrow": "The Village Voice",
+        "eyebrow": "Muse & Medium",
         "headline": "The Voices Behind the Vision",
-        "lead": "Step into the studio with The Village Voice. Raw, insightful, and honest conversations that delve into the process, the struggle, and the profound joy of making something from nothing."
+        "lead": "Step into the studio with Muse & Medium. Raw, insightful, and honest conversations that delve into the process, the struggle, and the profound joy of making something from nothing."
       },
       "featured": {
         "eyebrow": "Latest Episode",
@@ -239,7 +239,7 @@
         ]
       },
       "cta": {
-        "eyebrow": "On The Village Voice",
+        "eyebrow": "On Muse & Medium",
         "headline": "Every Creative Journey is Worth Hearing",
         "body": "We are always looking for the next voice — the local artist with a unique perspective and a story to share. If you're ready to speak your truth, we're ready to listen.",
         "primary": "Apply to Be a Guest",
@@ -378,7 +378,7 @@
         "headline": "Four Ways We Share Your Work",
         "items": {
           "podcast": {
-            "title": "The Village Voice",
+            "title": "Muse & Medium",
             "description": "Share your creative process, your inspirations, and your journey on our long-form podcast, reaching a dedicated audience of art lovers and fellow creators.",
             "cta": "Apply to Guest"
           },
@@ -483,7 +483,7 @@
       "paths": {
         "artist": {
           "label": "For Artists",
-          "description": "Interested in being featured on The Village Voice, exhibit in our showcase, or lead an experience at La Gloria? Tell us about your journey.",
+          "description": "Interested in being featured on Muse & Medium, exhibit in our showcase, or lead an experience at La Gloria? Tell us about your journey.",
           "subject": "Artist Inquiry"
         },
         "partner": {
