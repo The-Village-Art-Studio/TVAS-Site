@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { deleteLocalImage } from '@/lib/image-utils';
+import { deleteStorageImage } from '@/lib/image-utils';
 
 export async function PUT(
   request: NextRequest,
@@ -43,13 +43,13 @@ export async function PUT(
 
       for (const url of oldUrls) {
         if (!newUrls.includes(url)) {
-          await deleteLocalImage(url);
+          await deleteStorageImage(url);
         }
       }
 
       // Cleanup main image if replaced
       if (oldShowcase.imageUrl && oldShowcase.imageUrl !== data.imageUrl) {
-        await deleteLocalImage(oldShowcase.imageUrl);
+        await deleteStorageImage(oldShowcase.imageUrl);
       }
     }
 
@@ -82,14 +82,14 @@ export async function DELETE(
       const items = JSON.parse(showcase.galleryItems);
       for (const item of items) {
         if (item.type === 'image' && item.url) {
-          await deleteLocalImage(item.url);
+          await deleteStorageImage(item.url);
         }
       }
     }
 
     // Delete main image
     if (showcase?.imageUrl) {
-      await deleteLocalImage(showcase.imageUrl);
+      await deleteStorageImage(showcase.imageUrl);
     }
 
     return NextResponse.json({ success: true });

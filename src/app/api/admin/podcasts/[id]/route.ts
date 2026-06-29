@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { deleteLocalImage } from '@/lib/image-utils';
+import { deleteStorageImage } from '@/lib/image-utils';
 
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -29,7 +29,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     // If image changed, delete old one
     if (oldPodcast && oldPodcast.imageUrl !== data.imageUrl) {
-      await deleteLocalImage(oldPodcast.imageUrl);
+      await deleteStorageImage(oldPodcast.imageUrl);
     }
 
     return NextResponse.json({ success: true, podcast });
@@ -58,7 +58,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
     // Delete image if it exists
     if (podcast?.imageUrl) {
-      await deleteLocalImage(podcast.imageUrl);
+      await deleteStorageImage(podcast.imageUrl);
     }
 
     return NextResponse.json({ success: true });

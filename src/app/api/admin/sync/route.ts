@@ -1,15 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@libsql/client';
+import prisma from '@/lib/prisma';
 
+/**
+ * POST /api/admin/sync
+ * Seeds the database with mock data (for development/staging purposes).
+ * Uses Prisma upsert so it is safe to run multiple times.
+ */
 export async function POST(request: NextRequest) {
-  const client = createClient({ url: 'file:/Users/jackyho/Documents/GitHub/TVAS-Site/dev.db' });
-  
   try {
     // 1. Members
     const mockMembers = [
-      { id: 'elena-marchetti', name: 'Elena Marchetti', type: 'painter', imageUrl: '/artists/elena.png', statementEn: 'Elena is a contemporary painter specializing in abstract landscapes.', statementFr: 'Elena est une peintre contemporaine spécialisée dans les paysages abstraits.', socialLinks: JSON.stringify({ website: '', instagram: 'elenamarchetti', twitter: '' }) },
+      { id: 'elena-marchetti', name: 'Elena Marchetti', type: 'painter', imageUrl: '/artists/elena.png', statementEn: 'Elena is a contemporary painter specializing in abstract landscapes.', statementFr: "Elena est une peintre contemporaine spécialisée dans les paysages abstraits.", socialLinks: JSON.stringify({ website: '', instagram: 'elenamarchetti', twitter: '' }) },
       { id: 'daniel-osei', name: 'Daniel Osei', type: 'photographer', imageUrl: '/artists/daniel.png', statementEn: 'Daniel captures the vibrant life of city streets.', statementFr: 'Daniel capture la vie vibrante des rues de la ville.', socialLinks: JSON.stringify({ website: '', instagram: 'danielosei', twitter: '' }) },
-      { id: 'maria-santos', name: 'Maria Santos', type: 'digital', imageUrl: '/artists/maria.png', statementEn: 'Maria explores the intersection of nature and technology.', statementFr: 'Maria explore l\'intersection de la nature et de la technologie.', socialLinks: JSON.stringify({ website: '', instagram: 'mariasantos', twitter: '' }) },
+      { id: 'maria-santos', name: 'Maria Santos', type: 'digital', imageUrl: '/artists/maria.png', statementEn: 'Maria explores the intersection of nature and technology.', statementFr: "Maria explore l'intersection de la nature et de la technologie.", socialLinks: JSON.stringify({ website: '', instagram: 'mariasantos', twitter: '' }) },
       { id: 'yuki-tanaka', name: 'Yuki Tanaka', type: 'sculptor', imageUrl: '/artists/yuki.png', statementEn: 'Yuki creates minimalist sculptures from recycled materials.', statementFr: 'Yuki crée des sculptures minimalistes à partir de matériaux recyclés.', socialLinks: JSON.stringify({ website: '', instagram: 'yukitanaka', twitter: '' }) },
       { id: 'amara-diallo', name: 'Amara Diallo', type: 'musician', imageUrl: '/artists/amara.png', statementEn: 'Amara is a multi-instrumentalist blending traditional sounds with modern beats.', statementFr: 'Amara est une multi-instrumentiste mélangeant des sons traditionnels avec des rythmes modernes.', socialLinks: JSON.stringify({ website: '', instagram: 'amaradiallo', twitter: '' }) },
       { id: 'julian-vance', name: 'Julian Vance', type: 'writer', imageUrl: '/artists/julian.png', statementEn: 'Julian writes evocative poetry about urban solitude.', statementFr: 'Julian écrit une poésie évocatrice sur la solitude urbaine.', socialLinks: JSON.stringify({ website: '', instagram: 'julianvance', twitter: '' }) },
@@ -18,10 +21,10 @@ export async function POST(request: NextRequest) {
     ];
 
     for (const m of mockMembers) {
-      await client.execute({
-        sql: `INSERT OR REPLACE INTO Member (id, name, type, imageUrl, statementEn, statementFr, socialLinks, createdAt, updatedAt) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))`,
-        args: [m.id, m.name, m.type, m.imageUrl, m.statementEn, m.statementFr, m.socialLinks]
+      await prisma.member.upsert({
+        where: { id: m.id },
+        update: {},
+        create: m,
       });
     }
 
@@ -41,8 +44,8 @@ export async function POST(request: NextRequest) {
         statementFr: 'Une exploration poétique des moments de calme dans une ville animée.',
         galleryItems: JSON.stringify([
           { type: 'image', url: '/showcase/urban-1.jpg' },
-          { type: 'image', url: '/showcase/urban-2.jpg' }
-        ])
+          { type: 'image', url: '/showcase/urban-2.jpg' },
+        ]),
       },
       {
         id: 'digital-nature',
@@ -57,22 +60,22 @@ export async function POST(request: NextRequest) {
         statementEn: 'Where algorithms meet the organic world.',
         statementFr: 'Où les algorithmes rencontrent le monde organique.',
         galleryItems: JSON.stringify([
-          { type: 'image', url: '/showcase/nature-1.jpg' }
-        ])
-      }
+          { type: 'image', url: '/showcase/nature-1.jpg' },
+        ]),
+      },
     ];
 
     for (const s of mockShowcases) {
-      await client.execute({
-        sql: `INSERT OR REPLACE INTO Showcase (id, artistName, monthYear, titleEn, titleFr, mediumEn, mediumFr, seriesEn, seriesFr, statementEn, statementFr, galleryItems, createdAt, updatedAt) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))`,
-        args: [s.id, s.artistName, s.monthYear, s.titleEn, s.titleFr, s.mediumEn, s.mediumFr, s.seriesEn, s.seriesFr, s.statementEn, s.statementFr, s.galleryItems]
+      await prisma.showcase.upsert({
+        where: { id: s.id },
+        update: {},
+        create: s,
       });
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Sync error:", error);
-    return NextResponse.json({ success: false, error: "Failed to sync data" }, { status: 500 });
+    console.error('Sync error:', error);
+    return NextResponse.json({ success: false, error: 'Failed to sync data' }, { status: 500 });
   }
 }

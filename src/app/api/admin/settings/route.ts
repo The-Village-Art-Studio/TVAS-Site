@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { deleteLocalImage } from '@/lib/image-utils';
+import { deleteStorageImage } from '@/lib/image-utils';
 
 export async function GET(request: NextRequest) {
   try {
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         where: { key }
       });
       if (oldSetting && oldSetting.value !== value) {
-        await deleteLocalImage(oldSetting.value);
+        await deleteStorageImage(oldSetting.value);
       }
     }
 

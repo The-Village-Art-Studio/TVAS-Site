@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { deleteLocalImage } from '@/lib/image-utils';
+import { deleteStorageImage } from '@/lib/image-utils';
 
 export async function PUT(
   request: NextRequest,
@@ -30,7 +30,7 @@ export async function PUT(
 
     // If image changed, delete old one
     if (oldMember && oldMember.imageUrl !== data.imageUrl) {
-      await deleteLocalImage(oldMember.imageUrl);
+      await deleteStorageImage(oldMember.imageUrl);
     }
 
     return NextResponse.json({ success: true, member });
@@ -59,7 +59,7 @@ export async function DELETE(
 
     // Delete image if it exists
     if (member?.imageUrl) {
-      await deleteLocalImage(member.imageUrl);
+      await deleteStorageImage(member.imageUrl);
     }
 
     return NextResponse.json({ success: true });

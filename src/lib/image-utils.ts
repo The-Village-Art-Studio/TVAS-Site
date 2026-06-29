@@ -1,21 +1,36 @@
-import { unlink } from 'fs/promises';
-import { join } from 'path';
+import { supabaseAdmin, STORAGE_BUCKET } from '@/lib/supabase';
 
 /**
- * Deletes a local image file from the public/uploads directory
- * if the URL matches the /uploads/ pattern.
+ * Extracts the filename from a Supabase Storage public URL and
+ * deletes the file from the Supabase Storage bucket.
  */
-export async function deleteLocalImage(imageUrl: string | null | undefined) {
-  if (!imageUrl || !imageUrl.startsWith('/uploads/')) {
-    return;
-  }
+export async function deleteStorageImage(imageUrl: string | null | undefined) {
+  if (!imageUrl) return;
 
   try {
-    const filename = imageUrl.replace('/uploads/', '');
-    const filepath = join(process.cwd(), 'public', 'uploads', filename);
-    await unlink(filepath);
-    console.log(`Successfully deleted local image: ${filepath}`);
+    const url = new URL(imageUrl);
+
+    // Supabase Storage public URLs look like:
+    // https://<project>.supabase.co/storage/v1/object/public/<bucket>/<filename>
+    const bucketPrefix = `/storage/v1/object/public/${STORAGE_BUCKET}/`;
+    if (!url.pathname.includes(bucketPrefix)) {
+      // Not a Supabase Storage URL — skip silently
+      return;
+    }
+
+    const filename = url.pathname.split(bucketPrefix)[1];
+    if (!filename) return;
+
+    const { error } = await supabaseAdmin.storage
+      .from(STORAGE_BUCKET)
+      .remove([filename]);
+
+    if (error) {
+      console.error(`Failed to delete storage image ${filename}:`, error);
+    } else {
+      console.log(`Successfully deleted storage image: ${filename}`);
+    }
   } catch (error) {
-    console.error(`Failed to delete local image ${imageUrl}:`, error);
+    console.error(`Failed to parse/delete image URL ${imageUrl}:`, error);
   }
 }

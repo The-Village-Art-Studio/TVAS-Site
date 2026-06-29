@@ -1,20 +1,8 @@
 import { PrismaClient } from '@prisma/client'
-import { PrismaLibSQL } from '@prisma/adapter-libsql'
-import { createClient } from '@libsql/client'
 
-// The DATABASE_URL is loaded automatically from .env
-
+// Standard PrismaClient singleton for PostgreSQL (Supabase)
 const prismaClientSingleton = () => {
-  const dbUrl = process.env.DATABASE_URL!;
-  console.error("PRISMA INITIALIZING V12 WITH:", dbUrl);
-  
-  const libsql = createClient({
-    url: dbUrl,
-  })
-  
-  const adapter = new PrismaLibSQL(libsql)
-  
-  return new PrismaClient({ adapter })
+  return new PrismaClient()
 }
 
 declare global {
