@@ -38,7 +38,7 @@ export default function PodcastForm({ initialData, isEditing = false }: PodcastF
     descriptionFr: initialData?.descriptionFr || '',
     youtubeId: initialData?.youtubeId || '',
     listenUrl: initialData?.listenUrl || '',
-    imageUrl: initialData?.imageUrl || '/podcast-cover.png'
+    imageUrl: initialData?.imageUrl || ''
   });
 
   const [showCropper, setShowCropper] = useState(false);
