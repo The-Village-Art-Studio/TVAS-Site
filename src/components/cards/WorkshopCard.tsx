@@ -32,12 +32,10 @@ export default function WorkshopCard({
       {/* Image Section */}
       <div className="relative aspect-square overflow-hidden bg-muted">
         {imageUrl ? (
-          <Image 
+          <img 
             src={imageUrl} 
             alt={title} 
-            fill 
-            unoptimized
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-primary/5">

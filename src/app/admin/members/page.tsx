@@ -75,12 +75,11 @@ export default async function AdminMembersPage() {
           {members.map((member) => (
             <div key={member.id} className="group bg-white border border-slate-200 rounded-[2rem] overflow-hidden flex flex-col hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500">
               <div className="relative aspect-square overflow-hidden bg-slate-100">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={member.imageUrl} 
                   alt={member.name} 
-                  fill
-                  unoptimized
-                  className="object-cover transition-all duration-700 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 

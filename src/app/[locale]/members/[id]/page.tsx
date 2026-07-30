@@ -76,13 +76,11 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
           <div className="lg:col-span-5 relative">
             <div className="sticky top-40">
               <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-border/50">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={member.imageUrl}
                   alt={member.name}
-                  fill
-                  unoptimized
-                  className="object-cover"
-                  priority
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
             </div>

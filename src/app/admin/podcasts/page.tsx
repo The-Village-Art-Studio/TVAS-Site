@@ -57,11 +57,11 @@ export default async function AdminPodcastsPage() {
           {podcasts.map((podcast) => (
             <div key={podcast.id} className="group bg-white border border-slate-200 rounded-[2rem] overflow-hidden flex flex-col hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500">
               <div className="relative aspect-video overflow-hidden bg-slate-900">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={`https://img.youtube.com/vi/${podcast.youtubeId}/maxresdefault.jpg`} 
                   alt={podcast.titleEn} 
-                  fill 
-                  className="object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">

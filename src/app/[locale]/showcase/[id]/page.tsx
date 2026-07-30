@@ -69,13 +69,11 @@ export default async function ShowcaseDetailsPage({params}: {params: Promise<{lo
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-32">
           <div className="lg:col-span-5 relative">
             <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border border-border/50">
-              <Image 
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
                 src={showcase.imageUrl || '/featured-artist-placeholder.png'} 
                 alt={showcase.artistName}
-                fill
-                className="object-cover"
-                priority
-                unoptimized
+                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
           </div>

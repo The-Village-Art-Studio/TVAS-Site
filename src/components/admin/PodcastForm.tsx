@@ -237,7 +237,8 @@ export default function PodcastForm({ initialData, isEditing = false }: PodcastF
             <div className="w-64 h-64 relative rounded-[2rem] overflow-hidden bg-slate-50 border-2 border-dashed border-slate-200 flex-shrink-0 group cursor-pointer hover:border-blue-300 transition-all">
               {formData.imageUrl ? (
                 <>
-                  <Image src={formData.imageUrl} alt="Cover" fill className="object-cover" unoptimized />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={formData.imageUrl} alt="Cover" className="absolute inset-0 w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
                     <Button type="button" variant="destructive" className="rounded-xl font-bold" onClick={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}>
                       <Trash2 size={18} className="mr-2" /> Replace

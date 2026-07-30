@@ -67,12 +67,11 @@ export default function LightboxGallery({ items, artistName }: LightboxGalleryPr
               </div>
             ) : (
               <div className="relative w-full h-full group bg-card/50">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={item.url || ''} 
                   alt={item.title || "Gallery Artwork"}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  unoptimized
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             )}
@@ -102,12 +101,11 @@ export default function LightboxGallery({ items, artistName }: LightboxGalleryPr
           )}
 
           <div className="relative w-full max-w-5xl h-[80vh] px-4" onClick={e => e.stopPropagation()}>
-            <Image 
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
               src={images[selectedIndex].url || ''} 
               alt="Expanded view"
-              fill
-              className="object-contain"
-              unoptimized
+              className="w-full h-full object-contain"
             />
           </div>
 

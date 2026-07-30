@@ -60,12 +60,10 @@ export default async function AdminEventsPage() {
             <div key={event.id} className="group bg-white border border-slate-200 rounded-[2rem] overflow-hidden flex flex-col hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-500">
               <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
                 {event.imageUrl ? (
-                  <Image 
+                  <img 
                     src={event.imageUrl} 
                     alt={event.titleEn} 
-                    fill 
-                    unoptimized
-                    className="object-cover transition-all duration-700 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-300">

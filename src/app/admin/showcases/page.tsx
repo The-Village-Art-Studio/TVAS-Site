@@ -60,12 +60,10 @@ export default async function AdminShowcasesPage() {
                     const gallery = JSON.parse(showcase.galleryItems);
                     const firstImage = gallery.find((item: any) => item.type === 'image');
                     return firstImage ? (
-                      <Image 
+                      <img 
                         src={firstImage.url} 
                         alt={showcase.titleEn} 
-                        fill 
-                        className="object-cover transition-all duration-700 group-hover:scale-110"
-                        unoptimized
+                        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-300">
