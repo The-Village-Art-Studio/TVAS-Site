@@ -22,8 +22,8 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Generate unique filename with .webp extension
-    const uniqueFilename = `${uuidv4()}.webp`;
+    // Generate unique filename with .jpg extension
+    const uniqueFilename = `${uuidv4()}.jpg`;
 
     let pipeline = sharp(buffer);
 
@@ -41,13 +41,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Process image to a Buffer (instead of writing to disk)
-    const processedBuffer = await pipeline.webp({ quality: 80 }).toBuffer();
+    const processedBuffer = await pipeline.jpeg({ quality: 85 }).toBuffer();
 
     // Upload to Supabase Storage
     const { error } = await supabaseAdmin.storage
       .from(STORAGE_BUCKET)
       .upload(uniqueFilename, processedBuffer, {
-        contentType: 'image/webp',
+        contentType: 'image/jpeg',
         upsert: false,
       });
 
