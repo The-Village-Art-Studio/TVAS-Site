@@ -56,12 +56,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: `Upload to storage failed: ${error.message}` }, { status: 500 });
     }
 
-    // Get the public URL for this file
-    const { data: publicUrlData } = supabaseAdmin.storage
-      .from(STORAGE_BUCKET)
-      .getPublicUrl(uniqueFilename);
+    // Return the proxied URL (served from the same domain via next.config.ts rewrite)
+    const proxiedUrl = `/storage/${uniqueFilename}`;
 
-    return NextResponse.json({ success: true, url: publicUrlData.publicUrl });
+    return NextResponse.json({ success: true, url: proxiedUrl });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json({ success: false, error: 'Upload failed' }, { status: 500 });

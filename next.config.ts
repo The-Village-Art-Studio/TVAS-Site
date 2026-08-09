@@ -17,6 +17,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/storage/:path*',
+        destination:
+          'https://bnkybmlnmgurhlebturf.supabase.co/storage/v1/object/public/tvas-assets/:path*',
+      },
+    ];
+  },
 };
  
 export default withNextIntl(nextConfig);
