@@ -38,9 +38,11 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
           {/* Podcast Card - Dark & Moody Theme */}
           <div className="group relative bg-[#0f1115] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-indigo-500/40 flex flex-col animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
             <div className="relative aspect-square shrink-0 overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url(${heroImageUrl})` }}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src={heroImageUrl} 
+                alt="Podcast Cover" 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0f1115] via-transparent to-transparent" />
               <div className="absolute top-6 left-6 px-4 py-2 bg-indigo-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 z-20 shadow-lg">
@@ -69,9 +71,11 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
           {/* Showcase Card - Elegant Gallery Theme */}
           <div className="group relative bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-xl transition-all duration-500 hover:border-primary/20 flex flex-col animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
             <div className="relative aspect-square shrink-0 overflow-hidden bg-slate-50">
-              <div 
-                className="absolute inset-0 bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundImage: `url(${latestShowcase?.imageUrl || '/showcase-thumb.png'})` }}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src={latestShowcase?.imageUrl || '/showcase-thumb.png'} 
+                alt="Showcase Artwork" 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
               />
               <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
               <div className="absolute top-6 left-6 px-4 py-2 bg-white text-slate-900 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-md flex items-center gap-2 z-20">
@@ -101,9 +105,11 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
           <div className="group relative bg-primary border border-primary/10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/20 flex flex-col animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-400">
             <div className="relative aspect-square shrink-0 overflow-hidden">
               {latestEvent ? (
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${latestEvent.imageUrl})` }}
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img 
+                  src={latestEvent.imageUrl} 
+                  alt="Event Banner" 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                 />
               ) : (
                 <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">

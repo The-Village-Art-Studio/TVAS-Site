@@ -15,15 +15,16 @@ export default function ShowcaseCard({ month, artist, medium, series, imageUrl }
       {/* Image Area */}
       <div className="relative aspect-square overflow-hidden">
         <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-500 z-10" />
-        <div 
-          className="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-          style={{ 
-            backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
-            backgroundColor: imageUrl ? 'transparent' : 'rgba(var(--primary-rgb), 0.1)',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover'
-          }}
-        />
+        {imageUrl ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img 
+            src={imageUrl} 
+            alt={artist} 
+            className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" 
+          />
+        ) : (
+          <div className="absolute inset-0 bg-primary/10" />
+        )}
         {/* Floating Label */}
         <div className="absolute top-6 left-6 px-4 py-2 bg-primary/90 text-white rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md flex items-center gap-2 z-20">
           <Calendar size={12} />

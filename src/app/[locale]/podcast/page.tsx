@@ -46,9 +46,11 @@ export default async function PodcastPage({ params }: { params: Promise<{ locale
               <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
               
               <div className="lg:w-[45%] relative bg-zinc-900 overflow-hidden aspect-square shrink-0">
-                <div 
-                  className="absolute inset-0 bg-center bg-cover" 
-                  style={{ backgroundImage: `url(${heroImageUrl})` }}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={heroImageUrl} 
+                  alt="Podcast Hero Cover" 
+                  className="absolute inset-0 w-full h-full object-cover" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-foreground" />
               </div>

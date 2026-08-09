@@ -51,9 +51,11 @@ export default async function ShowcasePage({ params }: { params: Promise<{ local
               <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
               
               <div className="relative aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10">
-                <div 
-                  className="absolute inset-0 bg-center bg-cover"
-                  style={{ backgroundImage: `url(${featuredShowcase?.imageUrl || '/featured-artist-placeholder.png'})` }}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={featuredShowcase?.imageUrl || '/featured-artist-placeholder.png'} 
+                  alt={featuredShowcase?.artistName || 'Featured Artist'} 
+                  className="absolute inset-0 w-full h-full object-cover" 
                 />
               </div>
 
