@@ -28,8 +28,17 @@ export async function POST(request: NextRequest) {
     let pipeline = sharp(buffer);
 
     // Apply manual crop if coordinates are provided
-    if (cropX !== null && cropY !== null && cropWidth !== null && cropHeight !== null) {
-      pipeline = pipeline.extract({ left: cropX, top: cropY, width: cropWidth, height: cropHeight });
+    if (
+      cropX !== null && !isNaN(cropX) &&
+      cropY !== null && !isNaN(cropY) &&
+      cropWidth !== null && !isNaN(cropWidth) && cropWidth > 0 &&
+      cropHeight !== null && !isNaN(cropHeight) && cropHeight > 0
+    ) {
+      try {
+        pipeline = pipeline.extract({ left: Math.max(0, cropX), top: Math.max(0, cropY), width: cropWidth, height: cropHeight });
+      } catch (cropErr) {
+        console.warn('Crop extract failed, falling back to auto resize:', cropErr);
+      }
     }
 
     // If it's a member profile, showcase, or podcast photo, resize to final 800x800

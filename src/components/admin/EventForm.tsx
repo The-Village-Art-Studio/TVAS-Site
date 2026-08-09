@@ -372,19 +372,27 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
               {formData.imageUrl ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={formData.imageUrl} alt="Banner" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
-                    <Button type="button" variant="destructive" className="rounded-xl font-bold" onClick={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}>
-                      <Trash2 size={18} className="mr-2" /> Replace Image
-                    </Button>
-                  </div>
+                  <img 
+                    src={formData.imageUrl} 
+                    alt="Banner" 
+                    className="absolute inset-0 w-full h-full object-cover" 
+                    onError={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}
+                  />
+                  <label className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm cursor-pointer z-10">
+                    <span className="px-4 py-2 bg-white text-slate-900 rounded-xl font-bold text-xs shadow-lg flex items-center gap-2">
+                      <Plus size={16} /> Replace Image
+                    </span>
+                    <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
+                  </label>
                 </>
               ) : (
                 <label className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
                   <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
                     <Plus size={24} />
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Upload Square Artwork</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                    {uploading ? 'Uploading...' : 'Upload Square Artwork'}
+                  </span>
                   <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
                 </label>
               )}

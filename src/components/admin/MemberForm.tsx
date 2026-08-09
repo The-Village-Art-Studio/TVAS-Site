@@ -196,24 +196,32 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
               {formData.imageUrl ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={formData.imageUrl} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
-                    <Button type="button" variant="destructive" className="rounded-xl font-bold" onClick={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}>
-                      <Trash2 size={18} className="mr-2" /> Replace Photo
-                    </Button>
-                  </div>
+                  <img 
+                    src={formData.imageUrl} 
+                    alt="Preview" 
+                    className="absolute inset-0 w-full h-full object-cover" 
+                    onError={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}
+                  />
+                  <label className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm cursor-pointer z-10">
+                    <span className="px-4 py-2 bg-white text-slate-900 rounded-xl font-bold text-xs shadow-lg flex items-center gap-2">
+                      <Plus size={16} /> Replace Photo
+                    </span>
+                    <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
+                  </label>
                 </>
               ) : (
                 <label className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
                   {uploading ? (
-                    <Loader2 className="animate-spin text-blue-600" size={32} />
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="font-bold text-slate-600">Uploading...</span>
+                    </div>
                   ) : (
                     <>
                       <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                         <Plus size={32} />
                       </div>
                       <span className="font-bold text-slate-600">Upload Portrait</span>
-                      <span className="text-xs text-slate-400 mt-2">Recommended: Square 800 x 800px</span>
+                      <span className="text-xs text-slate-400 mt-1">PNG, JPG, WEBP</span>
                     </>
                   )}
                   <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
