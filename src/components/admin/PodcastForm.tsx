@@ -72,10 +72,12 @@ export default function PodcastForm({ initialData, isEditing = false }: PodcastF
     data.set('file', selectedFile);
     data.set('type', 'podcast'); // Triggers 800x800 square on server
     
-    data.set('cropX', Math.round(cropArea.x).toString());
-    data.set('cropY', Math.round(cropArea.y).toString());
-    data.set('cropWidth', Math.round(cropArea.width).toString());
-    data.set('cropHeight', Math.round(cropArea.height).toString());
+    if (cropArea && typeof cropArea.x === 'number') {
+      data.set('cropX', Math.round(cropArea.x).toString());
+      data.set('cropY', Math.round(cropArea.y).toString());
+      data.set('cropWidth', Math.round(cropArea.width).toString());
+      data.set('cropHeight', Math.round(cropArea.height).toString());
+    }
 
     try {
       const res = await fetch('/api/upload', {

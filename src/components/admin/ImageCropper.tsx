@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Cropper from 'react-easy-crop';
 import { X, Check, RotateCcw } from 'lucide-react';
 import { createPortal } from 'react-dom';
@@ -13,9 +13,14 @@ interface ImageCropperProps {
 }
 
 export default function ImageCropper({ image, onCropComplete, onCancel, aspect = 1 }: ImageCropperProps) {
+  const [mounted, setMounted] = useState(false);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const onCropChange = (crop: any) => {
     setCrop(crop);
@@ -28,6 +33,15 @@ export default function ImageCropper({ image, onCropComplete, onCancel, aspect =
   const onCropCompleteInternal = useCallback((_croppedArea: any, croppedAreaPixels: any) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
+
+  const handleMediaError = () => {
+    // Fallback: If browser cannot render media in cropper (e.g., HEIC format), bypass cropper
+    onCropComplete(null);
+  };
+
+  if (!mounted || typeof document === 'undefined' || !document.body) {
+    return null;
+  }
 
   return createPortal(
     <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 md:p-10">

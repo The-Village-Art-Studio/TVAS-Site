@@ -108,10 +108,12 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
     data.set('file', selectedFile);
     data.set('type', 'event'); 
     
-    data.set('cropX', Math.round(cropArea.x).toString());
-    data.set('cropY', Math.round(cropArea.y).toString());
-    data.set('cropWidth', Math.round(cropArea.width).toString());
-    data.set('cropHeight', Math.round(cropArea.height).toString());
+    if (cropArea && typeof cropArea.x === 'number') {
+      data.set('cropX', Math.round(cropArea.x).toString());
+      data.set('cropY', Math.round(cropArea.y).toString());
+      data.set('cropWidth', Math.round(cropArea.width).toString());
+      data.set('cropHeight', Math.round(cropArea.height).toString());
+    }
 
     try {
       const res = await fetch('/api/upload', {
