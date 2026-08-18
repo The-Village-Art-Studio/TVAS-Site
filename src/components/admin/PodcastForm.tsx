@@ -244,7 +244,6 @@ export default function PodcastForm({ initialData, isEditing = false }: PodcastF
                     src={formData.imageUrl} 
                     alt="Cover" 
                     className="absolute inset-0 w-full h-full object-cover" 
-                    onError={() => setFormData(prev => ({ ...prev, imageUrl: '' }))}
                   />
                   <label className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm cursor-pointer">
                     <span className="px-4 py-2 bg-white text-slate-900 rounded-xl font-bold text-xs shadow-lg flex items-center gap-2">
