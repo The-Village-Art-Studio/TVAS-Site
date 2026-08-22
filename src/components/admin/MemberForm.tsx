@@ -17,7 +17,9 @@ import {
   Link as LinkIcon,
   Copy,
   Check,
-  Eye
+  Eye,
+  Headphones,
+  CirclePlay
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -52,12 +54,20 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
       instagram: '',
       twitter: '',
       tiktok: '',
+      spotify: '',
+      appleMusic: '',
+      youtubeMusic: '',
+      tidal: '',
       ...JSON.parse(initialData.socialLinks)
     } : {
       website: '',
       instagram: '',
       twitter: '',
-      tiktok: ''
+      tiktok: '',
+      spotify: '',
+      appleMusic: '',
+      youtubeMusic: '',
+      tidal: ''
     }
   });
 
@@ -290,20 +300,24 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
                 { key: 'website', label: 'Portfolio Website', icon: Globe, color: 'text-slate-400' },
                 { key: 'instagram', label: 'Instagram Username', icon: Hash, color: 'text-slate-400' },
                 { key: 'twitter', label: 'Twitter / X Handle', icon: AtSign, color: 'text-slate-400' },
-                { key: 'tiktok', label: 'TikTok Username', icon: Music2, color: 'text-slate-400' }
+                { key: 'tiktok', label: 'TikTok Username', icon: Music2, color: 'text-slate-400' },
+                { key: 'spotify', label: 'Spotify Artist URL', icon: Headphones, color: 'text-emerald-500', isUrl: true },
+                { key: 'appleMusic', label: 'Apple Music Artist URL', icon: Music2, color: 'text-rose-500', isUrl: true },
+                { key: 'youtubeMusic', label: 'YouTube Music Artist URL', icon: CirclePlay, color: 'text-red-500', isUrl: true },
+                { key: 'tidal', label: 'TIDAL Artist URL', icon: Music2, color: 'text-slate-900', isUrl: true }
               ].map((item) => (
                 <div key={item.key} className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">{item.label}</label>
                   <div className="relative group">
                     <item.icon size={18} className={`absolute left-5 top-1/2 -translate-y-1/2 ${item.color} group-focus-within:text-blue-600 transition-colors`} />
                     <input 
-                      type="text" 
+                      type={item.isUrl ? 'url' : 'text'}
                       value={formData.socialLinks[item.key] || ''}
                       onChange={(e) => setFormData(prev => ({
                         ...prev,
                         socialLinks: { ...prev.socialLinks, [item.key]: e.target.value }
                       }))}
-                      placeholder={item.key === 'website' ? 'https://...' : '@username'}
+                      placeholder={item.key === 'website' || item.isUrl ? 'https://...' : '@username'}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-6 text-slate-900 outline-none focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-50 transition-all font-medium text-sm"
                     />
                   </div>

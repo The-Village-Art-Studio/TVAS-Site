@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
-import { ArrowLeft, Globe, Camera, Palette, Box, Cpu, Music, PenTool } from 'lucide-react';
+import { ArrowLeft, Globe, Camera, Palette, Box, Cpu, Music, PenTool, Headphones, CirclePlay } from 'lucide-react';
 import { ArtistType } from '@/components/cards/ArtistMemberCard';
 import CTABanner from '@/components/shared/CTABanner';
 import { notFound } from 'next/navigation';
@@ -57,7 +57,16 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
   if (!member) notFound();
 
   // Parse social links JSON
-  let socialLinks: { website?: string; instagram?: string; twitter?: string; tiktok?: string } = {};
+  let socialLinks: {
+    website?: string;
+    instagram?: string;
+    twitter?: string;
+    tiktok?: string;
+    spotify?: string;
+    appleMusic?: string;
+    youtubeMusic?: string;
+    tidal?: string;
+  } = {};
   try {
     socialLinks = member.socialLinks ? JSON.parse(member.socialLinks) : {};
   } catch { /* ignore */ }
@@ -119,7 +128,7 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
             </div>
 
             {/* Social Links */}
-            {(socialLinks.website || socialLinks.instagram || socialLinks.twitter || socialLinks.tiktok) && (
+            {(socialLinks.website || socialLinks.instagram || socialLinks.twitter || socialLinks.tiktok || socialLinks.spotify || socialLinks.appleMusic || socialLinks.youtubeMusic || socialLinks.tidal) && (
               <div className="pt-12 border-t border-border/50">
                 <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground/60 mb-6">
                   Connect &amp; Explore
@@ -178,6 +187,26 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
                       </svg>
+                    </a>
+                  )}
+                  {socialLinks.spotify && (
+                    <a href={socialLinks.spotify} target="_blank" rel="noopener noreferrer" title="Spotify" aria-label="Listen on Spotify" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[#1DB954] hover:text-white hover:border-[#1DB954] transition-all duration-300 shadow-lg hover:-translate-y-1">
+                      <Headphones size={22} />
+                    </a>
+                  )}
+                  {socialLinks.appleMusic && (
+                    <a href={socialLinks.appleMusic} target="_blank" rel="noopener noreferrer" title="Apple Music" aria-label="Listen on Apple Music" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[#FA243C] hover:text-white hover:border-[#FA243C] transition-all duration-300 shadow-lg hover:-translate-y-1">
+                      <Music size={22} />
+                    </a>
+                  )}
+                  {socialLinks.youtubeMusic && (
+                    <a href={socialLinks.youtubeMusic} target="_blank" rel="noopener noreferrer" title="YouTube Music" aria-label="Listen on YouTube Music" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] transition-all duration-300 shadow-lg hover:-translate-y-1">
+                      <CirclePlay size={22} />
+                    </a>
+                  )}
+                  {socialLinks.tidal && (
+                    <a href={socialLinks.tidal} target="_blank" rel="noopener noreferrer" title="TIDAL" aria-label="Listen on TIDAL" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-slate-950 hover:text-white hover:border-slate-950 transition-all duration-300 shadow-lg hover:-translate-y-1">
+                      <span className="text-[10px] font-black tracking-tighter">TIDAL</span>
                     </a>
                   )}
                 </div>
