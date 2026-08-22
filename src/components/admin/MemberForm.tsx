@@ -24,7 +24,7 @@ import { Button } from '@/components/ui/button';
 import ImageCropper from './ImageCropper';
 import { createCroppedImageFile, getUploadResponse, type CropArea } from '@/lib/client-image';
 import type { Member } from '@prisma/client';
-import { AppleMusicIcon, SpotifyIcon, TidalIcon, YouTubeMusicIcon } from '@/components/icons/StreamingPlatformIcons';
+import { AppleMusicIcon, FacebookIcon, SpotifyIcon, TidalIcon, YouTubeMusicIcon } from '@/components/icons/StreamingPlatformIcons';
 
 interface MemberFormProps {
   initialData?: Member;
@@ -50,6 +50,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
     statementFr: initialData?.statementFr || '',
     socialLinks: initialData?.socialLinks ? {
       website: '',
+      facebook: '',
       instagram: '',
       twitter: '',
       tiktok: '',
@@ -60,6 +61,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
       ...JSON.parse(initialData.socialLinks)
     } : {
       website: '',
+      facebook: '',
       instagram: '',
       twitter: '',
       tiktok: '',
@@ -297,6 +299,7 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
             <div className="space-y-6">
               {[
                 { key: 'website', label: 'Portfolio Website', icon: Globe, color: 'text-slate-400' },
+                { key: 'facebook', label: 'Facebook Profile or Page URL', icon: FacebookIcon, color: 'text-[#1877F2]', isUrl: true },
                 { key: 'instagram', label: 'Instagram Username', icon: Hash, color: 'text-slate-400' },
                 { key: 'twitter', label: 'Twitter / X Handle', icon: AtSign, color: 'text-slate-400' },
                 { key: 'tiktok', label: 'TikTok Username', icon: Music2, color: 'text-slate-400' },

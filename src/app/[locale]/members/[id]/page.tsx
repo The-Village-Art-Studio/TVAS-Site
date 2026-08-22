@@ -5,7 +5,7 @@ import { ArtistType } from '@/components/cards/ArtistMemberCard';
 import CTABanner from '@/components/shared/CTABanner';
 import { notFound } from 'next/navigation';
 import prisma from '@/lib/prisma';
-import { AppleMusicIcon, SpotifyIcon, TidalIcon, YouTubeMusicIcon } from '@/components/icons/StreamingPlatformIcons';
+import { AppleMusicIcon, FacebookIcon, SpotifyIcon, TidalIcon, YouTubeMusicIcon } from '@/components/icons/StreamingPlatformIcons';
 
 const TypeIcon = ({ type, size = 14 }: { type: ArtistType; size?: number }) => {
   switch (type) {
@@ -60,6 +60,7 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
   // Parse social links JSON
   let socialLinks: {
     website?: string;
+    facebook?: string;
     instagram?: string;
     twitter?: string;
     tiktok?: string;
@@ -129,7 +130,7 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
             </div>
 
             {/* Social Links */}
-            {(socialLinks.website || socialLinks.instagram || socialLinks.twitter || socialLinks.tiktok || socialLinks.spotify || socialLinks.appleMusic || socialLinks.youtubeMusic || socialLinks.tidal) && (
+            {(socialLinks.website || socialLinks.facebook || socialLinks.instagram || socialLinks.twitter || socialLinks.tiktok || socialLinks.spotify || socialLinks.appleMusic || socialLinks.youtubeMusic || socialLinks.tidal) && (
               <div className="pt-12 border-t border-border/50">
                 <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground/60 mb-6">
                   Connect &amp; Explore
@@ -144,6 +145,11 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
                       className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
                     >
                       <Globe size={22} />
+                    </a>
+                  )}
+                  {socialLinks.facebook && (
+                    <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="View on Facebook" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all duration-300 shadow-lg hover:-translate-y-1">
+                      <FacebookIcon size={23} />
                     </a>
                   )}
                   {socialLinks.instagram && (
