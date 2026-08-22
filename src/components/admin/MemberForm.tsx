@@ -17,15 +17,14 @@ import {
   Link as LinkIcon,
   Copy,
   Check,
-  Eye,
-  Headphones,
-  CirclePlay
+  Eye
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ImageCropper from './ImageCropper';
 import { createCroppedImageFile, getUploadResponse, type CropArea } from '@/lib/client-image';
 import type { Member } from '@prisma/client';
+import { AppleMusicIcon, SpotifyIcon, TidalIcon, YouTubeMusicIcon } from '@/components/icons/StreamingPlatformIcons';
 
 interface MemberFormProps {
   initialData?: Member;
@@ -301,10 +300,10 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
                 { key: 'instagram', label: 'Instagram Username', icon: Hash, color: 'text-slate-400' },
                 { key: 'twitter', label: 'Twitter / X Handle', icon: AtSign, color: 'text-slate-400' },
                 { key: 'tiktok', label: 'TikTok Username', icon: Music2, color: 'text-slate-400' },
-                { key: 'spotify', label: 'Spotify Artist URL', icon: Headphones, color: 'text-emerald-500', isUrl: true },
-                { key: 'appleMusic', label: 'Apple Music Artist URL', icon: Music2, color: 'text-rose-500', isUrl: true },
-                { key: 'youtubeMusic', label: 'YouTube Music Artist URL', icon: CirclePlay, color: 'text-red-500', isUrl: true },
-                { key: 'tidal', label: 'TIDAL Artist URL', icon: Music2, color: 'text-slate-900', isUrl: true }
+                { key: 'spotify', label: 'Spotify Artist URL', icon: SpotifyIcon, color: 'text-[#1DB954]', isUrl: true },
+                { key: 'appleMusic', label: 'Apple Music Artist URL', icon: AppleMusicIcon, color: 'text-[#FA243C]', isUrl: true },
+                { key: 'youtubeMusic', label: 'YouTube Music Artist URL', icon: YouTubeMusicIcon, color: 'text-[#FF0000]', isUrl: true },
+                { key: 'tidal', label: 'TIDAL Artist URL', icon: TidalIcon, color: 'text-slate-900', isUrl: true }
               ].map((item) => (
                 <div key={item.key} className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">{item.label}</label>

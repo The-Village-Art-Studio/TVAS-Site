@@ -1,10 +1,11 @@
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
-import { ArrowLeft, Globe, Camera, Palette, Box, Cpu, Music, PenTool, Headphones, CirclePlay } from 'lucide-react';
+import { ArrowLeft, Globe, Camera, Palette, Box, Cpu, Music, PenTool } from 'lucide-react';
 import { ArtistType } from '@/components/cards/ArtistMemberCard';
 import CTABanner from '@/components/shared/CTABanner';
 import { notFound } from 'next/navigation';
 import prisma from '@/lib/prisma';
+import { AppleMusicIcon, SpotifyIcon, TidalIcon, YouTubeMusicIcon } from '@/components/icons/StreamingPlatformIcons';
 
 const TypeIcon = ({ type, size = 14 }: { type: ArtistType; size?: number }) => {
   switch (type) {
@@ -191,22 +192,22 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
                   )}
                   {socialLinks.spotify && (
                     <a href={socialLinks.spotify} target="_blank" rel="noopener noreferrer" title="Spotify" aria-label="Listen on Spotify" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[#1DB954] hover:text-white hover:border-[#1DB954] transition-all duration-300 shadow-lg hover:-translate-y-1">
-                      <Headphones size={22} />
+                      <SpotifyIcon size={23} />
                     </a>
                   )}
                   {socialLinks.appleMusic && (
                     <a href={socialLinks.appleMusic} target="_blank" rel="noopener noreferrer" title="Apple Music" aria-label="Listen on Apple Music" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[#FA243C] hover:text-white hover:border-[#FA243C] transition-all duration-300 shadow-lg hover:-translate-y-1">
-                      <Music size={22} />
+                      <AppleMusicIcon size={23} />
                     </a>
                   )}
                   {socialLinks.youtubeMusic && (
                     <a href={socialLinks.youtubeMusic} target="_blank" rel="noopener noreferrer" title="YouTube Music" aria-label="Listen on YouTube Music" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] transition-all duration-300 shadow-lg hover:-translate-y-1">
-                      <CirclePlay size={22} />
+                      <YouTubeMusicIcon size={23} />
                     </a>
                   )}
                   {socialLinks.tidal && (
                     <a href={socialLinks.tidal} target="_blank" rel="noopener noreferrer" title="TIDAL" aria-label="Listen on TIDAL" className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-slate-950 hover:text-white hover:border-slate-950 transition-all duration-300 shadow-lg hover:-translate-y-1">
-                      <span className="text-[10px] font-black tracking-tighter">TIDAL</span>
+                      <TidalIcon size={24} />
                     </a>
                   )}
                 </div>
