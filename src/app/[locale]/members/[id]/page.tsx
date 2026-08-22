@@ -142,7 +142,7 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Portfolio Website"
-                      className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
+                      className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-[radial-gradient(circle_at_30%_107%,#fdf497_0%,#fdf497_5%,#fd5949_45%,#d6249f_60%,#285AEB_90%)] hover:text-white hover:border-[#d6249f] transition-all duration-300 shadow-lg hover:shadow-[0_8px_24px_rgba(214,36,159,0.35)] hover:-translate-y-1"
                     >
                       <Globe size={22} />
                     </a>
@@ -158,7 +158,7 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Instagram"
-                      className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
+                      className="w-14 h-14 rounded-full bg-card/50 backdrop-blur-xl border border-border/50 flex items-center justify-center text-foreground hover:bg-black hover:text-white hover:border-black transition-all duration-300 shadow-lg hover:shadow-[-4px_3px_0_#25F4EE,4px_-3px_0_#FE2C55] hover:-translate-y-1"
                     >
                       {/* Instagram SVG */}
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
