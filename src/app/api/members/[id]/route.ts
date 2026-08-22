@@ -7,8 +7,8 @@ export async function GET(
 ) {
   const { id } = await params;
   try {
-    const member = await prisma.member.findUnique({
-      where: { id },
+    const member = await prisma.member.findFirst({
+      where: { id, isPublished: true },
     });
 
     if (!member) {

@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   try {
     const members = await prisma.member.findMany({
+      where: { isPublished: true },
       orderBy: { createdAt: 'desc' },
     });
     return NextResponse.json({ success: true, members });

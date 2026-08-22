@@ -4,13 +4,11 @@ import {
   Plus, 
   Search, 
   Edit2, 
-  Trash2, 
   ExternalLink,
   MoreVertical,
   UserCircle
 } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import DeleteMemberButton from '@/components/admin/DeleteMemberButton';
 
 async function getMembers() {
@@ -96,9 +94,9 @@ export default async function AdminMembersPage() {
               <div className="p-8 flex-1 flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <span className="px-3 py-1 rounded-full bg-blue-50 text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
-                    {member.type}
+                    {member.isPublished ? member.type : 'Draft'}
                   </span>
-                  <Link href={`/members/${member.id}`} target="_blank" className="text-slate-400 hover:text-blue-600 transition-colors">
+                  <Link href={member.isPublished ? `/members/${member.id}` : `/members/${member.id}?preview=${member.previewToken}`} target="_blank" className="text-slate-400 hover:text-blue-600 transition-colors">
                     <ExternalLink size={16} />
                   </Link>
                 </div>

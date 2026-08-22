@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 async function getMembers() {
   try {
     return await prisma.member.findMany({
+      where: { isPublished: true },
       orderBy: { createdAt: 'asc' },
       select: { id: true, name: true, type: true, imageUrl: true },
     });

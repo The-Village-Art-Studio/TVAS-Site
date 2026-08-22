@@ -12,20 +12,21 @@ import {
   AtSign,
   Music2,
   Plus,
-  Trash2,
   Camera,
   UserCircle,
   Link as LinkIcon,
-  Maximize2
+  Copy,
+  Check,
+  Eye
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 import ImageCropper from './ImageCropper';
 import { createCroppedImageFile, getUploadResponse, type CropArea } from '@/lib/client-image';
+import type { Member } from '@prisma/client';
 
 interface MemberFormProps {
-  initialData?: any;
+  initialData?: Member;
   isEditing?: boolean;
 }
 
@@ -34,6 +35,8 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
+  const [savedMember, setSavedMember] = useState(initialData);
+  const [copied, setCopied] = useState(false);
   const [showCropper, setShowCropper] = useState(false);
   const [tempImage, setTempImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -104,20 +107,22 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const intent = submitter?.value === 'draft' ? 'draft' : 'publish';
     setLoading(true);
     setError('');
 
-    if (!formData.imageUrl) {
-      setError('Profile image is required');
+    if (intent === 'publish' && (!formData.imageUrl || !formData.name || !formData.statementEn || !formData.statementFr)) {
+      setError('Name, profile image, and both statements are required to publish');
       setLoading(false);
       return;
     }
 
     try {
       // Corrected endpoints to match standard pattern
-      const endpoint = isEditing ? `/api/admin/members/${initialData.id}` : '/api/admin/members';
+      const endpoint = isEditing ? `/api/admin/members/${initialData!.id}` : '/api/admin/members';
       const method = isEditing ? 'PUT' : 'POST';
 
       const res = await fetch(endpoint, {
@@ -125,18 +130,24 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          intent,
           socialLinks: JSON.stringify(formData.socialLinks)
         })
       });
 
       const result = await res.json();
       if (result.success) {
-        router.push('/admin/members');
+        setSavedMember(result.member);
+        if (!isEditing) {
+          router.replace(`/admin/members/edit/${result.member.id}`);
+        } else if (intent === 'publish') {
+          router.push('/admin/members');
+        }
         router.refresh();
       } else {
         setError(result.error || 'Something went wrong');
       }
-    } catch (err) {
+    } catch {
       setError('Failed to save member');
     } finally {
       setLoading(false);
@@ -164,15 +175,31 @@ export default function MemberForm({ initialData, isEditing = false }: MemberFor
             </h1>
           </div>
         </div>
-        <Button 
-          type="submit"
-          disabled={loading || uploading}
-          className="h-14 px-10 rounded-xl bg-blue-600 text-white font-bold text-base shadow-lg shadow-blue-200 hover:bg-blue-700 hover:translate-y-[-2px] transition-all active:translate-y-0 disabled:opacity-50"
-        >
-          {loading ? <Loader2 className="animate-spin mr-2" /> : <Save size={20} className="mr-2" />}
-          {isEditing ? 'Update Profile' : 'Register Member'}
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button type="submit" name="intent" value="draft" formNoValidate disabled={loading || uploading} className="h-14 px-6 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold hover:bg-slate-50">
+            <Save size={19} className="mr-2" /> Save Draft
+          </Button>
+          <Button type="submit" name="intent" value="publish" disabled={loading || uploading} className="h-14 px-8 rounded-xl bg-blue-600 text-white font-bold shadow-lg shadow-blue-200 hover:bg-blue-700">
+            {loading ? <Loader2 className="animate-spin mr-2" /> : <Eye size={20} className="mr-2" />}
+            Publish Profile
+          </Button>
+        </div>
       </div>
+
+      {savedMember?.previewToken && (
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+          <div>
+            <p className="text-xs font-black uppercase tracking-widest text-amber-800">Artist review link</p>
+            <p className="mt-1 text-sm text-amber-950">Anyone with this private link can preview the current saved version.</p>
+          </div>
+          <div className="flex gap-2">
+            <a href={`/en/members/${savedMember.id}?preview=${savedMember.previewToken}`} target="_blank" rel="noreferrer" className="inline-flex h-11 items-center rounded-xl border border-amber-300 bg-white px-4 text-sm font-bold text-amber-900"><Eye size={16} className="mr-2" />Preview</a>
+            <button type="button" onClick={async () => { await navigator.clipboard.writeText(`${window.location.origin}/en/members/${savedMember.id}?preview=${savedMember.previewToken}`); setCopied(true); setTimeout(() => setCopied(false), 2000); }} className="inline-flex h-11 items-center rounded-xl bg-amber-900 px-4 text-sm font-bold text-white">
+              {copied ? <Check size={16} className="mr-2" /> : <Copy size={16} className="mr-2" />}{copied ? 'Copied' : 'Copy link'}
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {/* Left Column: Media & Core Info */}

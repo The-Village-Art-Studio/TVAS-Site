@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { deleteStorageImage } from '@/lib/image-utils';
+import { randomUUID } from 'node:crypto';
 
 export async function PUT(
   request: NextRequest,
@@ -9,11 +10,16 @@ export async function PUT(
   try {
     const { id } = await params;
     const data = await request.json();
+    const isPublished = data.intent === 'publish';
+
+    if (isPublished && (!data.name || !data.imageUrl || !data.statementEn || !data.statementFr)) {
+      return NextResponse.json({ success: false, error: 'Name, image, and both statements are required to publish' }, { status: 400 });
+    }
     
     // Fetch existing member to check for old image
     const oldMember = await prisma.member.findUnique({
       where: { id },
-      select: { imageUrl: true }
+      select: { imageUrl: true, previewToken: true }
     });
 
     const member = await prisma.member.update({
@@ -25,6 +31,8 @@ export async function PUT(
         statementEn: data.statementEn,
         statementFr: data.statementFr,
         socialLinks: data.socialLinks,
+        isPublished,
+        previewToken: oldMember?.previewToken || randomUUID(),
       }
     });
 
@@ -33,7 +41,7 @@ export async function PUT(
       await deleteStorageImage(oldMember.imageUrl);
     }
 
-    return NextResponse.json({ success: true, member });
+    return NextResponse.json({ success: true, member, previewPath: `/members/${member.id}?preview=${member.previewToken}` });
   } catch (error) {
     console.error("Update member error:", error);
     return NextResponse.json({ success: false, error: "Failed to update member" }, { status: 500 });

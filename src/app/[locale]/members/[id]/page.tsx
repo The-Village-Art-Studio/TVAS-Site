@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import { ArrowLeft, Globe, Camera, Palette, Box, Cpu, Music, PenTool } from 'lucide-react';
@@ -19,28 +18,39 @@ const TypeIcon = ({ type, size = 14 }: { type: ArtistType; size?: number }) => {
   }
 };
 
-async function getMember(id: string) {
+async function getMember(id: string, previewToken?: string) {
   try {
-    return await prisma.member.findUnique({ where: { id } });
+    return await prisma.member.findFirst({
+      where: {
+        id,
+        OR: [
+          { isPublished: true },
+          ...(previewToken ? [{ previewToken }] : []),
+        ],
+      },
+    });
   } catch {
     return null;
   }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }) {
+export async function generateMetadata({ params, searchParams }: { params: Promise<{ locale: string; id: string }>; searchParams: Promise<{ preview?: string }> }) {
   const { id } = await params;
-  const member = await getMember(id);
+  const { preview } = await searchParams;
+  const member = await getMember(id, preview);
   if (!member) return { title: 'Artist Not Found' };
   return {
     title: `${member.name} | The Village Art Studio`,
     description: `View the artist profile of ${member.name} on The Village Art Studio.`,
+    robots: member.isPublished ? undefined : { index: false, follow: false },
   };
 }
 
-export default async function ArtistProfilePage({ params }: { params: Promise<{ locale: string; id: string }> }) {
+export default async function ArtistProfilePage({ params, searchParams }: { params: Promise<{ locale: string; id: string }>; searchParams: Promise<{ preview?: string }> }) {
   const { id, locale } = await params;
+  const { preview } = await searchParams;
   const [member, t] = await Promise.all([
-    getMember(id),
+    getMember(id, preview),
     getTranslations('Pages.Members'),
   ]);
 
@@ -57,6 +67,11 @@ export default async function ArtistProfilePage({ params }: { params: Promise<{ 
 
   return (
     <main className="pt-32 lg:pt-40 pb-24">
+      {!member.isPublished && (
+        <div className="fixed top-0 inset-x-0 z-[100] bg-amber-400 px-4 py-2 text-center text-xs font-black uppercase tracking-widest text-amber-950">
+          Draft preview — this profile is not published
+        </div>
+      )}
       {/* Background Blobs */}
       <div className="absolute top-0 left-0 w-full h-[800px] overflow-hidden pointer-events-none">
         <div className="absolute top-[10%] right-[-10%] w-[40%] h-[50%] bg-primary/10 rounded-full blur-[120px]" />
