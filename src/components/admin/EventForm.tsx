@@ -21,6 +21,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import ImageCropper from './ImageCropper';
+import { createCroppedImageFile, getUploadResponse, type CropArea } from '@/lib/client-image';
 
 interface EventFormProps {
   initialData?: any;
@@ -97,37 +98,27 @@ export default function EventForm({ initialData, isEditing = false }: EventFormP
     e.target.value = '';
   };
 
-  const onCropComplete = async (cropArea: any) => {
+  const onCropComplete = async (cropArea: CropArea | null) => {
     if (!selectedFile) return;
     
     setShowCropper(false);
     setUploading(true);
     setError('');
 
-    const data = new FormData();
-    data.set('file', selectedFile);
-    data.set('type', 'event'); 
-    
-    if (cropArea && typeof cropArea.x === 'number') {
-      data.set('cropX', Math.round(cropArea.x).toString());
-      data.set('cropY', Math.round(cropArea.y).toString());
-      data.set('cropWidth', Math.round(cropArea.width).toString());
-      data.set('cropHeight', Math.round(cropArea.height).toString());
-    }
-
     try {
+      if (!cropArea) throw new Error('This image format cannot be cropped. Please use a JPG, PNG, or WebP image.');
+      const uploadFile = await createCroppedImageFile(selectedFile, cropArea);
+      const data = new FormData();
+      data.set('file', uploadFile);
+      data.set('type', 'event');
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: data
       });
-      const result = await res.json();
-      if (result.success) {
-        setFormData(prev => ({ ...prev, imageUrl: result.url }));
-      } else {
-        setError('Upload failed: ' + result.error);
-      }
+      const result = await getUploadResponse(res);
+      setFormData(prev => ({ ...prev, imageUrl: result.url }));
     } catch (err) {
-      setError('Upload failed');
+      setError(err instanceof Error ? err.message : 'Upload failed');
     } finally {
       setUploading(false);
       setTempImage(null);
