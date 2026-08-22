@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
-import sharp from 'sharp';
-import { supabaseAdmin, STORAGE_BUCKET } from '@/lib/supabase';
+import { getSupabaseAdmin, STORAGE_BUCKET } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,6 +24,9 @@ export async function POST(request: NextRequest) {
     // Generate unique filename with .jpg extension
     const uniqueFilename = `${uuidv4()}.jpg`;
 
+    // Load the native image dependency only after the request reaches the handler.
+    // This lets Vercel return a useful JSON error if the runtime cannot load it.
+    const { default: sharp } = await import('sharp');
     let pipeline = sharp(buffer);
 
     // Apply manual crop if coordinates are provided
@@ -53,6 +55,7 @@ export async function POST(request: NextRequest) {
     const processedBuffer = await pipeline.jpeg({ quality: 85 }).toBuffer();
 
     // Upload to Supabase Storage
+    const supabaseAdmin = getSupabaseAdmin();
     const { data: uploadData, error } = await supabaseAdmin.storage
       .from(STORAGE_BUCKET)
       .upload(uniqueFilename, processedBuffer, {
@@ -72,6 +75,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, url: publicUrlData.publicUrl });
   } catch (error) {
     console.error('Upload error:', error);
-    return NextResponse.json({ success: false, error: 'Upload failed' }, { status: 500 });
+    const message = error instanceof Error ? error.message : 'Unknown server error';
+    return NextResponse.json({ success: false, error: `Upload failed: ${message}` }, { status: 500 });
   }
 }

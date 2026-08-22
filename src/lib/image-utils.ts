@@ -1,4 +1,4 @@
-import { supabaseAdmin, STORAGE_BUCKET } from '@/lib/supabase';
+import { getSupabaseAdmin, STORAGE_BUCKET } from '@/lib/supabase';
 
 /**
  * Extracts the filename from a Supabase Storage public URL and
@@ -21,7 +21,7 @@ export async function deleteStorageImage(imageUrl: string | null | undefined) {
     const filename = url.pathname.split(bucketPrefix)[1];
     if (!filename) return;
 
-    const { error } = await supabaseAdmin.storage
+    const { error } = await getSupabaseAdmin().storage
       .from(STORAGE_BUCKET)
       .remove([filename]);
 
