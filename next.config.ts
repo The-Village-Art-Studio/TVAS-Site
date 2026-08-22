@@ -4,6 +4,9 @@ const withNextIntl = createNextIntlPlugin();
  
 import { NextConfig } from 'next';
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseHostname = supabaseUrl ? new URL(supabaseUrl).hostname : undefined;
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -13,7 +16,8 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'bnkybmlnmgurhlebturf.supabase.co',
+        hostname: supabaseHostname ?? 'bnkybmlnmgurhlebturf.supabase.co',
+        pathname: '/storage/v1/object/public/tvas-assets/**',
       },
     ],
   },
@@ -21,8 +25,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/storage/:path*',
-        destination:
-          'https://bnkybmlnmgurhlebturf.supabase.co/storage/v1/object/public/tvas-assets/:path*',
+        destination: `${supabaseUrl ?? 'https://bnkybmlnmgurhlebturf.supabase.co'}/storage/v1/object/public/tvas-assets/:path*`,
       },
     ];
   },

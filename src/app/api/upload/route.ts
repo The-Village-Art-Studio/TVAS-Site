@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     const processedBuffer = await pipeline.jpeg({ quality: 85 }).toBuffer();
 
     // Upload to Supabase Storage
-    const { error } = await supabaseAdmin.storage
+    const { data: uploadData, error } = await supabaseAdmin.storage
       .from(STORAGE_BUCKET)
       .upload(uniqueFilename, processedBuffer, {
         contentType: 'image/jpeg',
@@ -65,10 +65,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: `Upload to storage failed: ${error.message}` }, { status: 500 });
     }
 
-    // Return the proxied URL (served from the same domain via next.config.ts rewrite)
-    const proxiedUrl = `/storage/${uniqueFilename}`;
+    const { data: publicUrlData } = supabaseAdmin.storage
+      .from(STORAGE_BUCKET)
+      .getPublicUrl(uploadData.path);
 
-    return NextResponse.json({ success: true, url: proxiedUrl });
+    return NextResponse.json({ success: true, url: publicUrlData.publicUrl });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json({ success: false, error: 'Upload failed' }, { status: 500 });
