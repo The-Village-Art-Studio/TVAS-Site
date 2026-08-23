@@ -72,7 +72,7 @@ export default function WorkshopCard({
           {artist}
         </p>
         
-        <p className="text-muted-foreground leading-relaxed mb-10 line-clamp-4 flex-grow">
+        <p className="text-muted-foreground leading-relaxed mb-10 line-clamp-4 flex-grow whitespace-pre-line">
           {description}
         </p>
 

@@ -124,7 +124,7 @@ export default async function ArtistProfilePage({ params, searchParams }: { para
             </h1>
 
             <div className="prose prose-lg dark:prose-invert max-w-none mb-16">
-              <p className="text-xl leading-relaxed text-muted-foreground">
+              <p className="text-xl leading-relaxed text-muted-foreground whitespace-pre-line">
                 {statement}
               </p>
             </div>

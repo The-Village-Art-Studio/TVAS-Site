@@ -63,7 +63,7 @@ export default async function PodcastPage({ params }: { params: Promise<{ locale
                 <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-8 leading-tight">
                   {locale === 'fr' ? featuredPodcast.titleFr : featuredPodcast.titleEn}
                 </h2>
-                <p className="text-xl text-zinc-400 mb-12 leading-relaxed max-w-lg line-clamp-4">
+                <p className="text-xl text-zinc-400 mb-12 leading-relaxed max-w-lg line-clamp-4 whitespace-pre-line">
                   {locale === 'fr' ? featuredPodcast.descriptionFr : featuredPodcast.descriptionEn}
                 </p>
                 <Button asChild size="lg" className="h-14 px-8 text-base font-bold rounded-2xl bg-primary hover:bg-primary/90 text-white self-start shadow-xl shadow-primary/20 group">

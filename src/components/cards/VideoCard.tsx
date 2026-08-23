@@ -40,7 +40,7 @@ export default function VideoCard({
           {title}
         </h3>
         
-        <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
+        <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3 whitespace-pre-line">
           {description}
         </p>
 

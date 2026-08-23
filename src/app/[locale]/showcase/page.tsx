@@ -69,7 +69,7 @@ export default async function ShowcasePage({ params }: { params: Promise<{ local
                 <h3 className="text-xl lg:text-2xl font-black text-primary uppercase tracking-tight mb-6 leading-[1.1]">
                   {featuredShowcase?.titleEn || 'Showcase Title'}
                 </h3>
-                <p className="text-base text-muted-foreground/80 leading-relaxed mb-8 line-clamp-5">
+                <p className="text-base text-muted-foreground/80 leading-relaxed mb-8 line-clamp-5 whitespace-pre-line">
                   {featuredShowcase?.statementEn || "A detailed exploration of this month's featured artist, their creative process, and the specific series being showcased at The Village Art Studio."}
                 </p>
                 {featuredShowcase && (

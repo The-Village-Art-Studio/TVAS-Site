@@ -54,7 +54,7 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
               <h3 className="text-xl font-extrabold text-white mb-4 leading-tight">
                 {latestPodcast ? (locale === 'fr' ? latestPodcast.titleFr : latestPodcast.titleEn) : 'The Voice of the Village'}
               </h3>
-              <p className="text-white/60 mb-8 leading-relaxed text-sm line-clamp-3">
+              <p className="text-white/60 mb-8 leading-relaxed text-sm line-clamp-3 whitespace-pre-line">
                 {latestPodcast ? (locale === 'fr' ? latestPodcast.descriptionFr : latestPodcast.descriptionEn) : "Deep-dive conversations with the creators shaping Toronto's cultural landscape."}
               </p>
               <div className="mt-auto">
@@ -87,7 +87,7 @@ export default async function FeaturedThisMonth({ locale }: { locale: string }) 
               <h3 className="text-xl font-extrabold text-slate-900 mb-4 leading-tight">
                 {latestShowcase ? latestShowcase.artistName : 'Monthly Showcase'}
               </h3>
-              <p className="text-slate-600 mb-8 leading-relaxed text-sm line-clamp-3">
+              <p className="text-slate-600 mb-8 leading-relaxed text-sm line-clamp-3 whitespace-pre-line">
                 {latestShowcase ? (locale === 'fr' ? latestShowcase.statementFr : latestShowcase.statementEn) : "A dedicated focus on one local artist, their work, and their unique creative process."}
               </p>
               <div className="mt-auto">

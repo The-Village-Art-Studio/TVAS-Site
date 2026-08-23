@@ -44,7 +44,7 @@ export default function EpisodeCard({
           {artist} &bull; {medium}
         </p>
         
-        <p className="text-muted-foreground leading-relaxed mb-10 line-clamp-3 flex-grow">
+        <p className="text-muted-foreground leading-relaxed mb-10 line-clamp-3 flex-grow whitespace-pre-line">
           {description}
         </p>
 
