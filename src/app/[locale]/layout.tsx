@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import "./globals.css";
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
+import { Analytics } from '@vercel/analytics/next';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,6 +34,7 @@ export default async function LocaleLayout({
             {children}
           </ClientLayoutWrapper>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
